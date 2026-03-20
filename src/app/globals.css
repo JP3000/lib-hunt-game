@@ -59,6 +59,7 @@ a {
 }
 
 .map-grid {
+  background-color: rgba(52, 30, 16, 0.9);
   background-image:
     linear-gradient(rgba(255, 229, 165, 0.06) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 229, 165, 0.06) 1px, transparent 1px);

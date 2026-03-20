@@ -64,7 +64,7 @@ export default function MapPage() {
                       </p>
                     </Link>
                   ) : (
-                    <div className="rounded-2xl border border-white/10 bg-black/20 p-3 opacity-60">
+                    <div className="rounded-2xl border border-dashed border-white/20 bg-black/20 p-3">
                       <p className="text-xs uppercase tracking-[0.2em] text-[var(--ink-muted)]">
                         Level {formatLevel(level.level)}
                       </p>

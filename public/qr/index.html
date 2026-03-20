@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Library Hunt QR Demo</title>
+    <style>
+      :root {
+        color-scheme: light;
+      }
+      body {
+        margin: 0;
+        font-family: "Segoe UI", Roboto, "PingFang SC", "Noto Sans", sans-serif;
+        background: linear-gradient(180deg, #f6f7fb 0%, #eceff7 100%);
+        color: #1f2937;
+      }
+      .wrap {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 24px 16px 36px;
+      }
+      h1 {
+        margin: 0;
+        font-size: 28px;
+      }
+      .hint {
+        margin-top: 10px;
+        line-height: 1.6;
+        color: #475569;
+      }
+      .grid {
+        margin-top: 20px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+        gap: 12px;
+      }
+      .card {
+        background: #fff;
+        border: 1px solid #e2e8f0;
+        border-radius: 14px;
+        padding: 12px;
+        box-shadow: 0 6px 14px rgba(15, 23, 42, 0.05);
+      }
+      .card img {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        border-radius: 8px;
+        background: #fff;
+      }
+      .title {
+        margin-top: 8px;
+        font-weight: 700;
+      }
+      .code {
+        margin-top: 4px;
+        font-size: 12px;
+        color: #475569;
+        word-break: break-all;
+      }
+      .badge {
+        display: inline-block;
+        margin-top: 6px;
+        padding: 3px 8px;
+        border-radius: 999px;
+        font-size: 12px;
+        background: #e2e8f0;
+        color: #1e293b;
+      }
+      .badge.bad {
+        background: #fee2e2;
+        color: #7f1d1d;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <h1>Library Hunt QR Demo Sheet</h1>
+      <p class="hint">
+        Open this page on device A and scan from device B using the in-game scanner.
+        URL: <strong>/qr/index.html</strong>
+      </p>
+
+      <section class="grid">
+        <article class="card">
+          <img src="/qr/level-01.svg" alt="Level 01 QR" />
+          <div class="title">Level 01</div>
+          <div class="code">L01-ARCHIVE-KEY</div>
+          <span class="badge">valid</span>
+        </article>
+
+        <article class="card">
+          <img src="/qr/level-02.svg" alt="Level 02 QR" />
+          <div class="title">Level 02</div>
+          <div class="code">L02-CATALOG-KEY</div>
+          <span class="badge">valid</span>
+        </article>
+
+        <article class="card">
+          <img src="/qr/level-03.svg" alt="Level 03 QR" />
+          <div class="title">Level 03</div>
+          <div class="code">L03-MANUSCRIPT-KEY</div>
+          <span class="badge">valid</span>
+        </article>
+
+        <article class="card">
+          <img src="/qr/level-04.svg" alt="Level 04 QR" />
+          <div class="title">Level 04</div>
+          <div class="code">L04-STARMAP-KEY</div>
+          <span class="badge">valid</span>
+        </article>
+
+        <article class="card">
+          <img src="/qr/level-05.svg" alt="Level 05 QR" />
+          <div class="title">Level 05</div>
+          <div class="code">L05-DRAWER-KEY</div>
+          <span class="badge">valid</span>
+        </article>
+
+        <article class="card">
+          <img src="/qr/level-06.svg" alt="Level 06 QR" />
+          <div class="title">Level 06</div>
+          <div class="code">L06-INDEX-KEY</div>
+          <span class="badge">valid</span>
+        </article>
+
+        <article class="card">
+          <img src="/qr/level-07.svg" alt="Level 07 QR" />
+          <div class="title">Level 07</div>
+          <div class="code">L07-STACK-KEY</div>
+          <span class="badge">valid</span>
+        </article>
+
+        <article class="card">
+          <img src="/qr/level-08.svg" alt="Level 08 QR" />
+          <div class="title">Level 08</div>
+          <div class="code">L08-ATRIUM-KEY</div>
+          <span class="badge">valid</span>
+        </article>
+
+        <article class="card">
+          <img src="/qr/level-09.svg" alt="Level 09 QR" />
+          <div class="title">Level 09</div>
+          <div class="code">L09-ECHO-KEY</div>
+          <span class="badge">valid</span>
+        </article>
+
+        <article class="card">
+          <img src="/qr/level-10.svg" alt="Level 10 QR" />
+          <div class="title">Level 10</div>
+          <div class="code">L10-BRONZE-KEY</div>
+          <span class="badge">valid</span>
+        </article>
+
+        <article class="card">
+          <img src="/qr/level-11.svg" alt="Level 11 QR" />
+          <div class="title">Level 11</div>
+          <div class="code">L11-THRONE-KEY</div>
+          <span class="badge">valid</span>
+        </article>
+
+        <article class="card">
+          <img src="/qr/level-12.svg" alt="Level 12 QR" />
+          <div class="title">Level 12</div>
+          <div class="code">L12-TREASURE-KEY</div>
+          <span class="badge">valid</span>
+        </article>
+
+        <article class="card">
+          <img src="/qr/invalid.svg" alt="Invalid QR" />
+          <div class="title">Invalid Test QR</div>
+          <div class="code">INVALID-QR-CODE</div>
+          <span class="badge bad">invalid</span>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>
