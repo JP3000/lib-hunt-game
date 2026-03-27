@@ -1,4 +1,4 @@
-import { SAMPLE_VIDEO_URL, TOTAL_LEVELS } from "@/lib/constants";
+import { SAMPLE_VIDEO_URL,SAMPLE_VIDEO_GITHUB_URL, TOTAL_LEVELS } from "@/lib/constants";
 import type { LevelConfig } from "@/lib/types";
 
 export const LEVELS: LevelConfig[] = [
@@ -15,7 +15,7 @@ export const LEVELS: LevelConfig[] = [
     ],
     correctOptionId: "a",
     qrAnswer: "L01-ARCHIVE-KEY",
-    videoUrl: SAMPLE_VIDEO_URL,
+    videoUrl: SAMPLE_VIDEO_GITHUB_URL,
   },
   {
     level: 2,
@@ -30,7 +30,7 @@ export const LEVELS: LevelConfig[] = [
     ],
     correctOptionId: "b",
     qrAnswer: "L02-CATALOG-KEY",
-    videoUrl: SAMPLE_VIDEO_URL,
+    videoUrl: SAMPLE_VIDEO_GITHUB_URL,
   },
   {
     level: 3,
@@ -45,7 +45,7 @@ export const LEVELS: LevelConfig[] = [
     ],
     correctOptionId: "b",
     qrAnswer: "L03-MANUSCRIPT-KEY",
-    videoUrl: SAMPLE_VIDEO_URL,
+    videoUrl: SAMPLE_VIDEO_GITHUB_URL,
   },
   {
     level: 4,
@@ -60,7 +60,7 @@ export const LEVELS: LevelConfig[] = [
     ],
     correctOptionId: "b",
     qrAnswer: "L04-STARMAP-KEY",
-    videoUrl: SAMPLE_VIDEO_URL,
+    videoUrl: SAMPLE_VIDEO_GITHUB_URL,
   },
   {
     level: 5,
@@ -75,7 +75,7 @@ export const LEVELS: LevelConfig[] = [
     ],
     correctOptionId: "a",
     qrAnswer: "L05-DRAWER-KEY",
-    videoUrl: SAMPLE_VIDEO_URL,
+    videoUrl: SAMPLE_VIDEO_GITHUB_URL,
   },
   {
     level: 6,
@@ -90,7 +90,7 @@ export const LEVELS: LevelConfig[] = [
     ],
     correctOptionId: "a",
     qrAnswer: "L06-INDEX-KEY",
-    videoUrl: SAMPLE_VIDEO_URL,
+    videoUrl: SAMPLE_VIDEO_GITHUB_URL,
   },
   {
     level: 7,
@@ -105,7 +105,7 @@ export const LEVELS: LevelConfig[] = [
     ],
     correctOptionId: "b",
     qrAnswer: "L07-STACK-KEY",
-    videoUrl: SAMPLE_VIDEO_URL,
+    videoUrl: SAMPLE_VIDEO_GITHUB_URL,
   },
   {
     level: 8,
@@ -120,7 +120,7 @@ export const LEVELS: LevelConfig[] = [
     ],
     correctOptionId: "a",
     qrAnswer: "L08-ATRIUM-KEY",
-    videoUrl: SAMPLE_VIDEO_URL,
+    videoUrl: SAMPLE_VIDEO_GITHUB_URL,
   },
   {
     level: 9,
@@ -135,7 +135,7 @@ export const LEVELS: LevelConfig[] = [
     ],
     correctOptionId: "b",
     qrAnswer: "L09-ECHO-KEY",
-    videoUrl: SAMPLE_VIDEO_URL,
+    videoUrl: SAMPLE_VIDEO_GITHUB_URL,
   },
   {
     level: 10,
@@ -150,7 +150,7 @@ export const LEVELS: LevelConfig[] = [
     ],
     correctOptionId: "a",
     qrAnswer: "L10-BRONZE-KEY",
-    videoUrl: SAMPLE_VIDEO_URL,
+    videoUrl: SAMPLE_VIDEO_GITHUB_URL,
   },
   {
     level: 11,
@@ -165,7 +165,7 @@ export const LEVELS: LevelConfig[] = [
     ],
     correctOptionId: "a",
     qrAnswer: "L11-THRONE-KEY",
-    videoUrl: SAMPLE_VIDEO_URL,
+    videoUrl: SAMPLE_VIDEO_GITHUB_URL,
   },
   {
     level: 12,
@@ -180,7 +180,7 @@ export const LEVELS: LevelConfig[] = [
     ],
     correctOptionId: "a",
     qrAnswer: "L12-TREASURE-KEY",
-    videoUrl: SAMPLE_VIDEO_URL,
+    videoUrl: SAMPLE_VIDEO_GITHUB_URL,
   },
 ];
 
