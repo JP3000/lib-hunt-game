@@ -25,11 +25,11 @@ export default function LoginPage() {
 
     const normalized = inputValue.trim();
     if (!STUDENT_ID_REGEX.test(normalized)) {
-      setError("请输入正确学号格式：前两位小写字母 + 6 位数字，例如 ab565666。");
+      setError("请输入正确学号格式：前两位字母（大写或小写）+ 6 位数字，例如 ab565666 或 AB565666。");
       return;
     }
 
-    const initialLevel = normalized === FAST_PASS_STUDENT_ID ? 12 : 1;
+    const initialLevel = normalized.toLowerCase() === FAST_PASS_STUDENT_ID ? 12 : 1;
     login(normalized, initialLevel);
     router.push("/map");
   };
