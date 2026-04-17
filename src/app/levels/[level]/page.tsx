@@ -1,6 +1,4 @@
 import { notFound, redirect } from "next/navigation";
-import { AuthGate } from "@/components/auth-gate";
-import { LevelPage } from "@/components/level-page";
 import { TOTAL_LEVELS } from "@/lib/constants";
 
 type LevelRouteParams = {
@@ -8,14 +6,6 @@ type LevelRouteParams = {
 };
 
 const LEVEL_SEGMENT_REGEX = /^\d{1,2}$/;
-
-export async function generateStaticParams(): Promise<LevelRouteParams[]> {
-  return Array.from({ length: TOTAL_LEVELS }, (_, index) => ({
-    level: String(index + 1).padStart(2, "0"),
-  }));
-}
-
-export const dynamicParams = true;
 
 export default async function DynamicLevelPage({
   params,
@@ -34,13 +24,5 @@ export default async function DynamicLevelPage({
   }
 
   const canonicalLevel = String(levelNumber).padStart(2, "0");
-  if (level !== canonicalLevel) {
-    redirect(`/levels/${canonicalLevel}`);
-  }
-
-  return (
-    <AuthGate>
-      <LevelPage levelNumber={levelNumber} />
-    </AuthGate>
-  );
+  redirect(`/levels/${canonicalLevel}`);
 }
