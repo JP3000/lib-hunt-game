@@ -1,11 +1,5 @@
-import { redirect } from "next/navigation";
-import type { Locale } from "@/lib/i18n";
+import { LoginScreen } from "@/components/login-screen";
 
-export default async function LocaleHome({
-  params,
-}: {
-  params: Promise<{ lang: Locale }>;
-}) {
-  const { lang } = await params;
-  redirect(`/${lang}/login`);
+export default function LocaleHome() {
+  return <LoginScreen />;
 }

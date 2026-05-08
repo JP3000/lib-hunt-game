@@ -1,4 +1,6 @@
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
+import { AuthGate } from "@/components/auth-gate";
+import { LevelPage } from "@/components/level-page";
 import { TOTAL_LEVELS } from "@/lib/constants";
 import type { Locale } from "@/lib/i18n";
 
@@ -14,7 +16,7 @@ export default async function DynamicLevelPage({
 }: {
   params: Promise<LevelRouteParams>;
 }) {
-  const { level, lang } = await params;
+  const { level } = await params;
 
   if (!LEVEL_SEGMENT_REGEX.test(level)) {
     notFound();
@@ -25,6 +27,9 @@ export default async function DynamicLevelPage({
     notFound();
   }
 
-  const canonicalLevel = String(levelNumber).padStart(2, "0");
-  redirect(`/${lang}/levels/${canonicalLevel}`);
+  return (
+    <AuthGate>
+      <LevelPage levelNumber={levelNumber} />
+    </AuthGate>
+  );
 }

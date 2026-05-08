@@ -11,13 +11,13 @@ type ItemPanelProps = {
 };
 
 export function ItemPanel({ open, collectedItems, onClose }: ItemPanelProps) {
-  if (!open) {
-    return null;
-  }
-
   const locale = useLocale();
   const t = getTranslations(locale);
   const items = getLevels(locale).map((level) => level.item);
+
+  if (!open) {
+    return null;
+  }
 
   return (
     <div className="fixed inset-0 z-40 flex items-start justify-center bg-black/70 px-3 py-4 sm:items-center">
