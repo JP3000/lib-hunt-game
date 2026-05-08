@@ -1,6 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useLocale } from "@/hooks/use-locale";
+import { getTranslations } from "@/lib/translations";
 
 type QrVerifierProps = {
   expectedValue: string;
@@ -20,6 +22,8 @@ type Html5QrcodeInstance = {
 };
 
 export function QrVerifier({ expectedValue, onVerified, levelNumber }: QrVerifierProps) {
+  const locale = useLocale();
+  const t = getTranslations(locale);
   const containerId = useMemo(() => `qr-scanner-level-${levelNumber}`, [levelNumber]);
   const scannerRef = useRef<Html5QrcodeInstance | null>(null);
 
@@ -35,7 +39,7 @@ export function QrVerifier({ expectedValue, onVerified, levelNumber }: QrVerifie
     try {
       await scannerRef.current.stop();
     } catch {
-      // 摄像头可能尚未成功启动，忽略停止异常。
+      // 攝像頭可能尚未成功啟動，忽略停止異常。
     }
 
     scannerRef.current.clear();
@@ -48,19 +52,19 @@ export function QrVerifier({ expectedValue, onVerified, levelNumber }: QrVerifie
     (value: string) => {
       const normalized = value.trim();
       if (!normalized) {
-        setFeedback("请输入二维码内容后再验证。");
+        setFeedback(t.qr.emptyValue);
         return;
       }
 
       if (normalized === expectedValue) {
-        setFeedback("验证成功，藏宝机关已解锁。");
+        setFeedback(t.qr.success);
         onVerified(normalized);
         return;
       }
 
-      setFeedback("二维码内容不匹配，请重试。");
+      setFeedback(t.qr.mismatch);
     },
-    [expectedValue, onVerified]
+    [expectedValue, onVerified, t]
   );
 
   const startCamera = useCallback(async () => {
@@ -80,16 +84,16 @@ export function QrVerifier({ expectedValue, onVerified, levelNumber }: QrVerifie
           void stopCamera();
         },
         () => {
-          // 连续扫描时会频繁抛错，忽略单次解析失败。
+          // 連續掃描時會頻繁拋錯，忽略單次解析失敗。
         }
       );
 
       setCameraActive(true);
     } catch {
-      setFeedback("无法打开摄像头，请改用手动输入二维码内容。");
+      setFeedback(t.qr.cameraError);
       void stopCamera();
     }
-  }, [containerId, stopCamera, verifyValue]);
+  }, [containerId, stopCamera, verifyValue, t]);
 
   useEffect(() => {
     return () => {
@@ -99,9 +103,9 @@ export function QrVerifier({ expectedValue, onVerified, levelNumber }: QrVerifie
 
   return (
     <section className="treasure-panel p-4">
-      <h3 className="treasure-title text-lg text-[var(--ink-main)]">二维码互动</h3>
+      <h3 className="treasure-title text-lg text-[var(--ink-main)]">{t.qr.heading}</h3>
       <p className="mt-2 text-sm text-[var(--ink-muted)]">
-        可选择调用摄像头扫码，也可手动输入二维码内容进行验证。
+        {t.qr.description}
       </p>
 
       <div className="mt-3 flex flex-wrap gap-2">
@@ -111,7 +115,7 @@ export function QrVerifier({ expectedValue, onVerified, levelNumber }: QrVerifie
             onClick={startCamera}
             className="rounded-full border border-amber-500/40 bg-amber-500/20 px-4 py-2 text-sm text-amber-100 transition hover:bg-amber-500/30"
           >
-            开始扫码
+            {t.qr.startScan}
           </button>
         ) : (
           <button
@@ -119,7 +123,7 @@ export function QrVerifier({ expectedValue, onVerified, levelNumber }: QrVerifie
             onClick={() => void stopCamera()}
             className="rounded-full border border-amber-500/40 bg-amber-500/20 px-4 py-2 text-sm text-amber-100 transition hover:bg-amber-500/30"
           >
-            停止扫码
+            {t.qr.stopScan}
           </button>
         )}
       </div>
@@ -130,7 +134,7 @@ export function QrVerifier({ expectedValue, onVerified, levelNumber }: QrVerifie
         <input
           value={manualInput}
           onChange={(event) => setManualInput(event.target.value)}
-          placeholder="手动输入二维码内容"
+          placeholder={t.qr.manualPlaceholder}
           className="w-full rounded-xl border border-[var(--border)] bg-black/20 px-3 py-2 text-sm text-[var(--ink-main)] outline-none ring-0 placeholder:text-[var(--ink-muted)] focus:border-amber-400/70"
         />
         <button
@@ -138,11 +142,13 @@ export function QrVerifier({ expectedValue, onVerified, levelNumber }: QrVerifie
           onClick={() => verifyValue(manualInput)}
           className="rounded-xl border border-[var(--border)] bg-black/25 px-4 py-2 text-sm text-[var(--ink-main)] transition hover:bg-black/35"
         >
-          手动验证
+          {t.qr.manualVerify}
         </button>
       </div>
 
-      <p className="mt-2 text-xs text-[var(--ink-muted)]">演示测试码: {expectedValue}</p>
+      <p className="mt-2 text-xs text-[var(--ink-muted)]">
+        {t.qr.demoCode}: {expectedValue}
+      </p>
       {feedback ? <p className="mt-2 text-sm text-amber-100">{feedback}</p> : null}
     </section>
   );

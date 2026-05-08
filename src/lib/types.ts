@@ -3,15 +3,23 @@ export type LevelOption = {
   label: string;
 };
 
+export type ItemConfig = {
+  id: string;
+  name: string;
+  imageUrl: string;
+  description: string;
+};
+
 export type LevelConfig = {
   level: number;
   title: string;
   story: string;
   question: string;
   options: LevelOption[];
-  correctOptionId: string;
+  correctOptionIds: string[];
   qrAnswer: string;
   videoUrl: string;
+  item: ItemConfig;
 };
 
 export type LevelResult = {

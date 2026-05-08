@@ -11,23 +11,25 @@ type GameState = {
   unlockedLevel: number;
   totalScore: number;
   levelResults: Partial<Record<number, LevelResult>>;
+  collectedItems: string[];
   setHasHydrated: (hydrated: boolean) => void;
   login: (studentId: string, initialUnlockedLevel?: number) => void;
   logout: () => void;
   setUnlockedLevel: (level: number) => void;
-  completeLevel: (level: number, result: Omit<LevelResult, "completedAt">) => void;
+  completeLevel: (level: number, result: Omit<LevelResult, "completedAt">, itemId?: string) => void;
   resetProgress: () => void;
 };
 
 const initialState: Pick<
   GameState,
-  "hasHydrated" | "studentId" | "unlockedLevel" | "totalScore" | "levelResults"
+  "hasHydrated" | "studentId" | "unlockedLevel" | "totalScore" | "levelResults" | "collectedItems"
 > = {
   hasHydrated: false,
   studentId: null,
   unlockedLevel: 1,
   totalScore: 0,
   levelResults: {},
+  collectedItems: [],
 };
 
 const clampLevel = (level: number) => Math.min(TOTAL_LEVELS, Math.max(1, level));
@@ -54,6 +56,7 @@ export const useGameStore = create<GameState>()(
           unlockedLevel: clampLevel(initialUnlockedLevel),
           totalScore: 0,
           levelResults: {},
+          collectedItems: [],
         });
       },
       logout: () =>
@@ -65,7 +68,7 @@ export const useGameStore = create<GameState>()(
         set((state) => ({
           unlockedLevel: Math.max(state.unlockedLevel, clampLevel(level)),
         })),
-      completeLevel: (level, result) =>
+      completeLevel: (level, result, itemId) =>
         set((state) => {
           const safeLevel = clampLevel(level);
           const nextLevelResults: Partial<Record<number, LevelResult>> = {
@@ -83,10 +86,15 @@ export const useGameStore = create<GameState>()(
           const unlockedLevel =
             safeLevel >= TOTAL_LEVELS ? TOTAL_LEVELS : Math.max(state.unlockedLevel, clampLevel(safeLevel + 1));
 
+          const nextCollectedItems = itemId
+            ? Array.from(new Set([...state.collectedItems, itemId]))
+            : state.collectedItems;
+
           return {
             levelResults: nextLevelResults,
             totalScore,
             unlockedLevel,
+            collectedItems: nextCollectedItems,
           };
         }),
       resetProgress: () =>
@@ -95,6 +103,7 @@ export const useGameStore = create<GameState>()(
           unlockedLevel: 1,
           totalScore: 0,
           levelResults: {},
+          collectedItems: [],
         })),
     }),
     {
@@ -109,6 +118,7 @@ export const useGameStore = create<GameState>()(
         unlockedLevel: state.unlockedLevel,
         totalScore: state.totalScore,
         levelResults: state.levelResults,
+        collectedItems: state.collectedItems,
       }),
     }
   )

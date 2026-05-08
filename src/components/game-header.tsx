@@ -1,8 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { useState } from "react";
 import { useGameStore } from "@/store/game-store";
+import { ItemPanel } from "@/components/item-panel";
+import { useLocale } from "@/hooks/use-locale";
+import { getTranslations } from "@/lib/translations";
+import { LOCALES, replaceLocaleInPathname, withLocalePrefix } from "@/lib/i18n";
 
 type GameHeaderProps = {
   title: string;
@@ -18,44 +23,74 @@ export function GameHeader({
   showLeaderboardLink = true,
 }: GameHeaderProps) {
   const router = useRouter();
+  const pathname = usePathname() ?? "/";
+  const locale = useLocale();
+  const t = getTranslations(locale);
   const studentId = useGameStore((state) => state.studentId);
   const totalScore = useGameStore((state) => state.totalScore);
+  const collectedItems = useGameStore((state) => state.collectedItems);
   const logout = useGameStore((state) => state.logout);
+  const [showItems, setShowItems] = useState(false);
 
   const handleLogout = () => {
     logout();
-    router.replace("/login");
+    router.replace(withLocalePrefix("/login", locale));
   };
 
   return (
     <header className="treasure-panel sticky top-3 z-20 mx-auto flex w-[min(980px,92vw)] flex-col gap-3 px-4 py-4 md:flex-row md:items-center md:justify-between">
       <div>
-        <p className="text-xs uppercase tracking-[0.22em] text-[var(--ink-muted)]">Library Hunt Demo</p>
+        <p className="text-xs uppercase tracking-[0.22em] text-[var(--ink-muted)]">
+          {t.brand} {t.demoLabel}
+        </p>
         <h1 className="treasure-title text-xl text-[var(--ink-main)] md:text-2xl">{title}</h1>
         {subtitle ? <p className="mt-1 text-sm text-[var(--ink-muted)]">{subtitle}</p> : null}
       </div>
 
       <div className="flex flex-wrap items-center gap-2 text-sm">
         <span className="rounded-full border border-[var(--border)] px-3 py-1 text-[var(--ink-muted)]">
-          玩家: {studentId}
+          {t.header.player}: {studentId}
         </span>
         <span className="rounded-full border border-[var(--border)] px-3 py-1 text-[var(--ink-main)]">
-          总分: {totalScore}
+          {t.header.score}: {totalScore}
         </span>
+        <button
+          type="button"
+          onClick={() => setShowItems(true)}
+          className="rounded-full border border-[var(--border)] bg-black/20 px-3 py-1 text-[var(--ink-main)] transition hover:bg-black/30"
+        >
+          {t.header.items}
+        </button>
+        <div className="flex items-center gap-1 rounded-full border border-[var(--border)] bg-black/15 px-2 py-1">
+          <span className="text-xs text-[var(--ink-muted)]">{t.header.language}</span>
+          {LOCALES.map((lang) => (
+            <Link
+              key={lang}
+              href={replaceLocaleInPathname(pathname, lang)}
+              className={`rounded-full px-2 py-0.5 text-xs transition ${
+                lang === locale
+                  ? "bg-amber-500/30 text-amber-100"
+                  : "text-[var(--ink-main)] hover:bg-black/20"
+              }`}
+            >
+              {lang === "zh-Hant" ? "繁體" : "EN"}
+            </Link>
+          ))}
+        </div>
         {showMapLink ? (
           <Link
-            href="/map"
+            href={withLocalePrefix("/map", locale)}
             className="rounded-full border border-[var(--border)] bg-black/20 px-3 py-1 text-[var(--ink-main)] transition hover:bg-black/30"
           >
-            地图
+            {t.header.map}
           </Link>
         ) : null}
         {showLeaderboardLink ? (
           <Link
-            href="/leaderboard"
+            href={withLocalePrefix("/leaderboard", locale)}
             className="rounded-full border border-[var(--border)] bg-black/20 px-3 py-1 text-[var(--ink-main)] transition hover:bg-black/30"
           >
-            积分板
+            {t.header.leaderboard}
           </Link>
         ) : null}
         <button
@@ -63,9 +98,10 @@ export function GameHeader({
           onClick={handleLogout}
           className="rounded-full border border-amber-500/40 bg-amber-500/20 px-3 py-1 text-amber-100 transition hover:bg-amber-500/30"
         >
-          退出
+          {t.header.logout}
         </button>
       </div>
+      <ItemPanel open={showItems} collectedItems={collectedItems} onClose={() => setShowItems(false)} />
     </header>
   );
 }

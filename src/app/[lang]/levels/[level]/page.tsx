@@ -1,8 +1,10 @@
 import { notFound, redirect } from "next/navigation";
 import { TOTAL_LEVELS } from "@/lib/constants";
+import type { Locale } from "@/lib/i18n";
 
 type LevelRouteParams = {
   level: string;
+  lang: Locale;
 };
 
 const LEVEL_SEGMENT_REGEX = /^\d{1,2}$/;
@@ -12,7 +14,7 @@ export default async function DynamicLevelPage({
 }: {
   params: Promise<LevelRouteParams>;
 }) {
-  const { level } = await params;
+  const { level, lang } = await params;
 
   if (!LEVEL_SEGMENT_REGEX.test(level)) {
     notFound();
@@ -24,5 +26,5 @@ export default async function DynamicLevelPage({
   }
 
   const canonicalLevel = String(levelNumber).padStart(2, "0");
-  redirect(`/levels/${canonicalLevel}`);
+  redirect(`/${lang}/levels/${canonicalLevel}`);
 }
