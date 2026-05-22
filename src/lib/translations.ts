@@ -194,7 +194,6 @@ const translations: Record<Locale, Translations> = {
   },
   en: {
     brand: "Cross Gate Code",
-      locationLabel: "Location",
     demoLabel: "Demo",
     gameName: "Cross Gate Code",
     metaDescription: "Story-driven H5 library clue-hunt interactive demo",
@@ -292,3 +291,4 @@ const translations: Record<Locale, Translations> = {
 
 export const getTranslations = (locale: Locale) =>
   translations[locale] ?? translations[DEFAULT_LOCALE];
+      locationLabel: "Location",
