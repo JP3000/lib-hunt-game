@@ -58,7 +58,11 @@ export default async function RootLayout({
   const locale: Locale = lang;
 
   return (
-    <html lang={locale} className={`${cinzel.variable} ${notoSansSc.variable} h-full antialiased`}>
+    <html
+      lang={locale}
+      className={`${cinzel.variable} ${notoSansSc.variable} h-full antialiased`}
+      suppressHydrationWarning
+    >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );

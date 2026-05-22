@@ -32,7 +32,11 @@ export default function DefaultRootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang={DEFAULT_LOCALE} className={`${cinzel.variable} ${notoSansSc.variable} h-full antialiased`}>
+    <html
+      lang={DEFAULT_LOCALE}
+      className={`${cinzel.variable} ${notoSansSc.variable} h-full antialiased`}
+      suppressHydrationWarning
+    >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
