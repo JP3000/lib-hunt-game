@@ -140,7 +140,9 @@ export function LevelPage({ levelNumber }: LevelPageProps) {
           <p className="mt-3 leading-7 text-[var(--ink-main)]/95">{level.story}</p>
 
           <div className="mt-4 overflow-hidden rounded-xl border border-[var(--border)] bg-black/25">
-            <video src={level.videoUrl} controls playsInline className="w-full" />
+            <video controls playsInline className="w-full">
+              <source src={level.videoUrl} type="video/mp4" />
+            </video>
           </div>
           <p className="mt-2 text-xs text-[var(--ink-muted)]">{t.level.promptHint}</p>
         </section>
