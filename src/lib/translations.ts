@@ -135,12 +135,12 @@ const translations: Record<Locale, Translations> = {
     level: {
       title: (level) => `第 ${level} 關`,
       storyHeading: "劇情線索",
-      promptHint: "提示: 先看影片，再完成答題與掃碼驗證。",
+      promptHint: "提示：先掃碼驗證，再看影片並完成答題",
       questionHeading: "問題挑戰",
       multiSelectHint: "本題可多選",
       submitAnswer: "提交答案",
       answerRequired: "請先選擇一個答案。",
-      answerCorrect: "回答正確，繼續完成二維碼驗證。",
+      answerCorrect: "回答正確",
       answerWrong: "回答不正確，再試一次。",
       completedHint: "本關已完成，可繼續下一關或返回地圖。",
       settlementHeading: "本關結算",
@@ -230,7 +230,7 @@ const translations: Record<Locale, Translations> = {
     level: {
       title: (level) => `Level ${level}`,
       storyHeading: "Story Clue",
-      promptHint: "Tip: Watch the video, then finish the quiz and QR check.",
+      promptHint: "Tip: First complete the QR code verification, then watch the video and finish the quiz.",
       questionHeading: "Challenge Question",
       multiSelectHint: "Multiple answers allowed",
       submitAnswer: "Submit Answer",
