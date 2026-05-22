@@ -37,6 +37,9 @@ export async function generateMetadata({
   return {
     title: `${t.gameName} ${t.demoLabel}`,
     description: t.metaDescription,
+    icons: {
+      icon: "/favicon.png",
+    },
   };
 }
 

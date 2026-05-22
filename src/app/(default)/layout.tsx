@@ -21,6 +21,9 @@ const t = getTranslations(DEFAULT_LOCALE);
 export const metadata: Metadata = {
   title: `${t.gameName} ${t.demoLabel}`,
   description: t.metaDescription,
+  icons: {
+    icon: "/favicon.png",
+  },
 };
 
 export default function DefaultRootLayout({
