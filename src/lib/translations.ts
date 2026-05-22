@@ -291,4 +291,3 @@ const translations: Record<Locale, Translations> = {
 
 export const getTranslations = (locale: Locale) =>
   translations[locale] ?? translations[DEFAULT_LOCALE];
-      locationLabel: "Location",
