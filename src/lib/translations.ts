@@ -60,6 +60,7 @@ type Translations = {
   };
   qr: {
     heading: string;
+    locationLabel: string;
     description: string;
     startScan: string;
     stopScan: string;
@@ -193,6 +194,7 @@ const translations: Record<Locale, Translations> = {
   },
   en: {
     brand: "Cross Gate Code",
+      locationLabel: "Location",
     demoLabel: "Demo",
     gameName: "Cross Gate Code",
     metaDescription: "Story-driven H5 library clue-hunt interactive demo",
