@@ -155,7 +155,8 @@ const translations: Record<Locale, Translations> = {
       itemUnlockHint: "通關後自動收錄到道具欄",
     },
     qr: {
-      heading: "二維碼互動",
+      heading: "位置驗證（掃碼）",
+      locationLabel: "位置",
       description: "可選擇呼叫攝像頭掃碼，也可手動輸入二維碼內容進行驗證。",
       startScan: "開始掃碼",
       stopScan: "停止掃碼",
@@ -249,7 +250,8 @@ const translations: Record<Locale, Translations> = {
       itemUnlockHint: "Unlocks after completion",
     },
     qr: {
-      heading: "QR Interaction",
+      heading: "Location Scan",
+      locationLabel: "Location",
       description: "Use the camera to scan, or enter the QR code manually.",
       startScan: "Start Scan",
       stopScan: "Stop Scan",

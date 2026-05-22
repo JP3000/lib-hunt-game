@@ -24,7 +24,6 @@ export function LevelPage({ levelNumber }: LevelPageProps) {
   const t = getTranslations(locale);
   const level = useMemo(() => getLevelConfig(levelNumber, locale), [levelNumber, locale]);
   const item = level.item;
-  const issuedAt = useMemo(() => new Date(), []);
 
   const unlockedLevel = useGameStore((state) => state.unlockedLevel);
   const levelResults = useGameStore((state) => state.levelResults);
@@ -115,22 +114,12 @@ export function LevelPage({ levelNumber }: LevelPageProps) {
     <div className="pb-8">
       <GameHeader title={t.level.title(levelNumber)} subtitle={level.title} />
 
-      <section className="dossier-strip mx-auto mt-4 w-[min(980px,92vw)] px-4 py-3">
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          <div>
-            <p className="text-xs uppercase tracking-[0.28em] text-[var(--ink-muted)]">Case File</p>
-            <p className="treasure-title text-lg text-[var(--ink-main)]">#{formatLevel(levelNumber)} · Archive</p>
-          </div>
-          <div className="flex items-center gap-3">
-            <div className="text-right text-xs text-[var(--ink-muted)]">
-              <p>{issuedAt.toLocaleDateString(locale === "en" ? "en" : "zh-Hant")}</p>
-              <p>{issuedAt.toLocaleTimeString(locale === "en" ? "en" : "zh-Hant", { hour: "2-digit", minute: "2-digit" })}</p>
-            </div>
-            <div className="dossier-seal flex h-12 w-12 items-center justify-center rounded-full text-xs uppercase tracking-[0.2em] text-amber-100">
-              Seal
-            </div>
-          </div>
-        </div>
+      <section className="mx-auto mt-4 w-[min(980px,92vw)]">
+        <QrVerifier
+          levelNumber={level.level}
+          expectedValue={level.qrAnswer}
+          onVerified={() => setQrPassedLocal(true)}
+        />
       </section>
 
       <main className="mx-auto mt-5 grid w-[min(980px,92vw)] gap-4 md:grid-cols-5">
@@ -199,14 +188,6 @@ export function LevelPage({ levelNumber }: LevelPageProps) {
 
           {shownMessage ? <p className="mt-3 text-sm text-amber-100">{shownMessage}</p> : null}
         </section>
-
-        <div className="md:col-span-3">
-          <QrVerifier
-            levelNumber={level.level}
-            expectedValue={level.qrAnswer}
-            onVerified={() => setQrPassedLocal(true)}
-          />
-        </div>
 
         <section className="treasure-panel flex flex-col gap-3 p-4 md:col-span-2">
           <h3 className="treasure-title text-lg">{t.level.settlementHeading}</h3>

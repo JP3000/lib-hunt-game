@@ -103,17 +103,18 @@ export function QrVerifier({ expectedValue, onVerified, levelNumber }: QrVerifie
 
   return (
     <section className="treasure-panel p-4">
-      <h3 className="treasure-title text-lg text-[var(--ink-main)]">{t.qr.heading}</h3>
-      <p className="mt-2 text-sm text-[var(--ink-muted)]">
-        {t.qr.description}
-      </p>
-
-      <div className="mt-3 flex flex-wrap gap-2">
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <div className="space-y-1">
+          <h3 className="treasure-title text-2xl text-[var(--ink-main)]">{t.qr.heading}</h3>
+          <p className="treasure-title text-2xl text-[var(--ink-main)]">
+            {t.qr.locationLabel} {levelNumber}
+          </p>
+        </div>
         {!cameraActive ? (
           <button
             type="button"
             onClick={startCamera}
-            className="rounded-full border border-amber-500/40 bg-amber-500/20 px-4 py-2 text-sm text-amber-100 transition hover:bg-amber-500/30"
+            className="rounded-full border border-amber-500/40 bg-amber-500/20 px-3 py-1.5 text-xs text-amber-100 transition hover:bg-amber-500/30"
           >
             {t.qr.startScan}
           </button>
@@ -121,16 +122,19 @@ export function QrVerifier({ expectedValue, onVerified, levelNumber }: QrVerifie
           <button
             type="button"
             onClick={() => void stopCamera()}
-            className="rounded-full border border-amber-500/40 bg-amber-500/20 px-4 py-2 text-sm text-amber-100 transition hover:bg-amber-500/30"
+            className="rounded-full border border-amber-500/40 bg-amber-500/20 px-3 py-1.5 text-xs text-amber-100 transition hover:bg-amber-500/30"
           >
             {t.qr.stopScan}
           </button>
         )}
       </div>
 
-      <div id={containerId} className="mt-3 min-h-10 overflow-hidden rounded-xl border border-[var(--border)] bg-black/20" />
+      <div
+        id={containerId}
+        className="mt-3 min-h-10 overflow-hidden rounded-xl border border-[var(--border)] bg-black/20"
+      />
 
-      <div className="mt-4 flex flex-col gap-2 sm:flex-row">
+      <div className="mt-3 flex flex-col gap-2 sm:flex-row">
         <input
           value={manualInput}
           onChange={(event) => setManualInput(event.target.value)}
@@ -140,7 +144,7 @@ export function QrVerifier({ expectedValue, onVerified, levelNumber }: QrVerifie
         <button
           type="button"
           onClick={() => verifyValue(manualInput)}
-          className="rounded-xl border border-[var(--border)] bg-black/25 px-4 py-2 text-sm text-[var(--ink-main)] transition hover:bg-black/35"
+          className="rounded-xl border border-[var(--border)] bg-black/25 px-3 py-2 text-sm text-[var(--ink-main)] transition hover:bg-black/35"
         >
           {t.qr.manualVerify}
         </button>
@@ -149,6 +153,7 @@ export function QrVerifier({ expectedValue, onVerified, levelNumber }: QrVerifie
       <p className="mt-2 text-xs text-[var(--ink-muted)]">
         {t.qr.demoCode}: {expectedValue}
       </p>
+
       {feedback ? <p className="mt-2 text-sm text-amber-100">{feedback}</p> : null}
     </section>
   );
