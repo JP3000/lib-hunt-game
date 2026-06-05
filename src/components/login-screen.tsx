@@ -49,8 +49,23 @@ export function LoginScreen() {
   }
 
   return (
-    <main className="relative flex min-h-dvh items-center justify-center px-4 py-10">
-      <div className="treasure-panel w-full max-w-md p-6 md:p-8">
+    <main className="intro-shell">
+      <video
+        className="intro-video"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        aria-hidden="true"
+      >
+        <source src="/assets/intro.mp4" type="video/mp4" />
+      </video>
+      <div className="intro-video-overlay" aria-hidden="true" />
+      <div className="intro-glow" aria-hidden="true" />
+      <div className="intro-orbit" aria-hidden="true" />
+
+      <section className="intro-card w-full max-w-md p-6 md:p-8">
         <div className="flex items-center justify-between">
           <p className="text-xs uppercase tracking-[0.28em] text-[var(--ink-muted)]">{t.brand}</p>
           <div className="flex items-center gap-1 rounded-full border border-[var(--border)] bg-black/15 px-2 py-1">
@@ -100,7 +115,11 @@ export function LoginScreen() {
         <div className="mt-5 rounded-xl border border-[var(--border)] bg-black/15 p-3 text-xs leading-6 text-[var(--ink-muted)]">
           {t.login.fastPass(FAST_PASS_STUDENT_ID)}
         </div>
-      </div>
+      </section>
+
+      <div className="intro-spark intro-spark-a" aria-hidden="true" />
+      <div className="intro-spark intro-spark-b" aria-hidden="true" />
+      <div className="intro-spark intro-spark-c" aria-hidden="true" />
     </main>
   );
 }

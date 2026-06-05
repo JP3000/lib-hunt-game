@@ -15,6 +15,12 @@ type Translations = {
     invalidStudentId: string;
     fastPass: (id: string) => string;
   };
+  intro: {
+    eyebrow: string;
+    headline: string;
+    subtitle: string;
+    start: string;
+  };
   header: {
     player: string;
     score: string;
@@ -112,13 +118,19 @@ const translations: Record<Locale, Translations> = {
       invalidStudentId: "請輸入正確學號格式：前兩位字母（大寫或小寫）+ 6 位數字，例如 ab565666 或 AB565666。",
       fastPass: (id) => `演示快速通關學號: ${id}（可直接解鎖到第 12 關）`,
     },
+    intro: {
+      eyebrow: "序章啟動",
+      headline: "十字門代碼",
+      subtitle: "跨過封印的門扉，解鎖第一道線索。",
+      start: "開始探索",
+    },
     header: {
       player: "玩家",
       score: "總分",
       items: "道具",
-      map: "地圖",
+      map: "返回地圖",
       leaderboard: "積分板",
-      logout: "退出",
+      logout: "重新登入",
       language: "語言",
     },
     map: {
@@ -142,7 +154,7 @@ const translations: Record<Locale, Translations> = {
       answerRequired: "請先選擇一個答案。",
       answerCorrect: "回答正確",
       answerWrong: "回答不正確，再試一次。",
-      completedHint: "本關已完成，可繼續下一關或返回地圖。",
+      completedHint: "本關已完成，可繼續下一關或返回地图。",
       settlementHeading: "本關結算",
       questionStatus: "答題狀態",
       qrStatus: "掃碼狀態",
@@ -150,18 +162,18 @@ const translations: Record<Locale, Translations> = {
       passed: "已通過",
       pending: "未通過",
       completeAndNext: "完成本關並繼續",
-      backToMap: "返回地圖",
+      backToMap: "返回地图",
       nextLevel: "前往下一關",
       itemHeading: "本道具",
       itemUnlockHint: "通關後自動收錄到道具欄",
     },
     qr: {
-      heading: "位置驗證（掃碼）",
+      heading: "掃碼驗證",
       locationLabel: "位置",
       description: "可選擇呼叫攝像頭掃碼，也可手動輸入二維碼內容進行驗證。",
       startScan: "開始掃碼",
       stopScan: "停止掃碼",
-      manualPlaceholder: "手動輸入二維碼內容",
+      manualPlaceholder: "手動輸入密鑰",
       manualVerify: "手動驗證",
       demoCode: "演示測試碼",
       emptyValue: "請輸入二維碼內容後再驗證。",
@@ -181,8 +193,8 @@ const translations: Record<Locale, Translations> = {
       subtitleIncomplete: "繼續挑戰以解鎖完整積分板",
       finalScore: "最終得分",
       progress: ({ completed, total }) => `完成進度: ${completed}/${total}`,
-      backToMap: "返回地圖",
-      reset: "重置進度並重玩",
+      backToMap: "返回地图",
+      reset: "重置進度",
       levelBreakdown: "關卡明細",
       notCompleted: "未完成",
       itemSection: "已獲得道具",
@@ -207,13 +219,19 @@ const translations: Record<Locale, Translations> = {
       invalidStudentId: "Use the correct format: two letters (upper or lower case) + 6 digits, e.g. ab565666 or AB565666.",
       fastPass: (id) => `Fast-pass demo ID: ${id} (unlock level 12)`,
     },
+    intro: {
+      eyebrow: "Prologue Online",
+      headline: "Cross Gate Code",
+      subtitle: "Step through the seal and unlock the first clue.",
+      start: "Begin Exploration",
+    },
     header: {
       player: "Player",
       score: "Score",
       items: "Items",
       map: "Map",
       leaderboard: "Leaderboard",
-      logout: "Logout",
+      logout: "Sign in again",
       language: "Language",
     },
     map: {
@@ -277,7 +295,7 @@ const translations: Record<Locale, Translations> = {
       finalScore: "Final Score",
       progress: ({ completed, total }) => `Progress: ${completed}/${total}`,
       backToMap: "Back to Map",
-      reset: "Reset Progress",
+      reset: "Reset",
       levelBreakdown: "Level Breakdown",
       notCompleted: "Not completed",
       itemSection: "Collected Items",

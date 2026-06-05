@@ -11,7 +11,7 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
       item: {
         id: "item-01",
         name: "密文折子影印頁",
-        imageUrl: "/assets/macau-map.jpg",
+        imageUrl: "/assets/Secret_Folder_Copy.jpg",
         description: "影印頁背面留有淡藍墨跡，標註“1982·安東尼奧”。",
       },
       question:

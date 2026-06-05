@@ -44,7 +44,7 @@ export default function LeaderboardPage() {
             <div className="mt-4 flex flex-wrap gap-2">
               <Link
                 href={withLocalePrefix("/map", locale)}
-                className="rounded-xl border border-[var(--border)] bg-black/25 px-4 py-2 text-sm transition hover:bg-black/35"
+                className="rounded-xl border border-amber-500/50 bg-amber-500/20 px-4 py-2 text-sm text-amber-100 transition hover:bg-amber-500/30"
               >
                 {t.leaderboard.backToMap}
               </Link>
@@ -54,7 +54,7 @@ export default function LeaderboardPage() {
                   resetProgress();
                   router.push(withLocalePrefix("/map", locale));
                 }}
-                className="rounded-xl border border-amber-500/50 bg-amber-500/20 px-4 py-2 text-sm text-amber-100 transition hover:bg-amber-500/30"
+                className="rounded-xl border border-red-500/55 bg-red-500/20 px-4 py-2 text-sm text-red-100 transition hover:bg-red-500/30"
               >
                 {t.leaderboard.reset}
               </button>

@@ -129,22 +129,24 @@ export function QrVerifier({ expectedValue, onVerified, levelNumber }: QrVerifie
         )}
       </div>
 
-      <div
-        id={containerId}
-        className="mt-3 min-h-10 overflow-hidden rounded-xl border border-[var(--border)] bg-black/20"
-      />
+      {cameraActive ? (
+        <div
+          id={containerId}
+          className="mt-3 min-h-10 overflow-hidden rounded-xl border border-[var(--border)] bg-black/20"
+        />
+      ) : null}
 
       <div className="mt-3 flex flex-col gap-2 sm:flex-row">
         <input
           value={manualInput}
           onChange={(event) => setManualInput(event.target.value)}
           placeholder={t.qr.manualPlaceholder}
-          className="w-full rounded-xl border border-[var(--border)] bg-black/20 px-3 py-2 text-sm text-[var(--ink-main)] outline-none ring-0 placeholder:text-[var(--ink-muted)] focus:border-amber-400/70"
+          className="w-full rounded-xl border border-amber-500/50 bg-amber-500/10 px-3 py-2 text-sm text-[var(--ink-main)] outline-none ring-0 placeholder:text-amber-100/70 focus:border-amber-400/80"
         />
         <button
           type="button"
           onClick={() => verifyValue(manualInput)}
-          className="rounded-xl border border-[var(--border)] bg-black/25 px-3 py-2 text-sm text-[var(--ink-main)] transition hover:bg-black/35"
+          className="rounded-xl border border-amber-500/50 bg-amber-500/20 px-3 py-2 text-sm text-amber-100 transition hover:bg-amber-500/30"
         >
           {t.qr.manualVerify}
         </button>
