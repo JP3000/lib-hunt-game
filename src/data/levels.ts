@@ -1,5 +1,5 @@
 import { DEFAULT_LOCALE, type Locale } from "@/lib/i18n";
-import { SAMPLE_VIDEO_GITHUB_URL, TOTAL_LEVELS } from "@/lib/constants";
+import { SAMPLE_VIDEO_GITHUB_URL, TOTAL_LEVELS, LEVEL1_VIDEO_URL } from "@/lib/constants";
 import type { LevelConfig } from "@/lib/types";
 
 const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
@@ -7,12 +7,17 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
     {
       level: 1,
       title: "第一關: 密文影印本",
-      story: "你在特藏室翻到《崇禎七年·閩海貿易帳目折子》影印本，封底浮現淡淡雙十字。",
+      story: `你在特藏室翻到《崇禎七年・閩海貿易賬目折子》影印本，右下角浮現雙十字標記。老館員看後沉默良久，將一枚發黑的葡萄牙銀幣交給你。
+      指引：前往大廳，尋找相同的雙十字標記。`,
+      storyImageUrl: "/assets/Secret_Folder_Copy.jpg",
+      storyImageAlt: "密文影印本細節",
+      storyImageCaption: "影印頁背面留有淡藍墨跡，右下角有著神秘的雙十字印記。",
+
       item: {
         id: "item-01",
-        name: "密文折子影印頁",
-        imageUrl: "/assets/Secret_Folder_Copy.jpg",
-        description: "影印頁背面留有淡藍墨跡，標註“1982·安東尼奧”。",
+        name: "老旧的葡萄牙银币",
+        imageUrl: "/assets/老旧的葡萄牙银币.png",
+        description: "老舊的葡萄牙銀幣，象徵著圖書館的秘密傳承。",
       },
       question:
         "假設你帶了一杯超大杯的珍珠奶茶，想在圖書館裡享受閱讀時光，但心裡擔心灑了會惹麻煩。請問，圖書館裡關於飲食的規定是?",
@@ -30,7 +35,7 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
       ],
       correctOptionIds: ["c", "d"],
       qrAnswer: "L01-ARCHIVE-KEY",
-      videoUrl: SAMPLE_VIDEO_GITHUB_URL,
+      videoUrl: LEVEL1_VIDEO_URL,
     },
     {
       level: 2,
@@ -51,7 +56,7 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
       ],
       correctOptionIds: ["b", "c"],
       qrAnswer: "L02-CATALOG-KEY",
-      videoUrl: SAMPLE_VIDEO_GITHUB_URL,
+      // videoUrl: SAMPLE_VIDEO_GITHUB_URL,
     },
     {
       level: 3,

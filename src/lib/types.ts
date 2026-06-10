@@ -18,7 +18,10 @@ export type LevelConfig = {
   options: LevelOption[];
   correctOptionIds: string[];
   qrAnswer: string;
-  videoUrl: string;
+  videoUrl?: string;
+  storyImageUrl?: string;
+  storyImageAlt?: string;
+  storyImageCaption?: string;
   item: ItemConfig;
 };
 

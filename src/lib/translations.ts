@@ -68,6 +68,7 @@ type Translations = {
     heading: string;
     locationLabel: string;
     description: string;
+    scanArea: string;
     startScan: string;
     stopScan: string;
     manualPlaceholder: string;
@@ -171,6 +172,7 @@ const translations: Record<Locale, Translations> = {
       heading: "掃碼驗證",
       locationLabel: "位置",
       description: "可選擇呼叫攝像頭掃碼，也可手動輸入二維碼內容進行驗證。",
+      scanArea: "掃碼區域",
       startScan: "開始掃碼",
       stopScan: "停止掃碼",
       manualPlaceholder: "手動輸入密鑰",
@@ -272,6 +274,7 @@ const translations: Record<Locale, Translations> = {
       heading: "Location Scan",
       locationLabel: "Location",
       description: "Use the camera to scan, or enter the QR code manually.",
+      scanArea: "Scan area",
       startScan: "Start Scan",
       stopScan: "Stop Scan",
       manualPlaceholder: "Enter QR code",

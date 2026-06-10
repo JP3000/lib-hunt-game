@@ -6,3 +6,5 @@ export const FAST_PASS_STUDENT_ID = "ab999999";
 export const SAMPLE_VIDEO_URL = "/video/level9.mp4";
 
 export const SAMPLE_VIDEO_GITHUB_URL = "/video/level9.mp4";
+
+export const LEVEL1_VIDEO_URL = "/video/level1.mp4";

@@ -129,12 +129,18 @@ export function QrVerifier({ expectedValue, onVerified, levelNumber }: QrVerifie
         )}
       </div>
 
-      {cameraActive ? (
-        <div
-          id={containerId}
-          className="mt-3 min-h-10 overflow-hidden rounded-xl border border-[var(--border)] bg-black/20"
-        />
-      ) : null}
+      <div
+        className={`relative mt-3 min-h-[96px] overflow-hidden rounded-xl border ${
+          cameraActive ? "border-[var(--border)] bg-black/20" : "border-dashed border-white/35 bg-black/10"
+        }`}
+      >
+        {!cameraActive ? (
+          <div className="pointer-events-none absolute inset-0 flex items-center justify-center text-xs text-amber-100/80">
+            {t.qr.scanArea}
+          </div>
+        ) : null}
+        <div id={containerId} className="min-h-[96px]" />
+      </div>
 
       <div className="mt-3 flex flex-col gap-2 sm:flex-row">
         <input
