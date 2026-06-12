@@ -72,9 +72,7 @@ export function LevelPage({ levelNumber }: LevelPageProps) {
     const nextAttempts = attempts + 1;
     setAttempts(nextAttempts);
 
-    const correctCount = getCorrectCount();
-
-    // 提交即過關（不再要求至少選中正確項），但分數按正確選項個數計算
+    // 提交即通過，不判斷對錯；積分由 finishLevel 按正確選項個數計算
     setQuestionPassedLocal(true);
     setAnswerMessage(t.level.answerCorrect);
   };
@@ -113,6 +111,8 @@ export function LevelPage({ levelNumber }: LevelPageProps) {
         <QrVerifier
           levelNumber={level.level}
           expectedValue={level.qrAnswer}
+          location={level.qrLocation}
+          locationNote={level.qrLocationNote}
           onVerified={() => setQrPassedLocal(true)}
         />
       </section>

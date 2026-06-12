@@ -8,6 +8,8 @@ type QrVerifierProps = {
   expectedValue: string;
   onVerified: (value: string) => void;
   levelNumber: number;
+  location?: string;
+  locationNote?: string;
 };
 
 type Html5QrcodeInstance = {
@@ -21,7 +23,7 @@ type Html5QrcodeInstance = {
   clear: () => void;
 };
 
-export function QrVerifier({ expectedValue, onVerified, levelNumber }: QrVerifierProps) {
+export function QrVerifier({ expectedValue, onVerified, levelNumber, location, locationNote }: QrVerifierProps) {
   const locale = useLocale();
   const t = getTranslations(locale);
   const containerId = useMemo(() => `qr-scanner-level-${levelNumber}`, [levelNumber]);
@@ -107,8 +109,11 @@ export function QrVerifier({ expectedValue, onVerified, levelNumber }: QrVerifie
         <div className="space-y-1">
           <h3 className="treasure-title text-2xl text-[var(--ink-main)]">{t.qr.heading}</h3>
           <p className="treasure-title text-2xl text-[var(--ink-main)]">
-            {t.qr.locationLabel} {levelNumber}
+            {location ?? `${t.qr.locationLabel} ${levelNumber}`}
           </p>
+          {locationNote ? (
+            <p className="text-xs text-[var(--ink-muted)] mt-0.5">{locationNote}</p>
+          ) : null}
         </div>
         {!cameraActive ? (
           <button
