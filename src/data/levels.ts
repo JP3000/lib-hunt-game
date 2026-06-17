@@ -7,7 +7,7 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
     {
       level: 1,
       title: "第一關: 密文影印本",
-      story: `1634年黑夜，明代旗舰“海神号”在十字门遭遇暴风雨触礁沉没，六十万两白银瞬间消失在“海底推浪”的泥沙之下。而今天，一位学生在图书馆特藏室发现了当年的账目折子影印本，上面带有神秘的“双十字”。当学生向老馆员询问时，老人沉默良久，从抽屉里拿出一枚黑色的葡萄牙银币推给学生，正式将这段尘封的历史谜团交托给新一代的探索者。`,
+      story: `1634年黑夜，明代旗舰”海神号”在十字门遭遇暴风雨触礁沉没，六十万两白银瞬间消失在”海底推浪”的泥沙之下。而今天，一位学生在图书馆特藏室发现了当年的账目折子影印本，上面带有神秘的”双十字”。当学生向老馆员询问时，老人沉默良久，从抽屉里拿出一枚黑色的葡萄牙银币推给学生。学生追问银币的来历，老人只是指了指影印本上的双十字，低声说：”先去大厅，看看楼层分布图。等你找到第一样东西，再来找我。”`,
       item: {
         id: "item-01",
         name: "老旧的葡萄牙银币",
@@ -37,7 +37,7 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
     {
       level: 2,
       title: "第二關: 雙十字印記",
-      story: "拿到銀幣的學生仔細觀察密文影印本的右下角，「雙十字」標記清晰可見。老馆员透露：多年前，航海家安东尼奥将毕生调查笔记捐给图书馆，但自己出于某种顾虑，将笔记拆散后藏在图书馆各处。“想解开设下的谜，就去 【大厅】的【楼层分布图】 找到第一个坐标——安东尼奥留下的印记，会告诉你从哪开始。",
+      story: `拿到銀幣的學生仔細觀察密文影印本的右下角，「雙十字」標記清晰可見。老馆员透露：多年前，航海家安东尼奥将毕生调查笔记捐给图书馆，但自己出于某种顾虑，将笔记拆散后藏在图书馆各处。“想解开设下的谜，就去 【大厅】的【楼层分布图】 找到第一个坐标——安东尼奥留下的印记，会告诉你从哪开始。`,
       storyImageUrl: "/assets/Secret_Folder_Copy.jpg",
       storyImageAlt: "密文影印本細節",
       storyImageCaption: "折子上的密文记着：‘海眼吞金而不溺，银箱似受神引，没于泥沙之下，遁迹于白银水道。’”——谜底，就藏在这句话里",
@@ -65,7 +65,7 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
     {
       level: 3,
       title: "第三關: 海神號傳聞",
-      story: "翻开封面，笔记的第一页就指向十字门水域。前往【资讯共享空间】，在那里遗留了一张泛黄的海神号航图残片。图上用红笔标注了历史航线，不禁让人回忆起折子中的密文：“飓风突至，浪高如山，六十万两白银悉数沉没，无一浮起。水手俱言——‘海眼吞了银子’。",
+      story: `翻开封面，笔记的第一页就指向十字门水域。前往【资讯共享空间】，在那里遗留了一张泛黄的海神号航图残片。图上用红笔标注了历史航线，不禁让人回忆起折子中的密文：“飓风突至，浪高如山，六十万两白银悉数沉没，无一浮起。水手俱言——‘海眼吞了银子’。`,
       item: {
         id: "item-03",
         name: "海神號航圖殘片",
@@ -88,7 +88,7 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
     {
       level: 4,
       title: "第四關: 海底推移假說",
-      story: "“白银并未消失，而是被推动了。”答案在【参考咨询台】保存的一份手稿里。安东尼奥在推移假说手稿中写道：十字门水域存在一种缓慢的“海底推浪”，足以在数百年间把沉重的银箱沿海底斜坡推移数公里。手稿上画出一条标注为“白银水道”的示意路线，终点指向一片当时还是浅滩的区域。",
+      story: `"白银并未消失，而是被推动了。"答案在【参考咨询台】保存的一份手稿里。安东尼奥在推移假说手稿中写道：十字门水域存在一种缓慢的"海底推浪"，足以在数百年间把沉重的银箱沿海底斜坡推移数公里。手稿上画出一条标注为"白银水道"的示意路线，终点指向一片当时还是浅滩的区域。`,
       item: {
         id: "item-04",
         name: "推移假說手稿",
@@ -111,7 +111,7 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
     {
       level: 5,
       title: "第五關: 十字門舊圖",
-      story: "验证假说需要证据。前往 【1/F 澳大人文库（a/b区交界处）】 ，找出一幅十字门旧海图。图上绘制着三百多年前的海岸线——大、小横琴之间还是开阔水域，与沉船坐标完全吻合。而“白银水道”的终点，在旧图上是一片浅滩，今天却已是陆地。老馆员走到你跟前对你说：“沧海变桑田，桑田之下，或有回音。”",
+      story: `验证假说需要证据。前往 【1/F 澳大人文库（a/b区交界处）】 ，找出一幅十字门旧海图。图上绘制着三百多年前的海岸线——大、小横琴之间还是开阔水域，与沉船坐标完全吻合。而"白银水道"的终点，在旧图上是一片浅滩，今天却已是陆地。老馆员走到你跟前对你说："沧海变桑田，桑田之下，或有回音。"`,
       item: {
         id: "item-05",
         name: "十字門舊海圖",
@@ -137,7 +137,7 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
     {
       level: 6,
       title: "第六關: 潮汐回流",
-      story: "科学佐证藏在【1/F 澳门坊 G 类地理类图书】中。翻开厚重的潮汐回流记录，长达数十年的水文数据显示：十字门存在一股稳定的近海底缓流，流速虽慢，却从未停歇。一位海洋学家在旁注里惊叹：“理论上，任何密度足够大的物体，都可能在百年尺度上被这股力量搬运数公里。”",
+      story: `科学佐证藏在【1/F 澳门坊 G 类地理类图书】中。翻开厚重的潮汐回流记录，长达数十年的水文数据显示：十字门存在一股稳定的近海底缓流，流速虽慢，却从未停歇。一位海洋学家在旁注里惊叹："理论上，任何密度足够大的物体，都可能在百年尺度上被这股力量搬运数公里。"`,
       item: {
         id: "item-06",
         name: "潮汐回流記錄",
@@ -160,7 +160,7 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
     {
       level: 7,
       title: "第七關: 圍海新岸",
-      story: "银箱被推移的终点，如今在哪？前往【2/F 多媒体区服务台】，查阅一份围海造田简报。20世纪下半叶的大规模填海工程，将旧海图上那片浅滩变成了陆地。安东尼奥在笔记中写着：“终点已被封存。若我所料不差，白银已在陆地之下。”",
+      story: `银箱被推移的终点，如今在哪？前往【2/F 多媒体区服务台】，查阅一份围海造田简报。20世纪下半叶的大规模填海工程，将旧海图上那片浅滩变成了陆地。安东尼奥在笔记中写着："终点已被封存。若我所料不差，白银已在陆地之下。"`,
       item: {
         id: "item-07",
         name: "圍海造田剪報",
@@ -183,7 +183,7 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
     {
       level: 8,
       title: "第八關: 圖書館地樁",
-      story: "证据越来越近。上到 【3/F A区科学技术书籍区】 ，找到一份地桩施工记录。2011年图书馆动工，第一根钢印地桩打入地下约5米时，“传来巨大的木材碎裂声，泥浆中混着贝壳碎屑和咸水味”。施工方备注：“疑似击穿埋藏木质构造，待查。”",
+      story: `证据越来越近。上到 【3/F A区科学技术书籍区】 ，找到一份地桩施工记录。2011年图书馆动工，第一根钢印地桩打入地下约5米时，"传来巨大的木材碎裂声，泥浆中混着贝壳碎屑和咸水味"。施工方备注："疑似击穿埋藏木质构造，待查。"`,
       item: {
         id: "item-08",
         name: "地樁施工記錄",
@@ -207,7 +207,7 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
     {
       level: 9,
       title: "第九關: 木樑巨響",
-      story: "在【3/F 某小组讨论室】，保存着一块木梁碎片的照片。碎片从施工地底带上，木质经海水长期浸泡呈深褐色。鉴定显示，这是17世纪福建沿海常用的船用木材，与郑芝龙船队用料一致。边缘的断裂痕迹，极可能是钢桩撞击造成。",
+      story: `在【3/F 自习室的玻璃展柜】，保存着一块木梁碎片的照片。碎片从施工地底带上，木质经海水长期浸泡呈深褐色。鉴定显示，这是17世纪福建沿海常用的船用木材，与郑芝龙船队用料一致。边缘的断裂痕迹，极可能是钢桩撞击造成。`,
       item: {
         id: "item-09",
         name: "木樑碎片",
@@ -234,12 +234,12 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
     {
       level: 10,
       title: "第十關: 館員分藏",
-      story: "这些线索本是一体。前往【1/F 学位论文区架位旁】，找出一份分藏清单残页。老馆员在页上坦白：“安东尼奥的笔记我拆散了。不为毁灭，是为守候。清单上的位置，就是剩下的碎片所在。”残页上列着数个书架编号和装饰位置，对应你尚未找到的笔记部分。",
+      story: `这些线索本是一体。前往【1/F 学位论文区架位旁】，找出一份安东尼奥亲笔的分藏清单残页。安东尼奥在清单上写道：”为防止笔记落入贪婪之人手中，我已将其拆散藏于图书馆各处。能走到这一步的人，必已集齐大半碎片。清单上的位置，正是你之前所寻得的道具。”老馆员在旁轻叹：”我只是守候者。这条路，是他三百年前就设计好的考验。”残页上列着数个位置和道具，对应你已经找到的笔记部分。`,
       item: {
         id: "item-10",
         name: "分藏清單",
         imageUrl: "/assets/分藏记录.png",
-        description: "老人没有试图掩埋真相，他只是等待一个愿意把碎片拼回的人。",
+        description: "安东尼奥三百年前设下的考验，只为等一个不为金银而来的人。老人没有掩埋真相，他只是这条路上的守护者。",
       },
       question:
         "你不知道學長學姐的姓名，也不知道論文題目，但你知道學院有一位很棒的陳大文教授，你想看看他指導的學位論文。你應該怎麼做?",
@@ -263,12 +263,15 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
     {
       level: 11,
       title: "第十一關: 解密鑰匙",
-      story: "碎片已齐，但如何拼读？前往【G/F 学科教材区】，找出一份解密钥匙札记。安东尼奥亲手编写了一套密码表，附言：“真相从不轻易示人，需要耐心、智慧，以及最重要的——不是为了金银而来。”按照钥匙指示，你将所有碎片拼合成完整的信息：银箱坐标、推移路径、终点印证，全部吻合。",
+      story: `碎片已齐，但如何拼读？前往【G/F 学科教材区】，找出一份解密钥匙札记。安东尼奥亲手编写了线索推演图，附言：”真相从不轻易示人，需要耐心、智慧，以及最重要的——不是为了金银而来。”按照钥匙指示，你将所有碎片拼合成完整的信息：银箱坐标、推移路径、终点印证，全部吻合。`,
+      storyImageUrl: "/assets/解密线索图.png",
+      storyImageAlt: "解密线索推演图",
+      storyImageCaption: `安东尼奥亲手绘制的线索推演图——你走过的每一步，都在他的预料之中。`,
       item: {
         id: "item-11",
-        name: "解密鑰匙札記",
-        imageUrl: "/assets/解密钥匙札记.png",
-        description: "密码表上没有数字，只有星辰与潮汐。安东尼奥把真相留给了懂得仰望的人。",
+        name: "解密线索图",
+        imageUrl: "/assets/解密线索图.png",
+        description: "线索图上是你走过的路，是旧时的影子与潮汐。安东尼奥把真相留给了懂得探索的人。",
       },
       question: "你在圖書館展覽中看到一幅抽象畫，完全看不懂，你應該怎麼做?",
       options: [
@@ -286,12 +289,12 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
     {
       level: 12,
       title: "第十二關: 繼承者之證",
-      story: "所有线索都指向同一个地点——你脚下的图书馆地基。前往【G/F 资讯素养教室】，老馆员已在那里等候。他将一枚刻着双十字的银印放入你掌心：“重要的从来不是白银本身，而是有人愿意走完这段路。从今天起，你是继承者。”没有开挖，没有宝箱。但三百年的谜团在你手中闭合——白银是否在地底，已不再重要。你证明了追问本身，就是最珍贵的宝藏。",
+      story: `所有线索都指向同一个地点——你脚下的图书馆地基。前往【G/F 资讯素养教室】，老馆员已在那里等候。他将一枚刻着双十字的银印放入你掌心："重要的从来不是白银本身，而是有人愿意走完这段路。从今天起，你是继承者。"没有开挖，没有宝箱。但三百年的谜团在你手中闭合——白银是否在地底，已不再重要。你证明了追问本身，就是最珍贵的宝藏。`,
       item: {
         id: "item-12",
-        name: "葡萄牙銀幣",
+        name: "雙十字銀印",
         imageUrl: "/assets/葡萄牙银币.png",
-        description: "银印刻着：‘答案就在书架之间。’——而你，找到了它。",
+        description: "银印上刻着双十字，与影印本上的标记一模一样。老人说：’答案就在书架之间。’——而你，找到了它。",
       },
       question:
         "你需要這學期的 2024 年版《Essentials of Marketing Research》課本，但發現 3/F A 區書架上只有舊版本。你可以怎做?",
@@ -312,12 +315,12 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
     {
       level: 1,
       title: "Level 1: Cipher Copy",
-      story: "In the special collections room, you find a copy of the Ming ledger. A faint double-cross mark appears on the back cover.",
+      story: `On a stormy night in 1634, the Ming flagship Poseidon struck a reef and sank in the Cross Gate waters. Six hundred thousand taels of silver vanished beneath the silt, swallowed by what sailors called the "seafloor push." Centuries later, a student discovers a photocopied Ming ledger in the library's special collections room — its back cover marked with a mysterious double-cross symbol. When the student asks the senior librarian about it, the old man falls silent, pulls a blackened Portuguese silver coin from his drawer, and slides it across the desk. The student presses for the coin's origin, but the old man simply points at the double-cross and murmurs: "Go to the lobby first. Study the floor plan. When you find the first piece, come back to me."`,
       item: {
         id: "item-01",
         name: "Cipher Ledger Copy",
-        imageUrl: "/assets/macau-map.jpg",
-        description: "A pale blue note reads “1982 · Antonio.”",
+        imageUrl: "/assets/老旧的葡萄牙银币.png",
+        description: `A pale blue note reads "1982 · Antonio."`,
       },
       question:
         "Suppose you bring a super-sized bubble tea and want to enjoy reading time in the library. What are the library's regulations regarding food and beverages?",
@@ -345,11 +348,11 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
     {
       level: 2,
       title: "Level 2: Double-Cross Mark",
-      story: "The senior librarian sees the mark, falls silent, and reveals an oxidized silver coin.",
+      story: `Examining the coin, the student notices the same double-cross mark clearly visible on the corner of the cipher copy. The senior librarian reveals: years ago, the navigator Antonio donated his life's investigative notes to the library, but out of caution, he disassembled the notes and hid them throughout the building. "If you want to solve the puzzle he left behind, go to the lobby floor plan and find the first coordinate. Antonio's mark will tell you where to begin."`,
       item: {
         id: "item-02",
         name: "Double-Cross Impression",
-        imageUrl: "/assets/macau-map.jpg",
+        imageUrl: "/assets/航海笔记封面.png",
         description: "An impression of the double-cross, like a secret waypoint.",
       },
       question:
@@ -369,11 +372,11 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
     {
       level: 3,
       title: "Level 3: The Poseidon Rumor",
-      story: "The cipher mentions the Poseidon flagship sinking with no trace of its silver cargo.",
+      story: `The first page of Antonio's notes points directly to the Cross Gate waters. Head to the Information Commons, where a yellowed chart fragment of the Poseidon awaits. Red lines trace the historical shipping route, and the ledger's cipher text echoes in your mind: "A hurricane struck without warning — waves rose like mountains. Six hundred thousand taels of silver sank without a trace. Every sailor said the same thing: the Sea Eye swallowed the silver."`,
       item: {
         id: "item-03",
         name: "Poseidon Chart Fragment",
-        imageUrl: "/assets/macau-map.jpg",
+        imageUrl: "/assets/海神号航海图.png",
         description: "A torn chart points to the Cross Gate waters.",
       },
       question:
@@ -393,11 +396,11 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
     {
       level: 4,
       title: "Level 4: Seafloor Drift",
-      story: "Antonio proposes that a slow seafloor current pushed the silver toward a new shoreline.",
+      story: `"The silver did not vanish — it was moved." The answer lies in a manuscript preserved at the Reference Desk. In his Seafloor Drift Hypothesis, Antonio wrote: the Cross Gate waters harbor a slow, persistent "seafloor push" capable of shifting heavy silver chests kilometers along the seabed over centuries. The manuscript includes a sketched route labeled "The Silver Waterway," ending at what was then a shallow shoal.`,
       item: {
         id: "item-04",
         name: "Drift Hypothesis Notes",
-        imageUrl: "/assets/macau-map.jpg",
+        imageUrl: "/assets/推移假说手稿.png",
         description: "Notes on current direction align with the library site.",
       },
       question:
@@ -417,11 +420,11 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
     {
       level: 5,
       title: "Level 5: Cross Gate Chart",
-      story: "An old sea chart marks the channel between Hengqin and the Cross Gate waters.",
+      story: `To verify the hypothesis, evidence is needed. Head to the Special Collections Reading Room and find an old sea chart of the Cross Gate. Drawn over three hundred years ago, it shows the coastline as it was — open water between Greater and Lesser Hengqin, matching the wreck coordinates perfectly. The Silver Waterway's endpoint on the old chart is a shallow shoal, but today it is dry land. The senior librarian approaches and murmurs: "The sea turned to mulberry fields. Beneath those fields, there may be echoes."`,
       item: {
         id: "item-05",
         name: "Cross Gate Sea Chart",
-        imageUrl: "/assets/macau-map.jpg",
+        imageUrl: "/assets/十字门旧海图.png",
         description: "The route arrow points toward the present library site.",
       },
       question:
@@ -441,11 +444,11 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
     {
       level: 6,
       title: "Level 6: Tidal Backflow",
-      story: "Fishermen call the slow backflow “seafloor push,” capable of moving heavy objects.",
+      story: `Scientific corroboration awaits among the Geography collections. A thick tidal backflow log contains decades of hydrographic data confirming a steady near-seabed current runs through the Cross Gate — slow, but never ceasing. An oceanographer noted in the margin: "In theory, any object of sufficient density could be transported several kilometers by this force over a century." The Sea Eye is not a myth — it is physics.`,
       item: {
         id: "item-06",
         name: "Backflow Log",
-        imageUrl: "/assets/macau-map.jpg",
+        imageUrl: "/assets/潮汐回流记录.png",
         description: "A note on current direction points toward the new shoreline.",
       },
       question:
@@ -465,11 +468,11 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
     {
       level: 7,
       title: "Level 7: Reclaimed Shore",
-      story: "Land reclamation shifted the shoreline. The library was built on the new coast.",
+      story: `Where is the silver's final resting place today? Go to the Multimedia Area service desk and consult a land reclamation bulletin. The massive reclamation projects of the late 20th century turned the shoal from the old chart into solid ground. Antonio wrote in his notes: "The endpoint has been sealed. If I am not mistaken, the silver now lies beneath the land."`,
       item: {
         id: "item-07",
         name: "Reclamation Clipping",
-        imageUrl: "/assets/macau-map.jpg",
+        imageUrl: "/assets/围海造田简报.png",
         description: "The clipping ties the new shore to the drift route.",
       },
       question:
@@ -489,12 +492,12 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
     {
       level: 8,
       title: "Level 8: Foundation Pile",
-      story: "When the first pile was driven in 2011, a loud cracking sound rose from underground.",
+      story: `The evidence draws closer. Head to the Science & Technology collection and find a foundation pile construction record. In 2011, when the first steel pile was driven roughly five meters into the ground for the library's construction, "a tremendous sound of splitting timber arose, and the mud was mixed with shell fragments and the smell of salt water." The construction team noted: "Suspected penetration of buried wooden structure — pending investigation." No one ever excavated to find out.`,
       item: {
         id: "item-08",
         name: "Foundation Record",
-        imageUrl: "/assets/macau-map.jpg",
-        description: "The log notes an “unusual underground sound.”",
+        imageUrl: "/assets/地椿施工记录.png",
+        description: `The log notes an "unusual underground sound."`,
       },
       question:
         "You want to discuss a final report with your group, but it would disturb readers in the reading area. What should you do?",
@@ -513,11 +516,11 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
     {
       level: 9,
       title: "Level 9: The Timber Echo",
-      story: "Mud brought up shell fragments and a salty smell unlike normal groundwater.",
+      story: `In a display case near the library archives, a photograph of a timber fragment is preserved. Brought up from the construction depths, the wood had been steeped in seawater for centuries and turned dark brown. Analysis confirmed it as 17th-century shipbuilding timber from the Fujian coast — the same type used by Zheng Zhilong's fleet. The fracture marks at the edges strongly suggest impact from the steel pile. It was the Poseidon's final cry from beneath the library.`,
       item: {
         id: "item-09",
         name: "Timber Fragment",
-        imageUrl: "/assets/macau-map.jpg",
+        imageUrl: "/assets/木梁碎片.png",
         description: "The broken beam carries traces of seawater and shells.",
       },
       question:
@@ -540,12 +543,12 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
     {
       level: 10,
       title: "Level 10: The Split Notes",
-      story: "To avoid rumors, the librarian split Antonio’s notes and hid them around the library.",
+      story: `These clues were always meant to be one. Go to the Theses & Dissertations section and find a fragmented distribution list — written in Antonio's own hand. He wrote: "To prevent my notes from falling into the hands of the greedy, I have disassembled them and hidden them throughout the library. Anyone who has made it this far has already gathered most of the pieces. The locations on this list match what you have already found." The senior librarian adds quietly: "I am merely the guardian. The path was designed by him, three centuries ago." The list marks every hiding place you have already discovered.`,
       item: {
         id: "item-10",
         name: "Split Notes List",
-        imageUrl: "/assets/macau-map.jpg",
-        description: "A list marking hiding zones and sequence hints.",
+        imageUrl: "/assets/分藏记录.png",
+        description: "Antonio designed this test three centuries ago, waiting for someone who came not for the silver. The old librarian was merely its guardian.",
       },
       question:
         "You don't know your seniors' names or thesis titles, but want theses supervised by Professor David Chan. What should you do?",
@@ -569,11 +572,11 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
     {
       level: 11,
       title: "Level 11: The Cipher Key",
-      story: "The method for reassembling the fragments was stored separately for the worthy.",
+      story: `The fragments are gathered — but how should they be assembled? Go to the Textbook Collection and find Antonio's cipher key notes. He wrote in the margin: "Truth never yields itself easily. It requires patience, wisdom, and most importantly — coming not for the silver." Following the key, you piece together every fragment: the wreck coordinates, the drift path, the endpoint confirmation. They all align perfectly.`,
       item: {
         id: "item-11",
         name: "Cipher Key Notes",
-        imageUrl: "/assets/macau-map.jpg",
+        imageUrl: "/assets/解密线索图.png",
         description: "Core notes reveal the order of assembly.",
       },
       question:
@@ -593,12 +596,12 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
     {
       level: 12,
       title: "Level 12: Heir’s Proof",
-      story: "You unite every clue and become the rightful heir to the story.",
+      story: `All clues point to one place — the ground beneath your feet. Go to the Information Literacy Classroom, where the senior librarian is already waiting. He places a silver seal engraved with the double-cross into your palm: "What mattered was never the silver itself, but that someone was willing to walk this path. From this day forward, you are the heir." There is no excavation. No treasure chest. But the three-hundred-year mystery closes in your hands — whether the silver lies beneath the library no longer matters. You have proven that the act of questioning itself is the most precious treasure of all.`,
       item: {
         id: "item-12",
-        name: "Portuguese Silver Coin",
-        imageUrl: "/assets/macau-map.jpg",
-        description: "The coin marks your confirmation as the heir.",
+        name: "Double-Cross Silver Seal",
+        imageUrl: "/assets/葡萄牙银币.png",
+        description: "The silver seal bears the double-cross — the same mark from the ledger copy. The old man says: \"The answer lies between the bookshelves.\" And you have found it.",
       },
       question:
         "You need the 2024 edition of \"Essentials of Marketing Research\" but only older editions are on the 3/F A Zone shelves. What can you do?",
