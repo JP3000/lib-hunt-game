@@ -160,7 +160,7 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
     {
       level: 7,
       title: "第七關: 圍海新岸",
-      story: "银箱被推移的终点，如今在哪？前往【2/F 多媒体区服务台】，查阅一份围海造田简报。20世纪下半叶的大规模填海工程，将旧海图上那片浅滩变成了陆地。安东尼奥在笔记中夹着的剪报上圈出工程范围，并注：“终点已被封存。若我所料不差，白银已在陆地之下。”",
+      story: "银箱被推移的终点，如今在哪？前往【2/F 多媒体区服务台】，查阅一份围海造田简报。20世纪下半叶的大规模填海工程，将旧海图上那片浅滩变成了陆地。安东尼奥在笔记中写着：“终点已被封存。若我所料不差，白银已在陆地之下。”",
       item: {
         id: "item-07",
         name: "圍海造田剪報",
@@ -183,11 +183,11 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
     {
       level: 8,
       title: "第八關: 圖書館地樁",
-      story: "证据越来越近。上到 【3/F A区科学技术书籍区】 ，找到一份 地桩施工记录。2011年图书馆动工，第一根钢印地桩打入地下约5米时，“传来巨大的木材碎裂声，泥浆中混着贝壳碎屑和咸水味”。施工方备注：“疑似击穿埋藏木质构造，待查。”",
+      story: "证据越来越近。上到 【3/F A区科学技术书籍区】 ，找到一份地桩施工记录。2011年图书馆动工，第一根钢印地桩打入地下约5米时，“传来巨大的木材碎裂声，泥浆中混着贝壳碎屑和咸水味”。施工方备注：“疑似击穿埋藏木质构造，待查。”",
       item: {
         id: "item-08",
         name: "地樁施工記錄",
-        imageUrl: "/assets/macau-map.jpg",
+        imageUrl: "/assets/地椿施工记录.png",
         description: "钢桩击中的，是什么？记录上没有答案，因为没有人开挖验证。",
       },
       question:
@@ -207,11 +207,11 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
     {
       level: 9,
       title: "第九關: 木樑巨響",
-      story: "在【3/F 某小组讨论室】，保存着一块 木梁碎片 的照片或全息影像。碎片从施工地底带上，木质经海水长期浸泡呈深褐色。鉴定显示，这是17世纪福建沿海常用的船用木材，与郑芝龙船队用料一致。边缘的断裂痕迹，极可能是钢桩撞击造成。",
+      story: "在【3/F 某小组讨论室】，保存着一块木梁碎片的照片。碎片从施工地底带上，木质经海水长期浸泡呈深褐色。鉴定显示，这是17世纪福建沿海常用的船用木材，与郑芝龙船队用料一致。边缘的断裂痕迹，极可能是钢桩撞击造成。",
       item: {
         id: "item-09",
         name: "木樑碎片",
-        imageUrl: "/assets/macau-map.jpg",
+        imageUrl: "/assets/木梁碎片.png",
         description: "三百多年前的船木，在图书馆地基下发出巨响。那是海神号最后的呐喊。”",
       },
       question:
@@ -234,11 +234,11 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
     {
       level: 10,
       title: "第十關: 館員分藏",
-      story: "这些线索本是一体。前往 【1/F 学位论文区架位旁】 ，找出一份 分藏清单残页。老馆员在页上坦白：“安东尼奥的笔记我拆散了。不为毁灭，是为守候。清单上的位置，就是剩下的碎片所在。”残页上列着数个书架编号和装饰位置，对应你尚未找到的笔记部分。",
+      story: "这些线索本是一体。前往【1/F 学位论文区架位旁】，找出一份分藏清单残页。老馆员在页上坦白：“安东尼奥的笔记我拆散了。不为毁灭，是为守候。清单上的位置，就是剩下的碎片所在。”残页上列着数个书架编号和装饰位置，对应你尚未找到的笔记部分。",
       item: {
         id: "item-10",
         name: "分藏清單",
-        imageUrl: "/assets/macau-map.jpg",
+        imageUrl: "/assets/分藏记录.png",
         description: "老人没有试图掩埋真相，他只是等待一个愿意把碎片拼回的人。",
       },
       question:
@@ -258,16 +258,16 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
       qrAnswer: "L10-BRONZE-KEY",
       qrLocation: "1/F 学位论文区",
       qrLocationNote: "查找本校学位论文，了解学术传承脉络",
-      videoUrl: SAMPLE_VIDEO_GITHUB_URL,
+      // videoUrl: SAMPLE_VIDEO_GITHUB_URL,
     },
     {
       level: 11,
       title: "第十一關: 解密鑰匙",
-      story: "碎片已齐，但如何拼读？前往【G/F 学科教材区】，找出一份 解密钥匙札记。安东尼奥亲手编写了一套密码表，附言：“真相从不轻易示人，需要耐心、智慧，以及最重要的——不是为了金银而来。”按照钥匙指示，你将所有碎片拼合成完整的信息：银箱坐标、推移路径、终点印证，全部吻合。",
+      story: "碎片已齐，但如何拼读？前往【G/F 学科教材区】，找出一份解密钥匙札记。安东尼奥亲手编写了一套密码表，附言：“真相从不轻易示人，需要耐心、智慧，以及最重要的——不是为了金银而来。”按照钥匙指示，你将所有碎片拼合成完整的信息：银箱坐标、推移路径、终点印证，全部吻合。",
       item: {
         id: "item-11",
         name: "解密鑰匙札記",
-        imageUrl: "/assets/macau-map.jpg",
+        imageUrl: "/assets/解密钥匙札记.png",
         description: "密码表上没有数字，只有星辰与潮汐。安东尼奥把真相留给了懂得仰望的人。",
       },
       question: "你在圖書館展覽中看到一幅抽象畫，完全看不懂，你應該怎麼做?",
@@ -290,7 +290,7 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
       item: {
         id: "item-12",
         name: "葡萄牙銀幣",
-        imageUrl: "/assets/macau-map.jpg",
+        imageUrl: "/assets/葡萄牙银币.png",
         description: "银印刻着：‘答案就在书架之间。’——而你，找到了它。",
       },
       question:
