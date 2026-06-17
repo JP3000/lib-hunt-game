@@ -38,7 +38,7 @@ export function GameHeader({
   };
 
   return (
-    <header className="treasure-panel sticky top-3 z-20 mx-auto flex w-[min(980px,92vw)] flex-col gap-3 px-4 py-4 md:flex-row md:items-center md:justify-between">
+    <header className="treasure-panel mx-auto flex w-[min(980px,92vw)] flex-col gap-3 px-4 py-4 md:flex-row md:items-center md:justify-between">
       <div>
         <p className="text-xs uppercase tracking-[0.22em] text-[var(--ink-muted)]">
           {t.brand} {t.demoLabel}
