@@ -12,6 +12,10 @@ type GameState = {
   totalScore: number;
   levelResults: Partial<Record<number, LevelResult>>;
   collectedItems: string[];
+  /** 首次登录时间，用于计算通关耗时 */
+  startedAt: string | null;
+  /** 是否已向服务端上报过通关记录（防止重复上报） */
+  reported: boolean;
   setHasHydrated: (hydrated: boolean) => void;
   login: (studentId: string, initialUnlockedLevel?: number) => void;
   logout: () => void;
@@ -22,7 +26,7 @@ type GameState = {
 
 const initialState: Pick<
   GameState,
-  "hasHydrated" | "studentId" | "unlockedLevel" | "totalScore" | "levelResults" | "collectedItems"
+  "hasHydrated" | "studentId" | "unlockedLevel" | "totalScore" | "levelResults" | "collectedItems" | "startedAt" | "reported"
 > = {
   hasHydrated: false,
   studentId: null,
@@ -30,9 +34,31 @@ const initialState: Pick<
   totalScore: 0,
   levelResults: {},
   collectedItems: [],
+  startedAt: null,
+  reported: false,
 };
 
 const clampLevel = (level: number) => Math.min(TOTAL_LEVELS, Math.max(1, level));
+
+/** 判断是否完成了所有关卡 */
+const hasAllLevelsCompleted = (levelResults: Partial<Record<number, LevelResult>>) => {
+  return Object.keys(levelResults).length >= TOTAL_LEVELS;
+};
+
+/** 非阻塞上报通关记录 */
+function reportToServer(studentId: string, totalScore: number, startedAt: string) {
+  const durationSeconds = Math.round(
+    (Date.now() - new Date(startedAt).getTime()) / 1000
+  );
+
+  fetch("/api/results", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ studentId, totalScore, durationSeconds }),
+  }).catch(() => {
+    // 上报失败不影响游戏流程
+  });
+}
 
 export const useGameStore = create<GameState>()(
   persist(
@@ -57,6 +83,8 @@ export const useGameStore = create<GameState>()(
           totalScore: 0,
           levelResults: {},
           collectedItems: [],
+          startedAt: new Date().toISOString(),
+          reported: false,
         });
       },
       logout: () =>
@@ -90,6 +118,22 @@ export const useGameStore = create<GameState>()(
             ? Array.from(new Set([...state.collectedItems, itemId]))
             : state.collectedItems;
 
+          // 首次完成全部关卡且未上报过，触发上报
+          if (!state.reported && hasAllLevelsCompleted(nextLevelResults)) {
+            const studentId = state.studentId;
+            const startedAt = state.startedAt;
+            if (studentId && startedAt) {
+              reportToServer(studentId, totalScore, startedAt);
+            }
+            return {
+              levelResults: nextLevelResults,
+              totalScore,
+              unlockedLevel,
+              collectedItems: nextCollectedItems,
+              reported: true,
+            };
+          }
+
           return {
             levelResults: nextLevelResults,
             totalScore,
@@ -104,11 +148,13 @@ export const useGameStore = create<GameState>()(
           totalScore: 0,
           levelResults: {},
           collectedItems: [],
+          startedAt: new Date().toISOString(),
+          reported: false,
         })),
     }),
     {
-      name: "lib-hunt-game-state-v1",
-      version: 1,
+      name: "lib-hunt-game-state-v2",
+      version: 2,
       storage: createJSONStorage(() => localStorage),
       onRehydrateStorage: () => (state) => {
         state?.setHasHydrated(true);
@@ -119,6 +165,8 @@ export const useGameStore = create<GameState>()(
         totalScore: state.totalScore,
         levelResults: state.levelResults,
         collectedItems: state.collectedItems,
+        startedAt: state.startedAt,
+        reported: state.reported,
       }),
     }
   )
