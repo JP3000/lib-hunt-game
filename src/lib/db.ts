@@ -14,6 +14,7 @@ function getPool(): mysql.Pool {
       waitForConnections: true,
       connectionLimit: 5,
       connectTimeout: 10000,
+      timezone: "+08:00",
     });
   }
   return pool;
