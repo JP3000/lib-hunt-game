@@ -1,4 +1,6 @@
 export const TOTAL_LEVELS = 12;
+/** 12 关全部正确选项的总分 */
+export const TOTAL_MAX_SCORE = 220;
 
 export const STUDENT_ID_REGEX = /^[A-Za-z]{2}\d{6}$/;
 export const FAST_PASS_STUDENT_ID = "ab999999";

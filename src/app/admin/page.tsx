@@ -1,6 +1,9 @@
 "use client";
 
 import { useState, useCallback, useEffect } from "react";
+import { TOTAL_MAX_SCORE } from "@/lib/constants";
+
+const calcAccuracy = (score: number) => ((score / TOTAL_MAX_SCORE) * 100).toFixed(1);
 
 interface StatsData {
   playerCount: number;
@@ -137,7 +140,7 @@ export default function AdminPage() {
 
         {/* 统计卡片 */}
         {stats && (
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-5">
             <div className="treasure-panel p-4 text-center">
               <p className="text-[10px] uppercase tracking-[0.2em] text-[var(--ink-muted)]">参与人数</p>
               <p className="treasure-title mt-1 text-3xl text-amber-100">{stats.playerCount}</p>
@@ -149,6 +152,12 @@ export default function AdminPage() {
             <div className="treasure-panel p-4 text-center">
               <p className="text-[10px] uppercase tracking-[0.2em] text-[var(--ink-muted)]">平均分</p>
               <p className="treasure-title mt-1 text-3xl text-amber-100">{stats.avgScore}</p>
+            </div>
+            <div className="treasure-panel p-4 text-center">
+              <p className="text-[10px] uppercase tracking-[0.2em] text-[var(--ink-muted)]">平均正确率</p>
+              <p className="treasure-title mt-1 text-3xl text-amber-100">
+                {stats.avgScore > 0 ? `${calcAccuracy(stats.avgScore)}%` : "-"}
+              </p>
             </div>
             <div className="treasure-panel p-4 text-center">
               <p className="text-[10px] uppercase tracking-[0.2em] text-[var(--ink-muted)]">平均耗时</p>
@@ -174,6 +183,7 @@ export default function AdminPage() {
                     <th className="pb-2 pr-3 font-medium">排名</th>
                     <th className="pb-2 pr-3 font-medium">答题人ID</th>
                     <th className="pb-2 pr-3 font-medium">分数</th>
+                    <th className="pb-2 pr-3 font-medium">正确率</th>
                     <th className="pb-2 pr-3 font-medium">耗时</th>
                     <th className="pb-2 font-medium">完成时间</th>
                   </tr>
@@ -184,6 +194,7 @@ export default function AdminPage() {
                       <td className="py-2.5 pr-3 text-[var(--ink-muted)]">{i + 1}</td>
                       <td className="py-2.5 pr-3 font-mono text-xs">{row.student_id}</td>
                       <td className="py-2.5 pr-3">{row.total_score}</td>
+                      <td className="py-2.5 pr-3">{calcAccuracy(row.total_score)}%</td>
                       <td className="py-2.5 pr-3 text-[var(--ink-muted)]">{formatDuration(row.duration_seconds)}</td>
                       <td className="py-2.5 text-[var(--ink-muted)]">{formatTime(row.completed_at)}</td>
                     </tr>
