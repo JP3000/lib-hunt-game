@@ -142,15 +142,12 @@ export function LevelPage({ levelNumber }: LevelPageProps) {
           <div className="flex items-center justify-between gap-2">
             <h3 className="treasure-title text-lg">{t.level.questionHeading}</h3>
             {level.correctOptionIds.length > 1 ? (
-              <span
-                className="rounded-full border bg-black/20 px-2 py-0.5 text-xs"
-                style={{ borderColor: "var(--border)", color: "var(--ink-muted)" }}
-              >
+              <span className="rounded-full border border-amber-500/40 bg-amber-500/20 px-2 py-0.5 text-sm text-amber-100">
                 {t.level.multiSelectHint}
               </span>
             ) : null}
           </div>
-          <p className="mt-2 text-sm leading-6" style={{ color: "var(--ink-main)" }}>
+          <p className="mt-2 text-base leading-7" style={{ color: "var(--ink-main)" }}>
             {level.question}
           </p>
 
@@ -206,6 +203,20 @@ export function LevelPage({ levelNumber }: LevelPageProps) {
           <p className="text-sm" style={{ color: "var(--ink-muted)" }}>
             {t.level.questionStatus}: {questionPassed ? t.level.passed : t.level.pending}
           </p>
+
+          {questionPassed && level.completionStory ? (
+            <div
+              className="rounded-xl border border-amber-500/30 bg-amber-500/10 p-4"
+              style={{ animation: "fadeIn 0.5s ease-out" }}
+            >
+              <p className="text-xs uppercase tracking-[0.2em] text-amber-300">
+                {t.level.completionStoryHeading}
+              </p>
+              <p className="mt-2 text-base leading-7" style={{ color: "var(--ink-main)", opacity: 0.95 }}>
+                {level.completionStory}
+              </p>
+            </div>
+          ) : null}
 
           <div className="rounded-xl border bg-black/20 p-3" style={{ borderColor: "var(--border)" }}>
             <p className="text-xs uppercase tracking-[0.2em]" style={{ color: "var(--ink-muted)" }}>

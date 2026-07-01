@@ -112,7 +112,7 @@ export function QrVerifier({ expectedValue, onVerified, levelNumber, location, l
             {location ?? `${t.qr.locationLabel} ${levelNumber}`}
           </p>
           {locationNote ? (
-            <p className="text-xs text-[var(--ink-muted)] mt-0.5">{locationNote}</p>
+            <p className="text-sm text-[var(--ink-muted)] mt-0.5">{locationNote}</p>
           ) : null}
         </div>
         {!cameraActive ? (

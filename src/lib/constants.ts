@@ -5,8 +5,24 @@ export const TOTAL_MAX_SCORE = 220;
 export const STUDENT_ID_REGEX = /^[A-Za-z]{2}\d{6}$/;
 export const FAST_PASS_STUDENT_ID = "ab999999";
 
-export const SAMPLE_VIDEO_URL = "/video/level9.mp4";
+// ============================================================
+// 影片 URL 常數 — 對應 AI 媒體素材製作方案中的 5 支劇情影片
+// ============================================================
 
-export const SAMPLE_VIDEO_GITHUB_URL = "/video/level9.mp4";
+/** 序幕：字條的降臨 — APP 開場動畫 / Level 1 前置劇情 */
+export const PROLOGUE_VIDEO_URL = "/video/prologue-note.mp4";
 
+/** Level 1：初臨密境 */
 export const LEVEL1_VIDEO_URL = "/video/level1.mp4";
+
+/** Level 4：福松丸的真相 — 核心劇情轉折 */
+export const LEVEL4_VIDEO_URL = "/video/level4-fushong.mp4";
+
+/** Level 7：銀幣的墜落 — 從地圖畫框後掉出 */
+export const LEVEL7_VIDEO_URL = "/video/level7-coin.mp4";
+
+/** Level 9：鎮館之寶 — 古籍展櫃 + 利瑪竇徐光啟閃回 */
+export const LEVEL9_VIDEO_URL = "/video/level9-treasure.mp4";
+
+/** 終章：五德歸一 — 五角形拼合 + 圖書館全景 */
+export const FINALE_VIDEO_URL = "/video/finale-pentagon.mp4";

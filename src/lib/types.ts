@@ -14,6 +14,8 @@ export type LevelConfig = {
   level: number;
   title: string;
   story: string;
+  /** 過關情節：答題正確後展示，有影片的關卡可作為影片的文字補充 */
+  completionStory?: string;
   question: string;
   options: LevelOption[];
   correctOptionIds: string[];

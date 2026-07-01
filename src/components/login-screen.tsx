@@ -111,10 +111,6 @@ export function LoginScreen() {
         </form>
 
         {error ? <p className="mt-3 text-sm text-amber-100">{error}</p> : null}
-
-        <div className="mt-5 rounded-xl border border-[var(--border)] bg-black/15 p-3 text-xs leading-6 text-[var(--ink-muted)]">
-          {t.login.fastPass(FAST_PASS_STUDENT_ID)}
-        </div>
       </section>
 
       <div className="intro-spark intro-spark-a" aria-hidden="true" />

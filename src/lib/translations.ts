@@ -61,6 +61,7 @@ type Translations = {
     completeAndNext: string;
     backToMap: string;
     nextLevel: string;
+    completionStoryHeading: string;
     itemHeading: string;
     itemUnlockHint: string;
   };
@@ -105,25 +106,25 @@ type Translations = {
 
 const translations: Record<Locale, Translations> = {
   "zh-Hant": {
-    brand: "十字門代碼",
+    brand: "鄭芝龍的寶藏 II",
     demoLabel: "Demo",
-    gameName: "十字門代碼",
-    metaDescription: "基於故事背景的 H5 圖書館線索解謎互動演示項目",
+    gameName: "鄭芝龍的寶藏 II",
+    metaDescription: "一張泛黃字條，一首明代古詩，一段橫跨四百年的圖書館尋寶之旅。",
     login: {
-      headline: "十字門代碼",
-      description: "輸入規定學號字串即可開始闖關，無需註冊。\n示例: ab565666",
+      headline: "鄭芝龍的寶藏 II",
+      description: "輸入規定學號字串即可開始尋寶，無需註冊。\n示例: ab565666",
       studentIdLabel: "學號",
-      studentIdPlaceholder: "ab565666",
+      studentIdPlaceholder: "輸入學號",
       submit: "開始解碼",
       loading: "正在喚醒解碼系統...",
       invalidStudentId: "請輸入正確學號格式：前兩位字母（大寫或小寫）+ 6 位數字，例如 ab565666 或 AB565666。",
       fastPass: (id) => `演示快速通關學號: ${id}（可直接解鎖到第 12 關）`,
     },
     intro: {
-      eyebrow: "序章啟動",
-      headline: "十字門代碼",
-      subtitle: "跨過封印的門扉，解鎖第一道線索。",
-      start: "開始探索",
+      eyebrow: "序幕 · 神祕字條",
+      headline: "鄭芝龍的寶藏 II",
+      subtitle: "一張泛黃的字條，一首四百年前的詩。簽名 N. Iquan, 1634——他是誰？寶藏又在哪裡？",
+      start: "開始尋寶",
     },
     header: {
       player: "玩家",
@@ -135,11 +136,12 @@ const translations: Record<Locale, Translations> = {
       language: "語言",
     },
     map: {
-      title: "十字門線索圖",
+      title: "尋寶線索圖",
       subtitle: ({ completed, total, score }) => `已完成 ${completed}/${total} 關 · 當前總分 ${score}`,
-      routeTitle: "白銀線索路線",
+      routeTitle: "尋寶路線",
       viewLeaderboard: "查看積分板",
       completed: "已完成",
+
       available: "可挑戰",
       locked: "未解鎖",
       unlockHint: "先完成前置關卡",
@@ -165,6 +167,7 @@ const translations: Record<Locale, Translations> = {
       completeAndNext: "完成本關並繼續",
       backToMap: "返回地图",
       nextLevel: "前往下一關",
+      completionStoryHeading: "過關情節",
       itemHeading: "本道具",
       itemUnlockHint: "通關後自動收錄到道具欄",
     },
@@ -207,25 +210,25 @@ const translations: Record<Locale, Translations> = {
     },
   },
   en: {
-    brand: "Cross Gate Code",
+    brand: "Zheng Zhilong's Treasure II",
     demoLabel: "Demo",
-    gameName: "Cross Gate Code",
-    metaDescription: "Story-driven H5 library clue-hunt interactive demo",
+    gameName: "Zheng Zhilong's Treasure II",
+    metaDescription: "A yellowed note, a Ming poem, a 400-year treasure hunt across the library.",
     login: {
-      headline: "Cross Gate Code",
-      description: "Enter your student ID to start. No registration required.\nExample: ab565666",
+      headline: "Zheng Zhilong's Treasure II",
+      description: "Enter your student ID to start the hunt. No registration required.\nExample: ab565666",
       studentIdLabel: "Student ID",
-      studentIdPlaceholder: "ab565666",
+      studentIdPlaceholder: "Enter student ID",
       submit: "Start Decoding",
       loading: "Waking the decoding system...",
       invalidStudentId: "Use the correct format: two letters (upper or lower case) + 6 digits, e.g. ab565666 or AB565666.",
       fastPass: (id) => `Fast-pass demo ID: ${id} (unlock level 12)`,
     },
     intro: {
-      eyebrow: "Prologue Online",
-      headline: "Cross Gate Code",
-      subtitle: "Step through the seal and unlock the first clue.",
-      start: "Begin Exploration",
+      eyebrow: "Prologue · The Cipher Note",
+      headline: "Zheng Zhilong's Treasure II",
+      subtitle: "A yellowed note. A 400-year-old poem. Signed N. Iquan, 1634 — who is he, and where is the treasure?",
+      start: "Begin the Hunt",
     },
     header: {
       player: "Player",
@@ -237,9 +240,9 @@ const translations: Record<Locale, Translations> = {
       language: "Language",
     },
     map: {
-      title: "Cross Gate Map",
+      title: "Treasure Hunt Map",
       subtitle: ({ completed, total, score }) => `Completed ${completed}/${total} · Score ${score}`,
-      routeTitle: "Silver Trail Route",
+      routeTitle: "Treasure Trail",
       viewLeaderboard: "View Leaderboard",
       completed: "Completed",
       available: "Available",
@@ -267,6 +270,7 @@ const translations: Record<Locale, Translations> = {
       completeAndNext: "Complete Level",
       backToMap: "Back to Map",
       nextLevel: "Next Level",
+      completionStoryHeading: "Completion Story",
       itemHeading: "Reward Item",
       itemUnlockHint: "Unlocks after completion",
     },
