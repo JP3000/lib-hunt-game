@@ -41,7 +41,7 @@ export function GameHeader({
     <header className="treasure-panel mx-auto flex w-[min(980px,92vw)] flex-col gap-3 px-4 py-4 md:flex-row md:items-center md:justify-between">
       <div>
         <p className="text-xs uppercase tracking-[0.22em] text-[var(--ink-muted)]">
-          {t.brand} {t.demoLabel}
+          {t.brand}
         </p>
         <h1 className="treasure-title text-xl text-[var(--ink-main)] md:text-2xl">{title}</h1>
         {subtitle ? <p className="mt-1 text-sm text-[var(--ink-muted)]">{subtitle}</p> : null}
@@ -110,6 +110,11 @@ export function GameHeader({
         </div>
       </div>
       <ItemPanel open={showItems} collectedItems={collectedItems} onClose={() => setShowItems(false)} />
+
+      <div className="mt-3 border-t border-[var(--border)] pt-3 text-center">
+        <p className="text-xs text-[var(--ink-muted)]">{t.footer.producer}</p>
+        <p className="mt-1 text-[0.65rem] text-[var(--ink-muted)] opacity-60">{t.footer.disclaimer}</p>
+      </div>
     </header>
   );
 }

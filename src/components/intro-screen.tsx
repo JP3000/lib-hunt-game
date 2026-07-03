@@ -35,6 +35,11 @@ export function IntroScreen() {
             {t.intro.start}
           </Link>
         </div>
+
+        <div className="mt-6 border-t border-white/10 pt-4 text-center">
+          <p className="text-xs text-white/50">{t.footer.producer}</p>
+          <p className="mt-1 text-[0.65rem] text-white/40">{t.footer.disclaimer}</p>
+        </div>
       </section>
 
       <div className="intro-spark intro-spark-a" aria-hidden="true" />

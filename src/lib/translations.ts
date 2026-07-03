@@ -2,7 +2,6 @@ import { DEFAULT_LOCALE, type Locale } from "@/lib/i18n";
 
 type Translations = {
   brand: string;
-  demoLabel: string;
   gameName: string;
   metaDescription: string;
   login: {
@@ -29,6 +28,10 @@ type Translations = {
     leaderboard: string;
     logout: string;
     language: string;
+  };
+  footer: {
+    producer: string;
+    disclaimer: string;
   };
   map: {
     title: string;
@@ -107,7 +110,6 @@ type Translations = {
 const translations: Record<Locale, Translations> = {
   "zh-Hant": {
     brand: "鄭芝龍的寶藏 II",
-    demoLabel: "Demo",
     gameName: "鄭芝龍的寶藏 II",
     metaDescription: "一張泛黃字條，一首明代古詩，一段橫跨四百年的圖書館尋寶之旅。",
     login: {
@@ -134,6 +136,10 @@ const translations: Record<Locale, Translations> = {
       leaderboard: "積分板",
       logout: "重新登入",
       language: "語言",
+    },
+    footer: {
+      producer: "澳門大學圖書館 製作",
+      disclaimer: "本故事純屬虛構，如有雷同實屬巧合。",
     },
     map: {
       title: "尋寶線索圖",
@@ -211,7 +217,6 @@ const translations: Record<Locale, Translations> = {
   },
   en: {
     brand: "Zheng Zhilong's Treasure II",
-    demoLabel: "Demo",
     gameName: "Zheng Zhilong's Treasure II",
     metaDescription: "A yellowed note, a Ming poem, a 400-year treasure hunt across the library.",
     login: {
@@ -238,6 +243,10 @@ const translations: Record<Locale, Translations> = {
       leaderboard: "Leaderboard",
       logout: "Sign in again",
       language: "Language",
+    },
+    footer: {
+      producer: "Produced by University of Macau Library",
+      disclaimer: "This story is a work of fiction. Any resemblance to actual persons or events is purely coincidental.",
     },
     map: {
       title: "Treasure Hunt Map",

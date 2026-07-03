@@ -41,9 +41,6 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
       title: "第二關：神龍現身——知識深海的博尋",
       story: `館員看了一眼字條，神色微動，壓低聲音告訴你：從2014年遷入新館開始，澳大的新生就會莫名其妙地收到這樣的紙條。傳說，這張紙條關係到一批價值連城的寶藏，只有能破解它的人才能得到——可惜至今無人成功。你還想追問，館員卻搖搖頭，不再多言，只遞給你一張折頁。「想破解這位Iquan的身分，先學會用『博尋』吧。」你來到資訊共享空間，打開一台電腦，向那個神祕簽名發起第一次檢索。`,
       completionStory: `檢索結果出來了——N. Iquan 就是 Nicolas Iquan，明末海上霸主鄭芝龍在澳門受洗時的教名，而「Iquan」正是他的小名「一官」。一個受洗的天主教徒、一個縱橫東亞的海上梟雄，他與這批寶藏究竟有何關係？你迫切想讀到這本書的細節。可它在哪一層書架上？`,
-      storyImageUrl: "/assets/Secret_Folder_Copy.jpg",
-      storyImageAlt: "密文影印本細節",
-      storyImageCaption: "折子上的密文記著：'海眼吞金而不溺，銀箱似受神引，沒於泥沙之下，遁跡於白銀水道。'——謎底，就藏在這句話裡",
       item: {
         id: "item-02",
         name: "Nicolas Iquan 檔案",

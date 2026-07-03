@@ -19,7 +19,7 @@ const notoSansSc = Noto_Sans_SC({
 const t = getTranslations(DEFAULT_LOCALE);
 
 export const metadata: Metadata = {
-  title: `${t.gameName} ${t.demoLabel}`,
+  title: t.gameName,
   description: t.metaDescription,
   icons: {
     icon: "/favicon.png",

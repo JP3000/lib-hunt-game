@@ -111,6 +111,13 @@ export function LoginScreen() {
         </form>
 
         {error ? <p className="mt-3 text-sm text-amber-100">{error}</p> : null}
+
+        <div className="mt-5 border-t border-[var(--border)] pt-4 text-center">
+          <p className="text-xs font-medium text-[var(--ink-muted)]">{t.footer.producer}</p>
+          <p className="mt-1 text-[0.65rem] leading-relaxed text-[var(--ink-muted)] opacity-60">
+            {t.footer.disclaimer}
+          </p>
+        </div>
       </section>
 
       <div className="intro-spark intro-spark-a" aria-hidden="true" />

@@ -25,9 +25,9 @@ export function LevelPage({ levelNumber }: LevelPageProps) {
   const t = getTranslations(locale);
   const level = useMemo(() => getLevelConfig(levelNumber, locale), [levelNumber, locale]);
   const item = level.item;
-  const storyImageUrl = level.storyImageUrl ?? item.imageUrl;
-  const storyImageAlt = level.storyImageAlt ?? item.name;
-  const storyImageCaption = level.storyImageCaption ?? item.description;
+  const storyImageUrl = level.storyImageUrl;
+  const storyImageAlt = level.storyImageAlt ?? "";
+  const storyImageCaption = level.storyImageCaption;
 
   const unlockedLevel = useGameStore((state) => state.unlockedLevel);
   const levelResults = useGameStore((state) => state.levelResults);
@@ -41,6 +41,7 @@ export function LevelPage({ levelNumber }: LevelPageProps) {
   const [questionPassedLocal, setQuestionPassedLocal] = useState(false);
   const [qrPassedLocal, setQrPassedLocal] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [isItemPreviewOpen, setIsItemPreviewOpen] = useState(false);
 
   const isCompleted = Boolean(existingResult);
   const questionPassed = isCompleted || questionPassedLocal;
@@ -223,9 +224,15 @@ export function LevelPage({ levelNumber }: LevelPageProps) {
               {t.level.itemHeading}
             </p>
             <div className="mt-2 flex items-center gap-3">
-              <div className="h-14 w-20 overflow-hidden rounded-lg border bg-black/30" style={{ borderColor: "var(--border)" }}>
+              <button
+                type="button"
+                onClick={() => setIsItemPreviewOpen(true)}
+                className="h-14 w-20 overflow-hidden rounded-lg border bg-black/30 transition hover:opacity-80"
+                style={{ borderColor: "var(--border)" }}
+                aria-label={`查看道具大图：${item.name}`}
+              >
                 <img src={item.imageUrl} alt={item.name} className="h-full w-full object-cover" />
-              </div>
+              </button>
               <div>
                 <p className="treasure-title text-base">{item.name}</p>
                 <p className="text-xs" style={{ color: "var(--ink-muted)" }}>
@@ -265,6 +272,27 @@ export function LevelPage({ levelNumber }: LevelPageProps) {
           </div>
         </section>
       </main>
+
+      {isItemPreviewOpen ? (
+        <button
+          type="button"
+          onClick={() => setIsItemPreviewOpen(false)}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
+          aria-label="关闭道具大图预览"
+        >
+          <div className="max-h-[90vh] w-full max-w-5xl overflow-hidden rounded-2xl bg-black/90 shadow-2xl">
+            <img
+              src={item.imageUrl}
+              alt={item.name}
+              className="max-h-[90vh] w-full object-contain"
+            />
+            <div className="border-t border-white/10 px-4 py-3">
+              <p className="text-base font-semibold text-white">{item.name}</p>
+              <p className="mt-1 text-sm text-white/70">{item.description}</p>
+            </div>
+          </div>
+        </button>
+      ) : null}
     </div>
   );
 }

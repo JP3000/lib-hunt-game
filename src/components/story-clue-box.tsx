@@ -4,8 +4,8 @@ import { useState } from "react";
 
 type StoryClueBoxProps = {
   videoUrl?: string;
-  imageUrl: string;
-  imageAlt: string;
+  imageUrl?: string;
+  imageAlt?: string;
   imageCaption?: string;
 };
 
@@ -25,24 +25,26 @@ export function StoryClueBox({ videoUrl, imageUrl, imageAlt, imageCaption }: Sto
         </div>
       ) : null}
 
-      <div className="overflow-hidden rounded-xl bg-black/20 p-2" style={{ border: "1px solid var(--border)" }}>
-        <button
-          type="button"
-          onClick={() => setIsPreviewOpen(true)}
-          className="block w-full overflow-hidden rounded-lg bg-black/30 text-left"
-          style={{ border: "1px solid var(--border)" }}
-          aria-label={`查看大图：${imageAlt}`}
-        >
-          <img src={imageUrl} alt={imageAlt} className="h-auto w-full object-cover" />
-        </button>
-        {imageCaption ? (
-          <p className="px-1 pb-1 pt-2" style={{ color: "var(--ink-muted)", fontSize: "0.75rem" }}>
-            {imageCaption}
-          </p>
-        ) : null}
-      </div>
+      {imageUrl ? (
+        <div className="overflow-hidden rounded-xl bg-black/20 p-2" style={{ border: "1px solid var(--border)" }}>
+          <button
+            type="button"
+            onClick={() => setIsPreviewOpen(true)}
+            className="block w-full overflow-hidden rounded-lg bg-black/30 text-left"
+            style={{ border: "1px solid var(--border)" }}
+            aria-label={`查看大图：${imageAlt}`}
+          >
+            <img src={imageUrl} alt={imageAlt} className="h-auto w-full object-cover" />
+          </button>
+          {imageCaption ? (
+            <p className="px-1 pb-1 pt-2" style={{ color: "var(--ink-muted)", fontSize: "0.75rem" }}>
+              {imageCaption}
+            </p>
+          ) : null}
+        </div>
+      ) : null}
 
-      {isPreviewOpen ? (
+      {isPreviewOpen && imageUrl ? (
         <button
           type="button"
           onClick={() => setIsPreviewOpen(false)}

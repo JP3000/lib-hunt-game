@@ -35,7 +35,7 @@ export async function generateMetadata({
   const t = getTranslations(locale);
 
   return {
-    title: `${t.gameName} ${t.demoLabel}`,
+    title: t.gameName,
     description: t.metaDescription,
     icons: {
       icon: "/favicon.png",
