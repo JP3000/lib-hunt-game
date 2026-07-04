@@ -264,10 +264,7 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
       title: "第十一關：知者寶鑒——智能終端的洞察力",
       story: `你來到新書區，這裡代表著知識的流動與更新。羅明堅在手稿中曾寫道：「中國人之『知』，在於對新鮮事物的敏銳觀察，以及三省乎己的內心鑒察。」而今，這股力量已轉化為你手中的圖書館手機服務。`,
       completionStory: `掃碼成功後，手機屏幕上浮現出一行羅明堅的拉丁文轉寫：「ci 智：Prudentia。善用工具者，方能洞察未知。善用圖書館資源與服務，可以事半功倍。」你手中的「知」字卡牌開始發光，卡牌邊緣浮出最後一句指引：「信，是所有知識能否成立的最終保證。」`,
-      storyImageUrl: "/assets/card-zhi.png",
-      storyImageAlt: "解密線索推演圖",
-      storyImageCaption: "安東尼奧親手繪製的線索推演圖——你走過的每一步，都在他的預料之中。",
-      item: {
+        item: {
         id: "item-11",
         name: "「知」字卡牌",
         imageUrl: "/assets/card-zhi.png",
