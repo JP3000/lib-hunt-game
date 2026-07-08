@@ -129,7 +129,6 @@ export function LoginScreen() {
 
         {/* 角色切換 */}
         <div className="mt-4">
-          <p className="text-xs text-[var(--ink-muted)] mb-2">{t.login.roleLabel}</p>
           <div className="flex gap-2">
             {(["student", "staff"] as LoginRole[]).map((r) => (
               <button

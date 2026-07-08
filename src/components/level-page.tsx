@@ -198,12 +198,34 @@ export function LevelPage({ levelNumber }: LevelPageProps) {
 
         <section className="treasure-panel flex flex-col gap-3 p-4 md:col-span-2">
           <h3 className="treasure-title text-lg">{t.level.settlementHeading}</h3>
-          <p className="text-sm" style={{ color: "var(--ink-muted)" }}>
-            {t.level.qrStatus}: {qrPassed ? t.level.passed : t.level.pending}
-          </p>
-          <p className="text-sm" style={{ color: "var(--ink-muted)" }}>
-            {t.level.questionStatus}: {questionPassed ? t.level.passed : t.level.pending}
-          </p>
+          <div className="flex items-center gap-2 text-sm">
+            <span className="text-[var(--ink-muted)]">{t.level.qrStatus}</span>
+            {qrPassed ? (
+              <span className="flex items-center gap-1 font-medium text-green-400">
+                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" /></svg>
+                {t.level.passed}
+              </span>
+            ) : (
+              <span className="flex items-center gap-1 font-medium text-amber-400">
+                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" /></svg>
+                {t.level.pending}
+              </span>
+            )}
+          </div>
+          <div className="flex items-center gap-2 text-sm">
+            <span className="text-[var(--ink-muted)]">{t.level.questionStatus}</span>
+            {questionPassed ? (
+              <span className="flex items-center gap-1 font-medium text-green-400">
+                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" /></svg>
+                {t.level.passed}
+              </span>
+            ) : (
+              <span className="flex items-center gap-1 font-medium text-amber-400">
+                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" /></svg>
+                {t.level.pending}
+              </span>
+            )}
+          </div>
 
           {questionPassed && level.completionStory ? (
             <div
