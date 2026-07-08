@@ -84,7 +84,7 @@ type Translations = {
     stopScan: string;
     manualPlaceholder: string;
     manualVerify: string;
-    demoCode: string;
+
     emptyValue: string;
     success: string;
     mismatch: string;
@@ -200,7 +200,7 @@ const translations: Record<Locale, Translations> = {
       stopScan: "停止掃碼",
       manualPlaceholder: "手動輸入密鑰",
       manualVerify: "手動驗證",
-      demoCode: "演示測試碼",
+
       emptyValue: "請輸入二維碼內容後再驗證。",
       success: "驗證成功，寶藏機關已解鎖。",
       mismatch: "二維碼內容不匹配，請重試。",
@@ -313,7 +313,7 @@ const translations: Record<Locale, Translations> = {
       stopScan: "Stop Scan",
       manualPlaceholder: "Enter QR code",
       manualVerify: "Verify",
-      demoCode: "Demo code",
+
       emptyValue: "Please enter the QR code content before verifying.",
       success: "Verification successful. The treasure mechanism is now unlocked.",
       mismatch: "QR code does not match. Try again.",

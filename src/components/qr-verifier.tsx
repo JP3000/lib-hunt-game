@@ -105,33 +105,14 @@ export function QrVerifier({ expectedValue, onVerified, levelNumber, location, l
 
   return (
     <section className="treasure-panel p-4">
-      <div className="flex flex-wrap items-center justify-between gap-2">
-        <div className="space-y-1">
-          <h3 className="treasure-title text-2xl text-[var(--ink-main)]">{t.qr.heading}</h3>
-          <p className="treasure-title text-2xl text-[var(--ink-main)]">
-            {location ?? `${t.qr.locationLabel} ${levelNumber}`}
-          </p>
-          {locationNote ? (
-            <p className="text-sm text-[var(--ink-muted)] mt-0.5">{locationNote}</p>
-          ) : null}
-        </div>
-        {!cameraActive ? (
-          <button
-            type="button"
-            onClick={startCamera}
-            className="rounded-full border border-amber-500/40 bg-amber-500/20 px-3 py-1.5 text-xs text-amber-100 transition hover:bg-amber-500/30"
-          >
-            {t.qr.startScan}
-          </button>
-        ) : (
-          <button
-            type="button"
-            onClick={() => void stopCamera()}
-            className="rounded-full border border-amber-500/40 bg-amber-500/20 px-3 py-1.5 text-xs text-amber-100 transition hover:bg-amber-500/30"
-          >
-            {t.qr.stopScan}
-          </button>
-        )}
+      <div className="space-y-1">
+        <h3 className="treasure-title text-2xl text-[var(--ink-main)]">{t.qr.heading}</h3>
+        <p className="treasure-title text-2xl text-[var(--ink-main)]">
+          {location ?? `${t.qr.locationLabel} ${levelNumber}`}
+        </p>
+        {locationNote ? (
+          <p className="text-sm text-[var(--ink-muted)] mt-0.5">{locationNote}</p>
+        ) : null}
       </div>
 
       <div
@@ -147,6 +128,27 @@ export function QrVerifier({ expectedValue, onVerified, levelNumber, location, l
         <div id={containerId} className="min-h-[96px]" />
       </div>
 
+      <div className="mt-3 flex justify-center">
+        {!cameraActive ? (
+          <button
+            type="button"
+            onClick={startCamera}
+            className="w-48 rounded-full border border-amber-500/40 bg-amber-500/20 py-2 text-sm text-amber-100 transition hover:bg-amber-500/30"
+          >
+            {t.qr.startScan}
+          </button>
+        ) : (
+          <button
+            type="button"
+            onClick={() => void stopCamera()}
+            className="w-48 rounded-full border border-amber-500/40 bg-amber-500/20 py-2 text-sm text-amber-100 transition hover:bg-amber-500/30"
+          >
+            {t.qr.stopScan}
+          </button>
+        )}
+      </div>
+
+      {/* TODO: 恢復手動驗證時取消註解
       <div className="mt-3 flex flex-col gap-2 sm:flex-row">
         <input
           value={manualInput}
@@ -162,10 +164,7 @@ export function QrVerifier({ expectedValue, onVerified, levelNumber, location, l
           {t.qr.manualVerify}
         </button>
       </div>
-
-      <p className="mt-2 text-xs text-[var(--ink-muted)]">
-        {t.qr.demoCode}: {expectedValue}
-      </p>
+      */}
 
       {feedback ? <p className="mt-2 text-sm text-amber-100">{feedback}</p> : null}
     </section>
