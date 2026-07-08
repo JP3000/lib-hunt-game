@@ -7,12 +7,19 @@ type Translations = {
   login: {
     headline: string;
     description: string;
+    staffDescription: string;
     studentIdLabel: string;
     studentIdPlaceholder: string;
     submit: string;
     loading: string;
     invalidStudentId: string;
     fastPass: (id: string) => string;
+    roleLabel: string;
+    studentRole: string;
+    staffRole: string;
+    staffUsernameLabel: string;
+    staffUsernamePlaceholder: string;
+    invalidStaffUsername: string;
   };
   intro: {
     eyebrow: string;
@@ -114,13 +121,20 @@ const translations: Record<Locale, Translations> = {
     metaDescription: "一張泛黃字條，一首明代古詩，一段橫跨四百年的圖書館尋寶之旅。",
     login: {
       headline: "鄭芝龍的寶藏 II",
-      description: "輸入規定學號字串即可開始尋寶，無需註冊。\n示例: ab565666",
+      description: "輸入規定學號字串即可開始尋寶。\n示例: ab565666",
+      staffDescription: "輸入職員用戶名即可開始尋寶。\n用戶名長度：5 至 15 個字符。",
       studentIdLabel: "學號",
       studentIdPlaceholder: "輸入學號",
       submit: "開始解碼",
       loading: "正在喚醒解碼系統...",
       invalidStudentId: "請輸入正確學號格式：前兩位字母（大寫或小寫）+ 6 位數字，例如 ab565666 或 AB565666。",
       fastPass: (id) => `演示快速通關學號: ${id}（可直接解鎖到第 12 關）`,
+      roleLabel: "登入身分",
+      studentRole: "學生",
+      staffRole: "職員",
+      staffUsernameLabel: "用戶名",
+      staffUsernamePlaceholder: "輸入用戶名（5-15 個字符）",
+      invalidStaffUsername: "用戶名長度需為 5 至 15 個字符。",
     },
     intro: {
       eyebrow: "序幕 · 神祕字條",
@@ -163,7 +177,7 @@ const translations: Record<Locale, Translations> = {
       answerRequired: "請先選擇一個答案。",
       answerCorrect: "提交成功",
       answerWrong: "提交不成功，再試一次。",
-      completedHint: "本關已完成，可繼續下一關或返回地图。",
+      completedHint: "本關已完成，可繼續下一關或返回地圖。",
       settlementHeading: "本關結算",
       questionStatus: "答題狀態",
       qrStatus: "掃碼狀態",
@@ -171,7 +185,7 @@ const translations: Record<Locale, Translations> = {
       passed: "已通過",
       pending: "未通過",
       completeAndNext: "完成本關並繼續",
-      backToMap: "返回地图",
+      backToMap: "返回地圖",
       nextLevel: "前往下一關",
       completionStoryHeading: "過關情節",
       itemHeading: "本道具",
@@ -180,7 +194,7 @@ const translations: Record<Locale, Translations> = {
     qr: {
       heading: "掃碼驗證",
       locationLabel: "位置",
-      description: "可選擇呼叫攝像頭掃碼，也可手動輸入二維碼內容進行驗證。",
+      description: "可選擇呼叫攝影鏡頭掃碼，也可手動輸入二維碼內容進行驗證。",
       scanArea: "掃碼區域",
       startScan: "開始掃碼",
       stopScan: "停止掃碼",
@@ -190,7 +204,7 @@ const translations: Record<Locale, Translations> = {
       emptyValue: "請輸入二維碼內容後再驗證。",
       success: "驗證成功，寶藏機關已解鎖。",
       mismatch: "二維碼內容不匹配，請重試。",
-      cameraError: "無法打開攝像頭，請改用手動輸入二維碼內容。",
+      cameraError: "無法打開攝影鏡頭，請改用手動輸入二維碼內容。",
     },
     items: {
       panelTitle: "已獲得的道具",
@@ -204,7 +218,7 @@ const translations: Record<Locale, Translations> = {
       subtitleIncomplete: "繼續挑戰以解鎖完整積分板",
       finalScore: "最終得分",
       progress: ({ completed, total }) => `完成進度: ${completed}/${total}`,
-      backToMap: "返回地图",
+      backToMap: "返回地圖",
       reset: "重置進度",
       levelBreakdown: "關卡明細",
       notCompleted: "未完成",
@@ -218,16 +232,23 @@ const translations: Record<Locale, Translations> = {
   en: {
     brand: "Zheng Zhilong's Treasure II",
     gameName: "Zheng Zhilong's Treasure II",
-    metaDescription: "A yellowed note, a Ming poem, a 400-year treasure hunt across the library.",
+    metaDescription: "A yellowed note, a Ming dynasty poem, and a 400-year treasure hunt across the library.",
     login: {
       headline: "Zheng Zhilong's Treasure II",
-      description: "Enter your student ID to start the hunt. No registration required.\nExample: ab565666",
+      description: "Enter your student ID to start the hunt.\nExample: ab565666",
+      staffDescription: "Enter your staff username to start the hunt.\nUsername length: 5-15 characters.",
       studentIdLabel: "Student ID",
       studentIdPlaceholder: "Enter student ID",
       submit: "Start Decoding",
       loading: "Waking the decoding system...",
       invalidStudentId: "Use the correct format: two letters (upper or lower case) + 6 digits, e.g. ab565666 or AB565666.",
-      fastPass: (id) => `Fast-pass demo ID: ${id} (unlock level 12)`,
+      fastPass: (id) => `Demo fast-pass ID: ${id} (unlocks up to level 12)`,
+      roleLabel: "Login as",
+      studentRole: "Student",
+      staffRole: "Staff",
+      staffUsernameLabel: "Username",
+      staffUsernamePlaceholder: "Enter username (5-15 characters)",
+      invalidStaffUsername: "Username must be 5-15 characters.",
     },
     intro: {
       eyebrow: "Prologue · The Cipher Note",
@@ -245,7 +266,7 @@ const translations: Record<Locale, Translations> = {
       language: "Language",
     },
     footer: {
-      producer: "Produced by University of Macau Library",
+      producer: "Produced by the University of Macau Library",
       disclaimer: "This story is a work of fiction. Any resemblance to actual persons or events is purely coincidental.",
     },
     map: {
@@ -262,7 +283,7 @@ const translations: Record<Locale, Translations> = {
     level: {
       title: (level) => `Level ${level}`,
       storyHeading: "Story Clue",
-      promptHint: "Tip: First complete the QR code verification, then watch the video and finish the quiz.",
+      promptHint: "Tip: Scan the QR code first, then watch the video and complete the quiz.",
       questionHeading: "Challenge Question",
       multiSelectHint: "Multiple answers allowed",
       submitAnswer: "Submit Answer",
@@ -275,16 +296,16 @@ const translations: Record<Locale, Translations> = {
       qrStatus: "QR Status",
       attempts: "Attempts",
       passed: "Passed",
-      pending: "Pending",
-      completeAndNext: "Complete Level",
+      pending: "Not passed",
+      completeAndNext: "Complete & Continue",
       backToMap: "Back to Map",
       nextLevel: "Next Level",
-      completionStoryHeading: "Completion Story",
+      completionStoryHeading: "Level Story",
       itemHeading: "Reward Item",
       itemUnlockHint: "Unlocks after completion",
     },
     qr: {
-      heading: "Location Scan",
+      heading: "QR Verification",
       locationLabel: "Location",
       description: "Use the camera to scan, or enter the QR code manually.",
       scanArea: "Scan area",
@@ -293,19 +314,19 @@ const translations: Record<Locale, Translations> = {
       manualPlaceholder: "Enter QR code",
       manualVerify: "Verify",
       demoCode: "Demo code",
-      emptyValue: "Enter a QR code before verifying.",
-      success: "Verified. The mechanism is unlocked.",
+      emptyValue: "Please enter the QR code content before verifying.",
+      success: "Verification successful. The treasure mechanism is now unlocked.",
       mismatch: "QR code does not match. Try again.",
       cameraError: "Camera unavailable. Use manual input instead.",
     },
     items: {
       panelTitle: "Collected Items",
-      panelSubtitle: "Collected Items",
+      panelSubtitle: "Your Collection",
       close: "Close",
       locked: "Locked",
     },
     leaderboard: {
-      title: "Scoreboard",
+      title: "Leaderboard",
       subtitleComplete: "All levels completed",
       subtitleIncomplete: "Complete more levels to unlock the full board",
       finalScore: "Final Score",
@@ -315,7 +336,7 @@ const translations: Record<Locale, Translations> = {
       levelBreakdown: "Level Breakdown",
       notCompleted: "Not completed",
       itemSection: "Collected Items",
-      scoreUnit: "pts",
+      scoreUnit: "points",
     },
     authGate: {
       loading: "Loading exploration data...",

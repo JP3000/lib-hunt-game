@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import "@/app/globals.css";
 
 export const metadata = {
-  title: "管理端 · 图书馆寻宝游戏",
+  title: "管理端 · 圖書館尋寶遊戲",
 };
 
 export default function AdminLayout({ children }: { children: ReactNode }) {

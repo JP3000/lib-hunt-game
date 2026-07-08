@@ -8,16 +8,18 @@ import type { LevelResult } from "@/lib/types";
 type GameState = {
   hasHydrated: boolean;
   studentId: string | null;
+  /** 登入身分：學生或職員 */
+  role: "student" | "staff" | null;
   unlockedLevel: number;
   totalScore: number;
   levelResults: Partial<Record<number, LevelResult>>;
   collectedItems: string[];
-  /** 首次登录时间，用于计算通关耗时 */
+  /** 首次登入時間，用於計算通關耗時 */
   startedAt: string | null;
-  /** 是否已向服务端上报过通关记录（防止重复上报） */
+  /** 是否已向服務端上報過通關記錄（防止重複上報） */
   reported: boolean;
   setHasHydrated: (hydrated: boolean) => void;
-  login: (studentId: string, initialUnlockedLevel?: number) => void;
+  login: (studentId: string, initialUnlockedLevel?: number, role?: "student" | "staff") => void;
   logout: () => void;
   setUnlockedLevel: (level: number) => void;
   completeLevel: (level: number, result: Omit<LevelResult, "completedAt">, itemId?: string) => void;
@@ -26,10 +28,11 @@ type GameState = {
 
 const initialState: Pick<
   GameState,
-  "hasHydrated" | "studentId" | "unlockedLevel" | "totalScore" | "levelResults" | "collectedItems" | "startedAt" | "reported"
+  "hasHydrated" | "studentId" | "role" | "unlockedLevel" | "totalScore" | "levelResults" | "collectedItems" | "startedAt" | "reported"
 > = {
   hasHydrated: false,
   studentId: null,
+  role: null,
   unlockedLevel: 1,
   totalScore: 0,
   levelResults: {},
@@ -46,7 +49,7 @@ const hasAllLevelsCompleted = (levelResults: Partial<Record<number, LevelResult>
 };
 
 /** 非阻塞上报通关记录 */
-function reportToServer(studentId: string, totalScore: number, startedAt: string) {
+function reportToServer(studentId: string, totalScore: number, startedAt: string, role: string | null) {
   const durationSeconds = Math.round(
     (Date.now() - new Date(startedAt).getTime()) / 1000
   );
@@ -54,7 +57,7 @@ function reportToServer(studentId: string, totalScore: number, startedAt: string
   fetch("/api/results", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ studentId, totalScore, durationSeconds }),
+    body: JSON.stringify({ studentId, totalScore, durationSeconds, role }),
   }).catch(() => {
     // 上报失败不影响游戏流程
   });
@@ -65,13 +68,15 @@ export const useGameStore = create<GameState>()(
     (set, get) => ({
       ...initialState,
       setHasHydrated: (hydrated) => set({ hasHydrated: hydrated }),
-      login: (studentId, initialUnlockedLevel = 1) => {
+      login: (studentId, initialUnlockedLevel = 1, role = "student") => {
         const normalized = studentId.trim().toLowerCase();
         const state = get();
 
         if (state.studentId && state.studentId === normalized) {
+          // 同一用戶重新登入：保留原有角色，避免靜默覆蓋
           set({
             studentId: normalized,
+            role: state.role ?? role,
             unlockedLevel: Math.max(state.unlockedLevel, clampLevel(initialUnlockedLevel)),
           });
           return;
@@ -79,6 +84,7 @@ export const useGameStore = create<GameState>()(
 
         set({
           studentId: normalized,
+          role,
           unlockedLevel: clampLevel(initialUnlockedLevel),
           totalScore: 0,
           levelResults: {},
@@ -123,7 +129,7 @@ export const useGameStore = create<GameState>()(
             const studentId = state.studentId;
             const startedAt = state.startedAt;
             if (studentId && startedAt) {
-              reportToServer(studentId, totalScore, startedAt);
+              reportToServer(studentId, totalScore, startedAt, state.role);
             }
             return {
               levelResults: nextLevelResults,
@@ -155,12 +161,21 @@ export const useGameStore = create<GameState>()(
     {
       name: "lib-hunt-game-state-v2",
       version: 2,
+      migrate: (persisted: unknown) => {
+        const data = persisted as Record<string, unknown>;
+        // v1 → v2：補齊 role 欄位，舊資料預設為 null
+        if (data.role === undefined) {
+          data.role = null;
+        }
+        return data as GameState;
+      },
       storage: createJSONStorage(() => localStorage),
       onRehydrateStorage: () => (state) => {
         state?.setHasHydrated(true);
       },
       partialize: (state) => ({
         studentId: state.studentId,
+        role: state.role,
         unlockedLevel: state.unlockedLevel,
         totalScore: state.totalScore,
         levelResults: state.levelResults,

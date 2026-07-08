@@ -41,7 +41,7 @@ export function QrVerifier({ expectedValue, onVerified, levelNumber, location, l
     try {
       await scannerRef.current.stop();
     } catch {
-      // 攝像頭可能尚未成功啟動，忽略停止異常。
+      // 攝影鏡頭可能尚未成功啟動，忽略停止異常。
     }
 
     scannerRef.current.clear();

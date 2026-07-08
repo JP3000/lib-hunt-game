@@ -26,6 +26,7 @@ export interface GameResultRow {
   total_score: number;
   duration_seconds: number;
   completed_at: string;
+  role: string | null;
 }
 
 export interface StatsResult {
@@ -35,20 +36,21 @@ export interface StatsResult {
   avgDuration: number;
 }
 
-/** 保存一条通关记录 */
+/** 儲存一筆通關記錄 */
 export async function insertResult(
   studentId: string,
   totalScore: number,
-  durationSeconds: number
+  durationSeconds: number,
+  role?: string | null
 ): Promise<void> {
   const p = getPool();
   await p.execute(
-    `INSERT INTO game_results (student_id, total_score, duration_seconds) VALUES (?, ?, ?)`,
-    [studentId, totalScore, durationSeconds]
+    `INSERT INTO game_results (student_id, total_score, duration_seconds, role) VALUES (?, ?, ?, ?)`,
+    [studentId, totalScore, durationSeconds, role ?? null]
   );
 }
 
-/** 统计维度 */
+/** 統計維度 */
 export async function getStats(): Promise<StatsResult> {
   const p = getPool();
   const [rows] = await p.query(
@@ -68,7 +70,7 @@ export async function getStats(): Promise<StatsResult> {
   };
 }
 
-/** 排行榜：按分数降序、用时升序 */
+/** 排行榜：按分數降序、用時升序 */
 export async function getLeaderboard(): Promise<GameResultRow[]> {
   const p = getPool();
   const [rows] = await p.query(

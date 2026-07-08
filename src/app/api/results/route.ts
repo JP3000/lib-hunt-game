@@ -1,22 +1,27 @@
 import { NextRequest, NextResponse } from "next/server";
 import { insertResult, getStats, getLeaderboard } from "@/lib/db";
 
-/** POST — 通关上报 */
+/** POST — 通關上報 */
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { studentId, totalScore, durationSeconds } = body;
+    const { studentId, totalScore, durationSeconds, role } = body;
 
     if (!studentId || totalScore == null || durationSeconds == null) {
-      return NextResponse.json({ error: "缺少必填字段" }, { status: 400 });
+      return NextResponse.json({ error: "缺少必填欄位" }, { status: 400 });
     }
 
-    await insertResult(String(studentId), Number(totalScore), Number(durationSeconds));
+    await insertResult(
+      String(studentId),
+      Number(totalScore),
+      Number(durationSeconds),
+      role ? String(role) : null
+    );
 
     return NextResponse.json({ ok: true });
   } catch (err: any) {
     console.error("POST /api/results error:", err);
-    return NextResponse.json({ error: "服务器错误" }, { status: 500 });
+    return NextResponse.json({ error: "伺服器錯誤" }, { status: 500 });
   }
 }
 
@@ -35,6 +40,6 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ stats });
   } catch (err: any) {
     console.error("GET /api/results error:", err);
-    return NextResponse.json({ error: "服务器错误" }, { status: 500 });
+    return NextResponse.json({ error: "伺服器錯誤" }, { status: 500 });
   }
 }

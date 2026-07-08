@@ -1,13 +1,15 @@
 "use client";
 
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { FAST_PASS_STUDENT_ID, STUDENT_ID_REGEX } from "@/lib/constants";
+import { FAST_PASS_STUDENT_ID, STUDENT_ID_REGEX, isValidStaffUsername } from "@/lib/constants";
 import { useLocale } from "@/hooks/use-locale";
 import { LOCALES, replaceLocaleInPathname, withLocalePrefix } from "@/lib/i18n";
 import { getTranslations } from "@/lib/translations";
 import { useGameStore } from "@/store/game-store";
+
+type LoginRole = "student" | "staff";
 
 export function LoginScreen() {
   const router = useRouter();
@@ -15,8 +17,11 @@ export function LoginScreen() {
   const t = getTranslations(locale);
   const hydrated = useGameStore((state) => state.hasHydrated);
   const studentId = useGameStore((state) => state.studentId);
+  const storeRole = useGameStore((state) => state.role);
   const login = useGameStore((state) => state.login);
 
+  // 從 store 初始化角色（舊資料遷移後為 null 則預設 student）
+  const [role, setRole] = useState<LoginRole>(storeRole ?? "student");
   const [inputValue, setInputValue] = useState("");
   const [error, setError] = useState("");
 
@@ -30,15 +35,47 @@ export function LoginScreen() {
     event.preventDefault();
 
     const normalized = inputValue.trim();
-    if (!STUDENT_ID_REGEX.test(normalized)) {
-      setError(t.login.invalidStudentId);
-      return;
+
+    // 依角色選擇校驗規則與初始關卡
+    if (role === "student") {
+      if (!STUDENT_ID_REGEX.test(normalized)) {
+        setError(t.login.invalidStudentId);
+        return;
+      }
+      const initialLevel = normalized.toLowerCase() === FAST_PASS_STUDENT_ID ? 12 : 1;
+      login(normalized, initialLevel, "student");
+    } else {
+      if (!isValidStaffUsername(normalized)) {
+        setError(t.login.invalidStaffUsername);
+        return;
+      }
+      login(normalized, 1, "staff");
     }
 
-    const initialLevel = normalized.toLowerCase() === FAST_PASS_STUDENT_ID ? 12 : 1;
-    login(normalized, initialLevel);
     router.push(withLocalePrefix("/map", locale));
   };
+
+  const handleRoleSwitch = (newRole: LoginRole) => {
+    setRole(newRole);
+    setError("");
+    setInputValue("");
+  };
+
+  const handleInputChange = (value: string) => {
+    setInputValue(value);
+    if (error) setError("");
+  };
+
+  // 依角色決定 UI 文案，避免 JSX 中散佈三元表達式
+  const labels = useMemo(
+    () => ({
+      description: role === "student" ? t.login.description : t.login.staffDescription,
+      inputLabel: role === "student" ? t.login.studentIdLabel : t.login.staffUsernameLabel,
+      inputPlaceholder:
+        role === "student" ? t.login.studentIdPlaceholder : t.login.staffUsernamePlaceholder,
+    }),
+    [role, t]
+  );
 
   if (!hydrated) {
     return (
@@ -86,18 +123,39 @@ export function LoginScreen() {
           </div>
         </div>
         <h1 className="treasure-title mt-2 text-3xl md:text-4xl">{t.login.headline}</h1>
-        <p className="mt-3 whitespace-pre-line text-sm leading-6 text-[var(--ink-muted)]">{t.login.description}</p>
+        <p className="mt-3 whitespace-pre-line text-sm leading-6 text-[var(--ink-muted)]">
+          {labels.description}
+        </p>
 
+        {/* 角色切換 */}
+        <div className="mt-4">
+          <p className="text-xs text-[var(--ink-muted)] mb-2">{t.login.roleLabel}</p>
+          <div className="flex gap-2">
+            {(["student", "staff"] as LoginRole[]).map((r) => (
+              <button
+                key={r}
+                type="button"
+                onClick={() => handleRoleSwitch(r)}
+                className={`flex-1 rounded-lg border px-3 py-2 text-sm transition ${
+                  role === r
+                    ? "border-amber-500/50 bg-amber-500/20 text-amber-100"
+                    : "border-[var(--border)] bg-black/20 text-[var(--ink-muted)] hover:border-amber-400/30"
+                }`}
+              >
+                {r === "student" ? t.login.studentRole : t.login.staffRole}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* 登入表單 */}
         <form onSubmit={handleSubmit} className="mt-5 space-y-3">
           <label className="block text-sm text-[var(--ink-main)]">
-            {t.login.studentIdLabel}
+            {labels.inputLabel}
             <input
               value={inputValue}
-              onChange={(event) => {
-                setInputValue(event.target.value);
-                setError("");
-              }}
-              placeholder={t.login.studentIdPlaceholder}
+              onChange={(event) => handleInputChange(event.target.value)}
+              placeholder={labels.inputPlaceholder}
               className="mt-2 w-full rounded-xl border border-[var(--border)] bg-black/20 px-3 py-2 text-base outline-none placeholder:text-[var(--ink-muted)] focus:border-amber-400/70"
             />
           </label>

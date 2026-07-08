@@ -8,5 +8,5 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ ok: true });
   }
 
-  return NextResponse.json({ ok: false, error: "密码错误" }, { status: 401 });
+  return NextResponse.json({ ok: false, error: "密碼錯誤" }, { status: 401 });
 }

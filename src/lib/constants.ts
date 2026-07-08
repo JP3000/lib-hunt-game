@@ -1,9 +1,18 @@
 export const TOTAL_LEVELS = 12;
-/** 12 关全部正确选项的总分 */
+/** 12 關全部正確選項的總分 */
 export const TOTAL_MAX_SCORE = 220;
 
 export const STUDENT_ID_REGEX = /^[A-Za-z]{2}\d{6}$/;
 export const FAST_PASS_STUDENT_ID = "ab999999";
+
+/** 職員用戶名長度限制 */
+export const STAFF_USERNAME_MIN_LENGTH = 5;
+export const STAFF_USERNAME_MAX_LENGTH = 15;
+/** 是否為合法的職員用戶名（僅檢查長度） */
+export const isValidStaffUsername = (value: string) => {
+  const trimmed = value.trim();
+  return trimmed.length >= STAFF_USERNAME_MIN_LENGTH && trimmed.length <= STAFF_USERNAME_MAX_LENGTH;
+};
 
 // ============================================================
 // 影片 URL 常數 — 對應 AI 媒體素材製作方案中的 5 支劇情影片
