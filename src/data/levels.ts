@@ -241,7 +241,7 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
     {
       level: 10,
       title: "第十關：克己復禮——秩序與空間的修行",
-      story: `在特藏展區的玻璃櫃前，你看到了兩件珍貴古籍並列陳放：1491年威尼斯出版的歐幾里德《幾何原本》搖籃本，以及1584年羅明堅的手稿《仁義禮知信》。原來當年利瑪竇與徐光啟合譯《幾何原本》，利瑪竇只完成前6卷便病逝北京。崇禎繼位後急需完整版本，耶穌會決定將1491年版《幾何原本》送往中國；而羅明堅的《仁義禮知信》，則是要向天朝證明耶穌會尊儒崇儒之心。兩件聖物隨福松丸北上，卻在1634年沉入西石。麥德樂1726年在西石尋回了這卷手稿，讓聖物在四百年後成為澳大的鎮館之寶。仁、義……這不正是「五常」嗎！你拿著「義」字卡循著「先學會他們的禮」的提示來到 G028——這裡存放著通往知識最基礎的工具：教科書。`,
+      story: `仁、義……這不正是「五常」嗎！你拿著「義」字卡循著「先學會他們的禮」的提示來到 G028——這裡存放著通往知識最基礎的工具：教科書。`,
       completionStory: `你逐一核對圖書館禮儀規範，在教科書架的隱蔽處發現了「禮」字卡牌。卡背是羅明堅當年的註釋：「Li 禮：humanitas。此乃社群共處之基石。」你忽然讀懂了這位四百年前的傳教士——他巧妙地將儒家的「禮」與西方的「人道主義（humanitas）」連結起來，視之為文明對話的根基。`,
       items: [{
         id: "item-10",
@@ -550,7 +550,7 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
     {
       level: 10,
       title: "Level 10: Self-Restraint and Ritual — The Practice of Order and Space",
-      story: `Before the glass display case in the Special Collections area, you see two precious ancient books displayed together: the 1491 Venice incunabulum of Euclid's Elements, and Michele Ruggieri's 1584 manuscript 'Ren Yi Li Zhi Xin' (仁義禮知信). The pieces fall into place: Matteo Ricci and Xu Guangqi had translated Euclid's Elements together, but Ricci completed only the first six volumes before dying in Beijing. When the Chongzhen Emperor ascended and needed a complete edition for calendar reform, the Jesuits decided to send the 1491 complete Elements to China. Ruggieri's manuscript, meanwhile, was meant to prove the Jesuits' respect for Confucian values. Both sacred items were aboard the Fushong-maru when it sank at Western Rock in 1634. Metello recovered the manuscript at Western Rock in 1726, allowing these treasures to become the crown jewels of the UM Library four centuries later. Ren, Yi... this follows the 'Five Constants'! Following the hint on the Yi card — 'first learn their Li (ritual)' — you head to G028, home to the most fundamental tools of knowledge: textbooks.`,
+      story: `Ren, Yi... this must be the 'Five Constants'! Clutching the Yi card and following the hint — 'first learn their Li' — you head to G028, home to the most fundamental tools of knowledge: textbooks.`,
       completionStory: `Checking each etiquette rule one by one, you discover the "Li" (禮) card hidden on the textbook shelf. The card's reverse bears Ruggieri's annotation: "Li 禮: humanitas. This is the cornerstone of communal coexistence." You suddenly understand this 400-year-old missionary — he ingeniously linked the Confucian "Li" with the Western "humanitas," seeing it as the foundation for civilizational dialogue.`,
       items: [{
         id: "item-10",
