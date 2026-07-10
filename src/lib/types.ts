@@ -26,7 +26,7 @@ export type LevelConfig = {
   storyImageUrl?: string;
   storyImageAlt?: string;
   storyImageCaption?: string;
-  item: ItemConfig;
+  items: ItemConfig[];
 };
 
 export type LevelResult = {

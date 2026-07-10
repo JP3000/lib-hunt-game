@@ -24,7 +24,7 @@ export function LevelPage({ levelNumber }: LevelPageProps) {
   const locale = useLocale();
   const t = getTranslations(locale);
   const level = useMemo(() => getLevelConfig(levelNumber, locale), [levelNumber, locale]);
-  const item = level.item;
+  const items = level.items;
   const storyImageUrl = level.storyImageUrl;
   const storyImageAlt = level.storyImageAlt ?? "";
   const storyImageCaption = level.storyImageCaption;
@@ -98,7 +98,7 @@ export function LevelPage({ levelNumber }: LevelPageProps) {
         questionPassed: true,
         qrPassed: true,
       },
-      item.id
+      items.map(i => i.id)
     );
 
     goNext();
@@ -238,28 +238,27 @@ export function LevelPage({ levelNumber }: LevelPageProps) {
             </div>
           ) : null}
 
-          <div className="rounded-xl border bg-black/20 p-3" style={{ borderColor: "var(--border)" }}>
-            <p className="text-xs uppercase tracking-[0.2em]" style={{ color: "var(--ink-muted)" }}>
-              {t.level.itemHeading}
-            </p>
-            <div className="mt-2 flex items-center gap-3">
-              <button
-                type="button"
-                onClick={() => setIsItemPreviewOpen(true)}
-                className="h-14 w-20 overflow-hidden rounded-lg border bg-black/30 transition hover:opacity-80"
-                style={{ borderColor: "var(--border)" }}
-                aria-label={`查看道具大图：${item.name}`}
-              >
-                <img src={item.imageUrl} alt={item.name} className="h-full w-full object-cover" />
-              </button>
-              <div>
-                <p className="treasure-title text-base">{item.name}</p>
-                <p className="text-xs" style={{ color: "var(--ink-muted)" }}>
-                  {t.level.itemUnlockHint}
-                </p>
+          {items.map((it) => (
+            <div key={it.id} className="rounded-xl border bg-black/20 p-3" style={{ borderColor: "var(--border)" }}>
+              <div className="flex items-center gap-3">
+                <button
+                  type="button"
+                  onClick={() => setIsItemPreviewOpen(true)}
+                  className="h-14 w-20 shrink-0 overflow-hidden rounded-lg border bg-black/30 transition hover:opacity-80"
+                  style={{ borderColor: "var(--border)" }}
+                  aria-label={`查看道具大图：${it.name}`}
+                >
+                  <img src={it.imageUrl} alt={it.name} className="h-full w-full object-cover" />
+                </button>
+                <div>
+                  <p className="treasure-title text-base">{it.name}</p>
+                  <p className="text-xs" style={{ color: "var(--ink-muted)" }}>
+                    {t.level.itemUnlockHint}
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
+          ))}
 
           <button
             type="button"
@@ -301,13 +300,13 @@ export function LevelPage({ levelNumber }: LevelPageProps) {
         >
           <div className="max-h-[90vh] w-full max-w-5xl overflow-hidden rounded-2xl bg-black/90 shadow-2xl">
             <img
-              src={item.imageUrl}
-              alt={item.name}
+              src={items[0].imageUrl}
+              alt={items[0].name}
               className="max-h-[90vh] w-full object-contain"
             />
             <div className="border-t border-white/10 px-4 py-3">
-              <p className="text-base font-semibold text-white">{item.name}</p>
-              <p className="mt-1 text-sm text-white/70">{item.description}</p>
+              <p className="text-base font-semibold text-white">{items[0].name}</p>
+              <p className="mt-1 text-sm text-white/70">{items[0].description}</p>
             </div>
           </div>
         </button>

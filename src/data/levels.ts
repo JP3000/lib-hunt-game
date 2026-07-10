@@ -16,18 +16,23 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
       title: "第一關：初臨密境——尋找智慧的守門人",
       story: `2026年8月，盛夏。你剛踏入澳門大學圖書館，在整理新生資料時，突然掉出一張泛黃的字條，紙面帶著若有若無的海鹽氣味，上面潦草地寫著幾行字：「濠雨風驟撼長宵，福松影沒十字澳。西石深藏無價寶，九章一開動皇朝。N. Iquan, 1634.」這是什麼？古詩？外文簽名？你決定找人問問。抬起頭，你看到圖書館大堂的標語——「有問題，問館員」。`,
       completionStory: `館員看了一眼字條，神色微動，壓低聲音告訴你：從2014年遷入新館開始，澳大的新生就會莫名其妙地收到這樣的紙條。傳說，這張紙條關係到一批價值連城的寶藏，只有能破解它的人才能得到——可惜至今無人成功。你還想追問，館員卻搖搖頭，不再多言，只遞給你一張折頁。「想破解這位Iquan的身分，先學會用『博尋』吧。」`,
-      item: {
+      items: [{
+        id: "item-01-note",
+        name: "泛黃字條",
+        imageUrl: "/assets/note-yellowed.png",
+        description: "簽名 N. Iquan, 1634——一首明代古詩，一段隱藏四百年的寶藏線索。",
+      }, {
         id: "item-01",
         name: "《博尋》使用指南",
         imageUrl: "/assets/boquest-guide.png",
         description: "通往圖書館資源寶庫的鑰匙——學會使用博尋，掌握知識的入口。",
-      },
+      }],
       question:
         "你撿到一張神祕字條，既涉及歷史人物，又需要檢索資料。你該向圖書館哪個櫃檯求助？",
       options: [
         { id: "a", label: "借閱台（G/F）：負責圖書借還和預約書" },
         { id: "b", label: "參考服務台（G/F）：解答任何關於使用圖書館的疑問，包括研究諮詢" },
-        { id: "c", label: "IT 櫃台（G/F）：解決系統與網絡問題" },
+        { id: "c", label: "IT 櫃台（G/F）：解決系統與網路問題" },
         { id: "d", label: "多媒體櫃台（2/F）：提供多媒體設備和演播室服務" },
       ],
       correctOptionIds: ["b"],
@@ -39,16 +44,16 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
     {
       level: 2,
       title: "第二關：神龍現身——知識深海的博尋",
-      story: `館員看了一眼字條，神色微動，壓低聲音告訴你：從2014年遷入新館開始，澳大的新生就會莫名其妙地收到這樣的紙條。傳說，這張紙條關係到一批價值連城的寶藏，只有能破解它的人才能得到——可惜至今無人成功。你還想追問，館員卻搖搖頭，不再多言，只遞給你一張折頁。「想破解這位Iquan的身分，先學會用『博尋』吧。」你來到資訊共享空間，打開一台電腦，向那個神祕簽名發起第一次檢索。`,
+      story: `想破解這位Iquan的身分，先學會用『博尋』吧。你來到資訊共享空間，打開一台電腦，向那個神祕簽名發起第一次檢索。`,
       completionStory: `檢索結果出來了——N. Iquan 就是 Nicolas Iquan，明末海上霸主鄭芝龍在澳門受洗時的教名，而「Iquan」正是他的小名「一官」。一個受洗的天主教徒、一個縱橫東亞的海上梟雄，他與這批寶藏究竟有何關係？你迫切想讀到這本書的細節。可它在哪一層書架上？`,
-      item: {
+      items: [{
         id: "item-02",
         name: "Nicolas Iquan 檔案",
         imageUrl: "/assets/iquan-dossier.png",
         description: "N. Iquan 即 Nicolas Iquan——明末海上霸主鄭芝龍在澳門受洗時的教名，Iquan 正是其小名「一官」。",
-      },
+      }],
       question:
-        "在圖書館主頁的博尋搜索框中輸入「Iquan」，能夠揭開這個神秘人身份的圖書是？（提示：(1) 用界面篩選（Filter）功能將資源類型限定為「圖書（Books）」，排除圖書章節和論文；(2) 查看找到的圖書描述（Description）信息，注意中英文其實是同一本書。",
+        "在圖書館主頁的博尋搜索框中輸入「Iquan」，能夠揭開這個神秘人身份的圖書是？（提示：(1) 用界面篩選（Filter）功能將資源類型限定為「圖書（Books）」，排除圖書章節和論文；(2) 查看找到的圖書描述（Description）資訊，注意中英文其實是同一本書。",
       options: [
         { id: "a", label: "Chapter Two: Nicolas Iquan before 1627" },
         { id: "b", label: "War, trade and piracy in the China seas (1622-1683)" },
@@ -63,16 +68,16 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
     {
       level: 3,
       title: "第三關：座標解讀——書海中的主題分區",
-      story: `原來 N. Iquan 就是 Nicolas Iquan——明末海上霸主鄭芝龍！一個受洗的天主教徒、一個縱橫東亞的海上梟雄，他與這批寶藏究竟有何關係？你迫切想讀到那本書的細節。可它藏在哪一層書架上？你得先在這座如迷宮般的圖書館裡，找到它所屬的主題領地。`,
+      story: `為了找到鄭芝龍的相關資訊，你迫切想知道War, trade and piracy in the China seas (1622-1683)中的內容，裡面會有寶藏的下落嗎？可它藏在哪一層書架上？你得先在這座如迷宮般的圖書館裡，找到它所屬的主題領地。`,
       completionStory: `確定了！這本書屬於歷史與地理區，在三樓 C 區。但同一區書架綿延數十米，這本書究竟卡在哪一格？你低頭看了看手中剛拿到的密碼表，意識到真正的「定位密碼」是那串索書號。`,
-      item: {
+      items: [{
         id: "item-03",
         name: "密碼表",
         imageUrl: "/assets/call-number-cipher.png",
         description: "索書號構成及其排序方法——圖書館的「定位密碼」，每一本書都有它獨一無二的坐標。",
-      },
+      }],
       question:
-        "根據學科主題，這本《War, trade and piracy in the China seas》應該存放在哪個區域？（提示：該書記錄了古代中國海域的故事）",
+        "根據學科主題，這本《War, trade and piracy in the China seas》應該存放在哪個區域？（提示：該書記錄了古代東亞海域的故事）",
       options: [
         { id: "a", label: "2/F A 區：哲學、宗教、心理、教育及藝術區 (B, L-N)" },
         { id: "b", label: "2/F C 區：語言文學區 (P-PZ)" },
@@ -89,14 +94,14 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
     {
       level: 4,
       title: "第四關：密文擷取——索書號的排序邏輯",
-      story: `確定了主題區——三樓歷史與地理區。但同一區書架綿延數十米，這本書究竟卡在哪一格？博尋提供了它的索書號：DS 753.2 Che 2013。你站在三樓 C 區書架前，要在無數書脊中找到「那一本」，必須先讀懂索書號在書架上的排列規則。`,
+      story: `你繼續尋找圖書，心想書中一定會有寶藏的下落，另外「濠雨風驟撼長宵，福松影沒十字澳。西石深藏無價寶，九章一開動皇朝。」又是什麼意思？福松是誰？難道是他藏起了寶藏嗎？你來到三樓歷史與地理區，但這本書究竟在哪一格？博尋提供了它的索書號：【DS 753.2 Che 2013】。最終你在無數書脊中找到了「那一本」`,
       completionStory: `你終於抽出了這本書。翻動書頁時，一張夾藏其中的紙條飄落，上面潦草地寫著：「明崇禎七年，長子福松十歲慶生。一官造船福松丸。」你恍然大悟——「福松」原來不是人，而是一艘船！是鄭芝龍為長子鄭成功（小名福松）打造的旗艦「福松丸」！崇禎七年正是字條上的1634年。就在福松丸下水那年，這艘船遭遇風暴、觸礁沉沒，船上無價之寶從此不知所蹤。「十字澳」與「西石」——正是寶藏的藏身之處！`,
-      item: {
+      items: [{
         id: "item-04",
         name: "海事便簽",
         imageUrl: "/assets/maritime-memo.png",
         description: "記載福松丸於1634年沉沒於十字澳西石——「福松」原來是鄭芝龍為長子鄭成功打造的旗艦！",
-      },
+      }],
       question:
         "以下是4本書的索書號：① DS 753.2 Che 2013　② DP 756 Seq 1982　③ DS 79 Shi 1996　④ DS 753.2 Bro 2023。請問書架上由左至右正確的前後順序是？（提示：類目號按A-Z排序，細類號按整體數字大小排序，作者代碼逐位A-Z排序，同年份按出版年先後）",
       options: [
@@ -114,20 +119,20 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
     {
       level: 5,
       title: "第五關：時空重疊——AI 賦能的數字航圖",
-      story: `你終於抽出了這本書。翻動書頁時，一張夾藏其中的紙條飄落，上面寫著：「明崇禎七年，長子福松十歲慶生。一官造船福松丸。」原來「福松」不是人，而是一艘船！1634年，福松丸遭遇風暴沉沒，船上無價之寶從此不知所蹤。「十字澳」與「西石」——正是寶藏的藏身之處！你試著用博尋查詢這些明代舊地名，卻一無所獲。這時你注意到搜索框旁的「AI 賦能博尋」按鈕——試試 AI 吧。`,
+      story: `「十字澳」與「西石」——正是寶藏的藏身之處！你試著用博尋查詢這些明代舊地名，卻一無所獲。這時你注意到搜索框旁的「AI 賦能博尋」按鈕——試試 AI 吧。`,
       completionStory: `原來「十字澳」就是十字門水域——澳門半島、氹仔、路環、大橫琴、小橫琴、灣仔之間的水道。但這個範圍還是太大，看來關鍵仍在「西石」。AI 給出的答案列出了來源，其中一篇文章引起了你的注意——《珠澳十字門水域船舶擱淺成因及對策》。`,
-      item: {
+      items: [{
         id: "item-05",
         name: "沉船點範圍圖",
         imageUrl: "/assets/wreck-site-map.png",
         description: "你親手在地圖上圈畫出的沉船點範圍——十字門水域，即澳門半島、氹仔、路環、大橫琴、小橫琴、灣仔之間的水道。",
-      },
+      }],
       question:
         "十字澳在哪裡呢？請根據 AI 賦能博尋給出的答案選擇正確的表述：",
       options: [
-        { id: "a", label: "澳門水域" },
+        { id: "a", label: "橫琴水域" },
         { id: "b", label: "十字門水域" },
-        { id: "c", label: "十字門和澳門水域" },
+        { id: "c", label: "十字門和橫琴水域" },
         { id: "d", label: "澳門半島、氹仔、路環、大橫琴、小橫琴、灣仔之間的水道" },
       ],
       correctOptionIds: ["b", "d"],
@@ -138,14 +143,14 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
     {
       level: 6,
       title: "第六關：文獻考古——資料庫的深潛",
-      story: `AI 給出的答案列出了來源，其中一篇文章引起你的注意——《珠澳十字門水域船舶擱淺成因及對策》。你點開鏈接，從「Full text availability」進入中國學術期刊全文資料庫（CNKI），順利讀到了全文。然而通篇讀下來，並沒有「西石」。看來「西石」是明代舊稱，如今或許改了名字。你決定在 CNKI 中以主題「十字門」檢索，用學科「中國古代史」篩選，追尋「西石」的真正位置。`,
+      story: `AI 給出的答案列出了來源，其中一篇文章引起你的注意——《珠澳十字門水域船舶擱淺成因及對策》。你點開連結，從「Full text availability」進入中國學術期刊全文資料庫（CNKI），順利讀到了全文。然而通篇讀下來，並沒有「西石」。看來「西石」是明代舊稱，如今或許改了名字。你決定在 CNKI 中以主題「十字門」檢索，用學科「中國古代史」篩選，追尋「西石」的真正位置。`,
       completionStory: `找到了！《濠鏡澳與亞馬港：香山縣若干地名考——以明代〈全海圖註〉為中心》這篇文章考證出了「西石」的大致地點。但作者沒有附上他所依據的明代地圖《全海圖註》。要精確定位，你必須親眼看到那張古老的地圖。圖書館裡，會有這套珍稀古圖嗎？`,
-      item: {
+      items: [{
         id: "item-06",
         name: "地名考證報告",
         imageUrl: "/assets/toponym-report.png",
         description: "考證出「西石」的大致地點——要精確定位，還需要親眼看到明代古地圖《全海圖註》。",
-      },
+      }],
       question:
         "在 CNKI 中以主題「十字門」檢索、學科「中國古代史」篩選，以下哪一篇文章提到了「西石」？",
       options: [
@@ -164,12 +169,12 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
       title: "第七關：中西之橋——澳門的古老真容",
       story: `通過博尋，你驚喜地查到圖書館藏有《全海圖註》，位置在 1/F B4。你點開索書號右側的「Locate」圖標，打開了對應樓層的 Floor Plan。在澳門坊，你找到了這套珍貴古圖。書中繪出了「西石」的位置，旁邊有人用鉛筆寫下一行小字：Pedra do Meio？正踟躇間，你注意到柱子上掛著一張澳門古地圖——就在大、小橫琴、氹仔和路環構成的下十字門西側，赫然標著「Pedra do Meio」。你讀了讀經緯度，心頭一震：這正是現在澳大圖書館的所在地！你激動地拍了一下地圖畫框，一枚銀幣從框後鬆動、掉了出來。`,
       completionStory: `你撿起銀幣仔細端詳。幣面上用細針刻著一行小字：「1/F C1：Metello」。1/F C1 正是本校學位論文區——這是一條指向下一站的路標。既然寶藏就在圖書館腳下，必定有前人留下過線索。`,
-      item: {
+      items: [{
         id: "item-07",
         name: "神秘的銀幣",
         imageUrl: "/assets/silver-coin.png",
         description: "幣面上用細針刻著一行小字：「1/F C1：Metello」——這是一條指向下一站的路標。",
-      },
+      }],
       question:
         "這套標註為 1/F B4 的《全海圖註》，除了在澳門坊外，還存在於哪些專區？（提示：使用博尋，搜索書名，查看館藏位置）",
       options: [
@@ -189,12 +194,12 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
       title: "第八關：傳承之薪——校園裡的守望者",
       story: `銀幣上的「Metello」是什麼意思？1/F C1 正是本校學位論文區。既然寶藏就在圖書館腳下，必定有前人留下過線索——你決定查閱學長前輩們的研究精華。在 UM Dissertations & Theses Collection 平台以「Metello」查詢，你找到了一篇博士論文。`,
       completionStory: `原來，1725年葡萄牙國王派使臣麥德樂來華覲見雍正皇帝，但麥德樂在澳門逗留近一年，實際上是為執行一項秘密任務——尋找隨福松丸沉沒的耶穌會寶物。你在論文夾層中發現一張便簽和一張「仁」字卡牌：卡面寫著"Gin 仁 — amor seu caritas"（愛與仁慈）；卡背還有兩行字：「……福松……重啟天國之鑰，唯有眾人各司其職、彼此成就，方能守護……」原來這批寶藏，從來不是一個人能獨力守護的。`,
-      item: {
+      items: [{
         id: "item-08",
         name: "「仁」字卡牌",
         imageUrl: "/assets/card-ren.png",
         description: "Gin 仁 — amor seu caritas（愛與仁慈）。卡背寫著：'……福松……重啟天國之鑰，唯有眾人各司其職、彼此成就，方能守護……'",
-      },
+      }],
       question:
         "你要找的是一篇提到「葡萄牙使臣麥德樂（Embaixada de Alexandre Metelo de Sousa e Meneses à China no ano de 1725）」的本校博士論文。它的題目是？",
       options: [
@@ -213,12 +218,12 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
       title: "第九關：鎮館之寶——中西交流的鑰匙",
       story: `原來1725年葡萄牙國王派使臣麥德樂來華覲見雍正皇帝，實為執行秘密任務——尋找隨福松丸沉沒的耶穌會寶物。循著麥德樂的線索，你了解到澳大圖書館的鎮館之寶中，有一件正是麥德樂來華的報告手稿。報告中提到他發現了兩件寶物的線索：一件是「西方科學的基石」，一件是「東方智慧的寶藏」。他沒有寫明是什麼，只留下一串奇怪的文字——1491 Euclid。`,
       completionStory: `在特藏展區的玻璃櫃前，你看到了兩件珍貴古籍並列陳放：1491年威尼斯出版的歐幾里德《幾何原本》搖籃本，以及1584年羅明堅的手稿《仁義禮知信》。原來利瑪竇與徐光啟合譯《幾何原本》未竟，耶穌會決定將完整版送往中國；羅明堅的手稿則是要向天朝證明尊儒崇儒之心。兩件聖物隨福松丸北上，卻在1634年沉入西石。1726年麥德樂在西石尋回了手稿，讓聖物在四百年後成為澳大的鎮館之寶。你細讀展櫃說明牌，末尾引述麥德樂的話：「要在這片土地獲得真理，必須先學會他們的『禮』。」`,
-      item: {
+      items: [{
         id: "item-09",
         name: "「義」字卡牌",
         imageUrl: "/assets/card-yi.png",
         description: "gni 義 — gratitudo（感恩與正義）。代表對知識傳播的使命感，象徵保護古籍、尊重知識。",
-      },
+      }],
       question:
         "用 BoQuest 查找「1491 Euclid」，按年代排序最古老在前（Sort by: Date — oldest），位置含「Rare Book Room」的那本書名是？",
       options: [
@@ -238,12 +243,12 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
       title: "第十關：克己復禮——秩序與空間的修行",
       story: `在特藏展區的玻璃櫃前，你看到了兩件珍貴古籍並列陳放：1491年威尼斯出版的歐幾里德《幾何原本》搖籃本，以及1584年羅明堅的手稿《仁義禮知信》。原來當年利瑪竇與徐光啟合譯《幾何原本》，利瑪竇只完成前6卷便病逝北京。崇禎繼位後急需完整版本，耶穌會決定將1491年版《幾何原本》送往中國；而羅明堅的《仁義禮知信》，則是要向天朝證明耶穌會尊儒崇儒之心。兩件聖物隨福松丸北上，卻在1634年沉入西石。麥德樂1726年在西石尋回了這卷手稿，讓聖物在四百年後成為澳大的鎮館之寶。仁、義……這不正是「五常」嗎！你拿著「義」字卡循著「先學會他們的禮」的提示來到 G028——這裡存放著通往知識最基礎的工具：教科書。`,
       completionStory: `你逐一核對圖書館禮儀規範，在教科書架的隱蔽處發現了「禮」字卡牌。卡背是羅明堅當年的註釋：「Li 禮：humanitas。此乃社群共處之基石。」你忽然讀懂了這位四百年前的傳教士——他巧妙地將儒家的「禮」與西方的「人道主義（humanitas）」連結起來，視之為文明對話的根基。`,
-      item: {
+      items: [{
         id: "item-10",
         name: "「禮」字卡牌",
         imageUrl: "/assets/card-li.png",
         description: "Li 禮 — humanitas（人道）。羅明堅註釋：'此乃社群共處之基石。'四百年前的傳教士，將儒家的「禮」與西方的「人道主義」連結為文明對話的根基。",
-      },
+      }],
       question:
         "為維護圖書館的秩序與對所有讀者的公平，請按照「禮」的精神，找出以下所有符合圖書館禮儀規範的正確行為：",
       options: [
@@ -263,13 +268,13 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
       level: 11,
       title: "第十一關：知者寶鑒——智能終端的洞察力",
       story: `你來到新書區，這裡代表著知識的流動與更新。羅明堅在手稿中曾寫道：「中國人之『知』，在於對新鮮事物的敏銳觀察，以及三省乎己的內心鑒察。」而今，這股力量已轉化為你手中的圖書館手機服務。`,
-      completionStory: `掃碼成功後，手機屏幕上浮現出一行羅明堅的拉丁文轉寫：「ci 智：Prudentia。善用工具者，方能洞察未知。善用圖書館資源與服務，可以事半功倍。」你手中的「知」字卡牌開始發光，卡牌邊緣浮出最後一句指引：「信，是所有知識能否成立的最終保證。」`,
-        item: {
+      completionStory: `掃碼成功後，手機螢幕上浮現出一行羅明堅的拉丁文轉寫：「ci 智：Prudentia。善用工具者，方能洞察未知。善用圖書館資源與服務，可以事半功倍。」你手中的「知」字卡牌開始發光，卡牌邊緣浮出最後一句指引：「信，是所有知識能否成立的最終保證。」`,
+        items: [{
         id: "item-11",
         name: "「知」字卡牌",
         imageUrl: "/assets/card-zhi.png",
         description: "ci 智 — Prudentia（審慎與智慧）。羅明堅寫道：'善用工具者，方能洞察未知。善用圖書館資源與服務，可以事半功倍。'",
-      },
+      }],
       question:
         "圖書館已有許多服務可通過手機完成。關於圖書館手機借書，以下表述正確的是？",
       options: [
@@ -290,12 +295,12 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
       title: "第十二關：真理之環——訊息萬變時代的終極誠信",
       story: `你來到資訊素養室——這裡是學會分辨「真理」與「偽證」的地方。在 AI 橫行的年代，什麼才是真正可信的「信」？你將五張卡牌「仁、義、禮、知、信」按順序排列。卡牌背面的文字在燈下連成一段話：「福松影沒，非為金銀；九章再開，始於澳大。校訓之基，五德同輝。」你終於明白：鄭芝龍當年委託福松丸運送的，並非黃金珠寶，而是能改變中西文明對話走向的鑰匙。四百年前沉入西石的聖物，隨澳門大學的興建而重見天日，化作了這座學府的基石——「仁、義、禮、知、信」也從古老的手稿，化作了澳大人代代相傳的校訓。真正的寶藏，不在地底，而在這座圖書館的每一排書架、每一本書，以及你對真理的不懈追求之中。`,
       completionStory: `你將五張卡牌「仁、義、禮、知、信」按順序排列，拼合成一個完整的五角形。卡牌背面的文字在燈下連成一段話：「福松影沒，非為金銀；九章再開，始於澳大。校訓之基，五德同輝。」恭喜你，新生！你已掌握開啟這座智慧殿堂的鑰匙。新學期開始了，你的大學傳奇，才剛剛拉開序幕。`,
-      item: {
+      items: [{
         id: "item-12",
         name: "「信」字卡牌",
         imageUrl: "/assets/card-xin.png",
         description: "Sin 信 — Veritas（真理）。象徵學術誠信、正確使用 AI、規範引用——所有知識能否成立的最終保證。",
-      },
+      }],
       question:
         "AI 時代，圖書館發揮的作用愈加重要。以下關於 AI 和圖書館的表述，哪些是錯誤的？",
       options: [
@@ -317,12 +322,17 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
       title: "Level 1: The Mysterious Note — Seek the Gatekeeper of Wisdom",
       story: `August 2026, midsummer. You have just stepped into the University of Macau Library. While sorting through your orientation materials, a yellowed, worn note flutters out, carrying a faint trace of sea salt. Scribbled on it are a few lines: "Tempest rains lash the long night, Fushong vanishes at the Cross Gate. Western Rock hides a priceless treasure, Nine Chapters once opened will move the empire. N. Iquan, 1634." What is this? An ancient poem? A foreign signature? You look up and see the library lobby's motto: "Got questions? Ask a librarian."`,
       completionStory: `The librarian glances at the note, expression flickering. Lowering his voice, he tells you: ever since the library moved to its new building in 2014, UM freshmen have mysteriously received notes like this. Legend says the note points to a priceless treasure — but no one has ever cracked it. Before you can press further, he shakes his head and hands you a folded guide. "If you want to uncover who Iquan is, first learn to use BoQuest."`,
-      item: {
+      items: [{
+        id: "item-01-note",
+        name: "Yellowed Note",
+        imageUrl: "/assets/note-yellowed.png",
+        description: "Signed N. Iquan, 1634 — a Ming dynasty poem, a 400-year-old treasure clue waiting to be unraveled.",
+      }, {
         id: "item-01",
         name: "BoQuest User Guide",
         imageUrl: "/assets/boquest-guide.png",
         description: "The key to the library's treasure trove of resources — master BoQuest, and you hold the entrance to all knowledge.",
-      },
+      }],
       question:
         "You've found a mysterious note involving historical figures and needing research. Which library service desk should you approach?",
       options: [
@@ -340,17 +350,17 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
     {
       level: 2,
       title: "Level 2: The Dragon Emerges — BoQuest into the Deep Sea of Knowledge",
-      story: `The librarian glances at the note, expression flickering. Lowering his voice, he tells you: ever since the library moved to its new building in 2014, UM freshmen have mysteriously received notes like this. Legend says the note points to a priceless treasure — but no one has ever cracked it. Before you can press further, the librarian shakes his head and hands you a folded guide. "If you want to uncover who Iquan is, first learn to use BoQuest." You head to the Information Commons, open a computer, and launch your first search against that enigmatic signature.`,
+      story: `"If you want to uncover who Iquan is, first learn to use BoQuest." You head to the Information Commons, open a computer, and launch your first search against that enigmatic signature.`,
       completionStory: `The search results are in — N. Iquan is Nicolas Iquan, the baptized name of Zheng Zhilong, the Ming dynasty's overlord of the seas. "Iquan" was his childhood nickname, "Yiguan" (First Official). A baptized Catholic, a maritime warlord who dominated East Asian waters — what does he have to do with this treasure? You're desperate to read the book. But which floor is it on?`,
       storyImageUrl: "/assets/Secret_Folder_Copy.jpg",
       storyImageAlt: "Cipher ledger detail",
       storyImageCaption: "The ledger's cipher reads: 'The Sea Eye swallows silver yet drowns none — chests drawn by unseen currents vanish beneath the silt, fleeing down the Silver Waterway.' The answer lies within these words.",
-      item: {
+      items: [{
         id: "item-02",
         name: "Nicolas Iquan Dossier",
         imageUrl: "/assets/iquan-dossier.png",
         description: "N. Iquan is Nicolas Iquan — the baptized name of Zheng Zhilong, the Ming dynasty's overlord of the seas. 'Iquan' was his childhood nickname, meaning 'First Official.'",
-      },
+      }],
       question:
         "Type 'Iquan' into the library's BoQuest search. Which books reveal this mysterious person's identity? (Hint: use filters to limit Resource Type to 'Books' — note that the Chinese and English results are the same book.)",
       options: [
@@ -367,16 +377,16 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
     {
       level: 3,
       title: "Level 3: Decoding the Map — Subject Zones in the Sea of Books",
-      story: `So N. Iquan is Nicolas Iquan — the legendary Zheng Zhilong! A baptized Catholic and a maritime overlord who dominated East Asian waters — what does he have to do with this treasure? You're eager to read the book. But where is it among the library's maze of shelves? First, you must find which subject territory it belongs to.`,
+      story: `Eager to learn more about Zheng Zhilong, you're desperate to read War, Trade and Piracy in the China Seas (1622–1683). Could the treasure's location be hidden within its pages? But where is it among the library's maze of shelves? First, you must find which subject territory it belongs to.`,
       completionStory: `Confirmed — History & Geography, 3/F Zone C. But the shelves stretch for dozens of meters. Where exactly is this book? You look down at the cipher table in your hands and realize the true "positioning code" is that string of call numbers.`,
-      item: {
+      items: [{
         id: "item-03",
         name: "Cipher Table",
         imageUrl: "/assets/call-number-cipher.png",
         description: "The structure of call numbers and their sorting rules — the library's 'positioning cipher,' giving every book its unique coordinate.",
-      },
+      }],
       question:
-        "Based on its subject, where should 'War, trade and piracy in the China seas' be shelved? (Hint: check BoQuest for 'Location Items / Available at')",
+        "Based on its subject, where should 'War, trade and piracy in the China seas' be shelved? (Hint: the book chronicles tales of ancient East Asian seas)",
       options: [
         { id: "a", label: "2/F Zone A: Philosophy, Religion, Psychology, Education & Arts (B, L-N)" },
         { id: "b", label: "2/F Zone C: Language & Literature (P-PZ)" },
@@ -393,14 +403,14 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
     {
       level: 4,
       title: "Level 4: Cipher Extraction — The Logic of Call Numbers",
-      story: `You've confirmed the subject zone — 3/F History & Geography. But the shelves stretch for dozens of meters. Where exactly is this book? BoQuest gives its call number: DS 753.2 Che 2013. Standing before the 3/F Zone C shelves, you realize that to find 'the one' among countless spines, you must first decode the rules of how call numbers are arranged.`,
+      story: `You continue searching, convinced the book holds clues to the treasure. And what does the poem mean — "Tempest rains lash the long night, Fushong vanishes at the Cross Gate..."? Who is Fushong? Could he have hidden the treasure? You head to 3/F History & Geography. But where exactly is this book? BoQuest gives its call number: DS 753.2 Che 2013. Among countless spines, you finally pull out the one.`,
       completionStory: `You finally pull out the book. As you turn the pages, a slip of paper flutters down: "The 7th year of Chongzhen, the eldest son Fushong turns ten. Yiguan builds the ship Fushong-maru." It hits you — "Fushong" was not a person but a ship! The flagship Zheng Zhilong built for his son Zheng Chenggong! 1634, the very year on the note — the Fushong-maru sank in a storm. Its priceless cargo vanished. "Cross Gate" and "Western Rock" — these mark the treasure's resting place!`,
-      item: {
+      items: [{
         id: "item-04",
         name: "Maritime Memo",
         imageUrl: "/assets/maritime-memo.png",
         description: "Records that the Fushong sank at the Western Rock of the Cross Gate in 1634 — 'Fushong' was the flagship Zheng Zhilong built for his eldest son Zheng Chenggong!",
-      },
+      }],
       question:
         "Here are 4 call numbers: ① DS 753.2 Che 2013  ② DP 756 Seq 1982  ③ DS 79 Shi 1996  ④ DS 753.2 Bro 2023. What is the correct left-to-right order on the shelf? (Hint: class letters sort A–Z, class numbers as whole decimals, author codes letter-by-letter A–Z, then by publication year.)",
       options: [
@@ -420,18 +430,18 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
       title: "Level 5: Time-Space Overlay — AI-Powered Digital Charting",
       story: `You finally pull out the book. As you turn the pages, a slip of paper flutters down: "The 7th year of Chongzhen, the eldest son Fushong turns ten. Yiguan builds the ship Fushong-maru." So 'Fushong' was not a person but a ship! In 1634, the Fushong-maru sank in a storm, and its priceless cargo vanished. 'Cross Gate' and 'Western Rock' — these mark the treasure's resting place! But searching these Ming-era place names in BoQuest yields nothing. Then you notice a button beside the search bar: 'AI Enhanced BoQuest.' Time to try AI.`,
       completionStory: `The "Cross Gate" (十字澳) is the Cross Gate waters — the channels between Macau Peninsula, Taipa, Coloane, Greater Hengqin, Lesser Hengqin, and Wanzai. But that's still too large an area. The key must be "Western Rock." The AI's answer lists its sources — one article catches your eye: "Causes and Countermeasures of Ship Groundings in the Zhuhai-Macau Cross Gate Waters."`,
-      item: {
+      items: [{
         id: "item-05",
         name: "Wreck Site Sketch",
         imageUrl: "/assets/wreck-site-map.png",
         description: "You've circled the wreck area on the map — the Cross Gate waters: the channels between Macau Peninsula, Taipa, Coloane, Greater Hengqin, Lesser Hengqin, and Wanzai.",
-      },
+      }],
       question:
         "Where is the Cross Gate (十字澳)? Based on the AI Enhanced BoQuest results, select the correct descriptions:",
       options: [
-        { id: "a", label: "Macau waters" },
+        { id: "a", label: "Hengqin waters (橫琴水域)" },
         { id: "b", label: "Cross Gate waters (十字門水域)" },
-        { id: "c", label: "Cross Gate and Macau waters" },
+        { id: "c", label: "Cross Gate and Hengqin waters (十字門和橫琴水域)" },
         { id: "d", label: "The waterways between Macau Peninsula, Taipa, Coloane, Greater Hengqin, Lesser Hengqin, and Wanzai" },
       ],
       correctOptionIds: ["b", "d"],
@@ -444,12 +454,12 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
       title: "Level 6: Archaeological Dig — Deep Diving into Databases",
       story: `The AI's answer includes sources. One article catches your eye — 'Causes and Countermeasures of Ship Groundings in the Zhuhai-Macau Cross Gate Waters.' You follow the link, select 'Full text availability' → CNKI (China Academic Journals Full-text Database), and read the full article. But 'Western Rock' is nowhere to be found. It must be a Ming-era name that has since changed. You decide to search CNKI with the subject 'Cross Gate' (十字門), filtered by discipline 'Ancient Chinese History,' to track down the true location of Western Rock.`,
       completionStory: `Found it! The article "Haojing'ao and Yamagang: A Study of Xiangshan County Place Names — Centered on the Ming Quan Hai Tu Zhu" identifies the approximate location of "Western Rock." But the author didn't include the Ming-era map Quan Hai Tu Zhu. To pinpoint the exact location, you must see that ancient map with your own eyes. Does the library hold this rare atlas?`,
-      item: {
+      items: [{
         id: "item-06",
         name: "Toponym Research Report",
         imageUrl: "/assets/toponym-report.png",
         description: "Identifies the approximate location of 'Western Rock' — but pinpointing it precisely requires seeing the Ming-era map 'Quan Hai Tu Zhu' in person.",
-      },
+      }],
       question:
         "Searching CNKI with subject 'Cross Gate' (十字門) and filtering by 'Ancient Chinese History,' which article mentions 'Western Rock' (西石)?",
       options: [
@@ -468,12 +478,12 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
       title: "Level 7: Bridge Between East and West — Macau's Ancient Face",
       story: `Through BoQuest, you're thrilled to discover the library holds Quan Hai Tu Zhu, located at 1/F B4. You click the 'Locate' icon beside the call number and open the floor plan. In the Macau Corner, you find this precious ancient atlas. It marks 'Western Rock,' and beside it, someone has penciled a small note: Pedra do Meio? While puzzling over this, you notice an old map of Macau hanging on a pillar — and there, west of the Lower Cross Gate formed by Greater and Lesser Hengqin, Taipa, and Coloane, is clearly marked 'Pedra do Meio.' You read the coordinates and your heart pounds: this is exactly where the UM Library now stands! You excitedly tap the map frame, and a silver coin slips loose from behind it.`,
       completionStory: `You pick up the coin and examine it closely. Etched on its surface in fine needlework is a line: "1/F C1: Metello." 1/F C1 is the UM Theses & Dissertations section — a signpost pointing to the next stop. If the treasure lies beneath the library, someone before you must have left clues.`,
-      item: {
+      items: [{
         id: "item-07",
         name: "Mysterious Silver Coin",
         imageUrl: "/assets/silver-coin.png",
         description: "Etched on the coin in fine needlework is a line: '1/F C1: Metello' — a signpost pointing to the next stop.",
-      },
+      }],
       question:
         "Marked as 1/F B4, besides the Macau Corner, where else can the Quan Hai Tu Zhu be found?",
       options: [
@@ -493,12 +503,12 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
       title: "Level 8: Torch of Legacy — The Campus Guardians",
       story: `What does 'Metello' on the coin mean? 1/F C1 is the UM Theses & Dissertations section. If the treasure lies beneath the library, someone before you must have left clues — you decide to search the research of past scholars. On the UM Dissertations & Theses Collection platform, you search 'Metello' and find a doctoral thesis.`,
       completionStory: `In 1725, the Portuguese king sent envoy Metello to the court of the Yongzheng Emperor — but his real mission was to recover Jesuit treasures lost with the Fushong-maru. Hidden in the thesis binding, you find a note and a card marked "Ren" (仁): its face reads "Gin 仁 — amor seu caritas" (love and charity); its reverse says: "...Fushong... to reopen the key of heaven, only when all fulfill their roles and elevate one another can it be safeguarded..." This treasure was never meant to be guarded by one person alone.`,
-      item: {
+      items: [{
         id: "item-08",
         name: "Card of 'Ren' (仁 — Benevolence)",
         imageUrl: "/assets/card-ren.png",
         description: "Gin 仁 — amor seu caritas (love and charity). The card's reverse reads: '...Fushong... to reopen the key of heaven, only when all fulfill their roles and elevate one another can it be safeguarded...'",
-      },
+      }],
       question:
         "You're looking for a UM doctoral thesis mentioning 'the Portuguese envoy Alexandre Metelo de Sousa e Meneses' embassy to China in 1725.' What is its title?",
       options: [
@@ -517,12 +527,12 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
       title: "Level 9: The Library's Crown Jewels — Keys to East-West Exchange",
       story: `In 1725, the Portuguese king sent envoy Metello to the court of the Yongzheng Emperor — but his real mission was to recover Jesuit treasures lost with the Fushong-maru. Following Metello's trail, you learn that among the UM Library's crown jewels is the very manuscript of Metello's embassy report. It mentions he found clues to two treasures: one 'cornerstone of Western science,' one 'treasure of Eastern wisdom.' He didn't name them, leaving only a cryptic inscription — 1491 Euclid.`,
       completionStory: `Before the glass display case, you see two precious ancient books: the 1491 Venice incunabulum of Euclid's Elements, and Michele Ruggieri's 1584 manuscript "Ren Yi Li Zhi Xin." Ricci and Xu Guangqi had translated Euclid together, but Ricci died after completing only six volumes. The Jesuits decided to send the complete 1491 edition to China; Ruggieri's manuscript would prove their respect for Confucian values. Both sacred items were aboard the Fushong-maru when it sank in 1634. Metello recovered the manuscript in 1726, allowing these treasures to become the cornerstone of UM four centuries later. The display note quotes Metello: "To obtain truth in this land, one must first learn their 'Li' — a restraint toward space and toward others."`,
-      item: {
+      items: [{
         id: "item-09",
         name: "Card of 'Yi' (義 — Righteousness)",
         imageUrl: "/assets/card-yi.png",
         description: "gni 義 — gratitudo (gratitude and justice). Represents a sense of mission in spreading knowledge, symbolizing the protection of ancient texts and respect for learning.",
-      },
+      }],
       question:
         "Search BoQuest for '1491 Euclid,' sort by Date — oldest first. Which title's location includes 'Rare Book Room'?",
       options: [
@@ -542,12 +552,12 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
       title: "Level 10: Self-Restraint and Ritual — The Practice of Order and Space",
       story: `Before the glass display case in the Special Collections area, you see two precious ancient books displayed together: the 1491 Venice incunabulum of Euclid's Elements, and Michele Ruggieri's 1584 manuscript 'Ren Yi Li Zhi Xin' (仁義禮知信). The pieces fall into place: Matteo Ricci and Xu Guangqi had translated Euclid's Elements together, but Ricci completed only the first six volumes before dying in Beijing. When the Chongzhen Emperor ascended and needed a complete edition for calendar reform, the Jesuits decided to send the 1491 complete Elements to China. Ruggieri's manuscript, meanwhile, was meant to prove the Jesuits' respect for Confucian values. Both sacred items were aboard the Fushong-maru when it sank at Western Rock in 1634. Metello recovered the manuscript in 1726, allowing these treasures to become the cornerstone of UM four centuries later. Ren, Yi... this follows the 'Five Constants'! Following the hint on the Yi card — 'first learn their Li (ritual)' — you head to G028, home to the most fundamental tools of knowledge: textbooks.`,
       completionStory: `Checking each etiquette rule one by one, you discover the "Li" (禮) card hidden on the textbook shelf. The card's reverse bears Ruggieri's annotation: "Li 禮: humanitas. This is the cornerstone of communal coexistence." You suddenly understand this 400-year-old missionary — he ingeniously linked the Confucian "Li" with the Western "humanitas," seeing it as the foundation for civilizational dialogue.`,
-      item: {
+      items: [{
         id: "item-10",
         name: "Card of 'Li' (禮 — Ritual/Propriety)",
         imageUrl: "/assets/card-li.png",
         description: "Li 禮 — humanitas (humanity). Ruggieri annotated: 'This is the cornerstone of communal coexistence.' Four centuries ago, this missionary linked the Confucian 'Li' with Western 'humanitas' as the foundation for civilizational dialogue.",
-      },
+      }],
       question:
         "To uphold library order and fairness to all readers, according to the spirit of 'Li' (propriety), select ALL correct behaviors that comply with library etiquette:",
       options: [
@@ -571,12 +581,12 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
       storyImageUrl: "/assets/card-zhi.png",
       storyImageAlt: "Decryption clue map",
       storyImageCaption: "The clue map hand-drawn by Antonio — every step you took was within his foresight.",
-      item: {
+      items: [{
         id: "item-11",
         name: "Card of 'Zhi' (知 — Knowledge/Wisdom)",
         imageUrl: "/assets/card-zhi.png",
         description: "ci 智 — Prudentia (prudence and wisdom). Ruggieri wrote: 'Those who master their tools can perceive the unknown. Those who master library resources and services achieve twice the result with half the effort.'",
-      },
+      }],
       question:
         "Many library services can now be done via mobile phone. Regarding mobile book borrowing, which statements are CORRECT?",
       options: [
@@ -597,12 +607,12 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
       title: "Level 12: The Circle of Truth — Ultimate Integrity in an Age of Information Chaos",
       story: `You enter the Information Literacy Classroom — a place for learning to distinguish truth from falsehood. In this age of rampant AI, what truly deserves our 'trust'? You arrange the five cards — Ren, Yi, Li, Zhi, Xin — in order. The text on the reverse sides connects under the light: "Fushong vanished, not for gold or silver; Nine Chapters reopened, beginning at UM. The foundation of our motto, five virtues shining as one." You finally understand: what Zheng Zhilong sent aboard the Fushong-maru was never gold and jewels, but keys that could change the course of dialogue between East and West. The sacred items that sank at Western Rock four centuries ago re-emerged with the building of the University of Macau, becoming the cornerstone of this institution — and 'Ren, Yi, Li, Zhi, Xin' transformed from an ancient manuscript into the motto passed down through generations of UM students. The true treasure lies not underground, but in every bookshelf, every book, and in your unyielding pursuit of truth.`,
       completionStory: `You arrange the five cards — Ren, Yi, Li, Zhi, Xin — in order, forming a complete pentagon. The text on their reverse sides connects under the light: "Fushong vanished, not for gold or silver; Nine Chapters reopened, beginning at UM. The foundation of our motto, five virtues shining as one." Congratulations, freshman! You now hold the keys to this temple of wisdom. The new semester begins — and your university legend has only just begun.`,
-      item: {
+      items: [{
         id: "item-12",
         name: "Card of 'Xin' (信 — Integrity/Trust)",
         imageUrl: "/assets/card-xin.png",
         description: "Sin 信 — Veritas (truth). Symbolizes academic integrity, proper use of AI, and correct citation — the ultimate guarantor of whether knowledge can truly stand.",
-      },
+      }],
       question:
         "In the AI era, libraries play an increasingly vital role. Which of the following statements about AI and libraries are FALSE?",
       options: [

@@ -86,8 +86,7 @@ export default function LeaderboardPage() {
           <section className="treasure-panel p-5">
             <h3 className="treasure-title text-xl">{t.leaderboard.itemSection}</h3>
             <div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {levels.map((level) => {
-                const item = level.item;
+              {levels.flatMap((level) => level.items.map((item) => ({ item, level }))).map(({ item }) => {
                 const isCollected = collectedItems.includes(item.id);
                 return (
                   <div

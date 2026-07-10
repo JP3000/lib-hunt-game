@@ -22,7 +22,7 @@ type GameState = {
   login: (studentId: string, initialUnlockedLevel?: number, role?: "student" | "staff") => void;
   logout: () => void;
   setUnlockedLevel: (level: number) => void;
-  completeLevel: (level: number, result: Omit<LevelResult, "completedAt">, itemId?: string) => void;
+  completeLevel: (level: number, result: Omit<LevelResult, "completedAt">, itemIds?: string[]) => void;
   resetProgress: () => void;
 };
 
@@ -102,7 +102,7 @@ export const useGameStore = create<GameState>()(
         set((state) => ({
           unlockedLevel: Math.max(state.unlockedLevel, clampLevel(level)),
         })),
-      completeLevel: (level, result, itemId) =>
+      completeLevel: (level, result, itemIds) =>
         set((state) => {
           const safeLevel = clampLevel(level);
           const nextLevelResults: Partial<Record<number, LevelResult>> = {
@@ -120,8 +120,8 @@ export const useGameStore = create<GameState>()(
           const unlockedLevel =
             safeLevel >= TOTAL_LEVELS ? TOTAL_LEVELS : Math.max(state.unlockedLevel, clampLevel(safeLevel + 1));
 
-          const nextCollectedItems = itemId
-            ? Array.from(new Set([...state.collectedItems, itemId]))
+          const nextCollectedItems = itemIds?.length
+            ? Array.from(new Set([...state.collectedItems, ...itemIds]))
             : state.collectedItems;
 
           // 首次完成全部关卡且未上报过，触发上报

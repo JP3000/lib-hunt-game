@@ -15,7 +15,7 @@ type ItemPanelProps = {
 export function ItemPanel({ open, collectedItems, onClose }: ItemPanelProps) {
   const locale = useLocale();
   const t = getTranslations(locale);
-  const items = getLevels(locale).map((level) => level.item);
+  const items = getLevels(locale).flatMap((level) => level.items);
   const [previewItem, setPreviewItem] = useState<ItemConfig | null>(null);
 
   if (!open) {
