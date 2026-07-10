@@ -351,7 +351,7 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
       level: 2,
       title: "Level 2: The Dragon Emerges — BoQuest into the Deep Sea of Knowledge",
       story: `"If you want to uncover who Iquan is, first learn to use BoQuest." You head to the Information Commons, open a computer, and launch your first search against that enigmatic signature.`,
-      completionStory: `The search results are in — N. Iquan is Nicolas Iquan, the baptized name of Zheng Zhilong, the Ming dynasty's overlord of the seas. "Iquan" was his childhood nickname, "Yiguan" (First Official). A baptized Catholic, a maritime warlord who dominated East Asian waters — what does he have to do with this treasure? You're desperate to read the book. But which floor is it on?`,
+      completionStory: `The search results are in — N. Iquan is Nicolas Iquan, the baptized name Zheng Zhilong received in Macau. "Iquan" was his childhood nickname, "Yiguan" (First Official). A baptized Catholic, a maritime warlord who dominated East Asian waters — what does he have to do with this treasure? You're desperate to read the book. But which floor is it on?`,
       storyImageUrl: "/assets/Secret_Folder_Copy.jpg",
       storyImageAlt: "Cipher ledger detail",
       storyImageCaption: "The ledger's cipher reads: 'The Sea Eye swallows silver yet drowns none — chests drawn by unseen currents vanish beneath the silt, fleeing down the Silver Waterway.' The answer lies within these words.",
@@ -404,12 +404,12 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
       level: 4,
       title: "Level 4: Cipher Extraction — The Logic of Call Numbers",
       story: `You continue searching, convinced the book holds clues to the treasure. And what does the poem mean — "Tempest rains lash the long night, Fushong vanishes at the Cross Gate..."? Who is Fushong? Could he have hidden the treasure? You head to 3/F History & Geography. But where exactly is this book? BoQuest gives its call number: DS 753.2 Che 2013. Among countless spines, you finally pull out the one.`,
-      completionStory: `You finally pull out the book. As you turn the pages, a slip of paper flutters down: "The 7th year of Chongzhen, the eldest son Fushong turns ten. Yiguan builds the ship Fushong-maru." It hits you — "Fushong" was not a person but a ship! The flagship Zheng Zhilong built for his son Zheng Chenggong! 1634, the very year on the note — the Fushong-maru sank in a storm. Its priceless cargo vanished. "Cross Gate" and "Western Rock" — these mark the treasure's resting place!`,
+      completionStory: `You finally pull out the book. As you turn the pages, a slip of paper flutters down: "The 7th year of Chongzhen, the eldest son Fushong turns ten. Yiguan builds the ship Fushong-maru." It hits you — "Fushong" was not a person but a ship! The flagship Zheng Zhilong built for his son Zheng Chenggong! 1634, the very year on the note — the Fushong-maru struck a reef in a storm and sank. Its priceless cargo was lost without a trace. "Cross Gate" and "Western Rock" — these mark the treasure's resting place!`,
       items: [{
         id: "item-04",
         name: "Maritime Memo",
         imageUrl: "/assets/maritime-memo.png",
-        description: "Records that the Fushong sank at the Western Rock of the Cross Gate in 1634 — 'Fushong' was the flagship Zheng Zhilong built for his eldest son Zheng Chenggong!",
+        description: "Records that the Fushong-maru sank at the Western Rock of the Cross Gate in 1634 — 'Fushong' was the flagship Zheng Zhilong built for his eldest son Zheng Chenggong!",
       }],
       question:
         "Here are 4 call numbers: ① DS 753.2 Che 2013  ② DP 756 Seq 1982  ③ DS 79 Shi 1996  ④ DS 753.2 Bro 2023. What is the correct left-to-right order on the shelf? (Hint: class letters sort A–Z, class numbers as whole decimals, author codes letter-by-letter A–Z, then by publication year.)",
@@ -470,7 +470,7 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
       ],
       correctOptionIds: ["c"],
       qrAnswer: "PEDRAMEIO",
-      qrLocation: "1/F Zone A · Reading Area",
+      qrLocation: "1/F Zone A · UM Scholars Collection",
       qrLocationNote: "Learn to use CNKI and other Chinese academic databases, master discipline filtering and literature search",
     },
     {
@@ -485,7 +485,7 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
         description: "Etched on the coin in fine needlework is a line: '1/F C1: Metello' — a signpost pointing to the next stop.",
       }],
       question:
-        "Marked as 1/F B4, besides the Macau Corner, where else can the Quan Hai Tu Zhu be found?",
+        "Marked as 1/F B4, besides the Macau Corner, where else can the Quan Hai Tu Zhu be found? (Hint: Use BoQuest, search the title, and check the holdings locations)",
       options: [
         { id: "a", label: "1/F A2 UM Scholars Collection (澳大人文庫)" },
         { id: "b", label: "5/F C1 Oversize Books (大尺寸圖書)" },
@@ -494,7 +494,7 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
       ],
       correctOptionIds: ["a", "b"],
       qrAnswer: "SILVER1643",
-      qrLocation: "1/F · UM Scholars Collection / Macau Corner",
+      qrLocation: "1/F · Macau Corner",
       qrLocationNote: "Explore the Macau Corner and special collections, learn to use the Locate feature on floor plans",
       videoUrl: LEVEL7_VIDEO_URL,
     },
@@ -502,7 +502,7 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
       level: 8,
       title: "Level 8: Torch of Legacy — The Campus Guardians",
       story: `What does 'Metello' on the coin mean? 1/F C1 is the UM Theses & Dissertations section. If the treasure lies beneath the library, someone before you must have left clues — you decide to search the research of past scholars. On the UM Dissertations & Theses Collection platform, you search 'Metello' and find a doctoral thesis.`,
-      completionStory: `In 1725, the Portuguese king sent envoy Metello to the court of the Yongzheng Emperor — but his real mission was to recover Jesuit treasures lost with the Fushong-maru. Hidden in the thesis binding, you find a note and a card marked "Ren" (仁): its face reads "Gin 仁 — amor seu caritas" (love and charity); its reverse says: "...Fushong... to reopen the key of heaven, only when all fulfill their roles and elevate one another can it be safeguarded..." This treasure was never meant to be guarded by one person alone.`,
+      completionStory: `In 1725, the Portuguese king sent envoy Metello to the court of the Yongzheng Emperor. But Metello lingered in Macau for nearly a year — his real mission was to recover Jesuit treasures lost with the Fushong-maru. Hidden in the thesis binding, you find a note and a card marked "Ren" (仁): its face reads "Gin 仁 — amor seu caritas" (love and charity); its reverse says: "...Fushong... to reopen the key of heaven, only when all fulfill their roles and elevate one another can it be safeguarded..." This treasure was never meant to be guarded by one person alone.`,
       items: [{
         id: "item-08",
         name: "Card of 'Ren' (仁 — Benevolence)",
@@ -520,13 +520,13 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
       correctOptionIds: ["a"],
       qrAnswer: "METELO1725",
       qrLocation: "1/F C1 · UM Theses & Dissertations Section",
-      qrLocationNote: "Learn to use the UM Dissertations & Theses Collection platform to find academic works",
+      qrLocationNote: "Learn to use the UM Dissertations & Theses Collection platform to find UM theses and dissertations",
     },
     {
       level: 9,
       title: "Level 9: The Library's Crown Jewels — Keys to East-West Exchange",
-      story: `In 1725, the Portuguese king sent envoy Metello to the court of the Yongzheng Emperor — but his real mission was to recover Jesuit treasures lost with the Fushong-maru. Following Metello's trail, you learn that among the UM Library's crown jewels is the very manuscript of Metello's embassy report. It mentions he found clues to two treasures: one 'cornerstone of Western science,' one 'treasure of Eastern wisdom.' He didn't name them, leaving only a cryptic inscription — 1491 Euclid.`,
-      completionStory: `Before the glass display case, you see two precious ancient books: the 1491 Venice incunabulum of Euclid's Elements, and Michele Ruggieri's 1584 manuscript "Ren Yi Li Zhi Xin." Ricci and Xu Guangqi had translated Euclid together, but Ricci died after completing only six volumes. The Jesuits decided to send the complete 1491 edition to China; Ruggieri's manuscript would prove their respect for Confucian values. Both sacred items were aboard the Fushong-maru when it sank in 1634. Metello recovered the manuscript in 1726, allowing these treasures to become the cornerstone of UM four centuries later. The display note quotes Metello: "To obtain truth in this land, one must first learn their 'Li' — a restraint toward space and toward others."`,
+      story: `In 1725, the Portuguese king sent envoy Metello to the court of the Yongzheng Emperor. But Metello lingered in Macau for nearly a year — his real mission was to recover Jesuit treasures lost with the Fushong-maru. Following Metello's trail, you learn that among the UM Library's crown jewels is the very manuscript of Metello's embassy report. It mentions he found clues to two treasures: one 'cornerstone of Western science,' one 'treasure of Eastern wisdom.' He didn't name them, leaving only a cryptic inscription — 1491 Euclid.`,
+      completionStory: `Before the glass display case, you see two precious ancient books: the 1491 Venice incunabulum of Euclid's Elements, and Michele Ruggieri's 1584 manuscript "Ren Yi Li Zhi Xin." Ricci and Xu Guangqi had translated Euclid together, but Ricci died after completing only six volumes. The Jesuits decided to send the complete 1491 edition to China; Ruggieri's manuscript would prove their respect for Confucian values. Both sacred items were aboard the Fushong-maru when it sank in 1634. Metello recovered the manuscript at Western Rock in 1726, allowing these treasures to become the crown jewels of the UM Library four centuries later. The display note quotes Metello: "To obtain truth in this land, one must first learn their Li."`,
       items: [{
         id: "item-09",
         name: "Card of 'Yi' (義 — Righteousness)",
@@ -550,13 +550,13 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
     {
       level: 10,
       title: "Level 10: Self-Restraint and Ritual — The Practice of Order and Space",
-      story: `Before the glass display case in the Special Collections area, you see two precious ancient books displayed together: the 1491 Venice incunabulum of Euclid's Elements, and Michele Ruggieri's 1584 manuscript 'Ren Yi Li Zhi Xin' (仁義禮知信). The pieces fall into place: Matteo Ricci and Xu Guangqi had translated Euclid's Elements together, but Ricci completed only the first six volumes before dying in Beijing. When the Chongzhen Emperor ascended and needed a complete edition for calendar reform, the Jesuits decided to send the 1491 complete Elements to China. Ruggieri's manuscript, meanwhile, was meant to prove the Jesuits' respect for Confucian values. Both sacred items were aboard the Fushong-maru when it sank at Western Rock in 1634. Metello recovered the manuscript in 1726, allowing these treasures to become the cornerstone of UM four centuries later. Ren, Yi... this follows the 'Five Constants'! Following the hint on the Yi card — 'first learn their Li (ritual)' — you head to G028, home to the most fundamental tools of knowledge: textbooks.`,
+      story: `Before the glass display case in the Special Collections area, you see two precious ancient books displayed together: the 1491 Venice incunabulum of Euclid's Elements, and Michele Ruggieri's 1584 manuscript 'Ren Yi Li Zhi Xin' (仁義禮知信). The pieces fall into place: Matteo Ricci and Xu Guangqi had translated Euclid's Elements together, but Ricci completed only the first six volumes before dying in Beijing. When the Chongzhen Emperor ascended and needed a complete edition for calendar reform, the Jesuits decided to send the 1491 complete Elements to China. Ruggieri's manuscript, meanwhile, was meant to prove the Jesuits' respect for Confucian values. Both sacred items were aboard the Fushong-maru when it sank at Western Rock in 1634. Metello recovered the manuscript at Western Rock in 1726, allowing these treasures to become the crown jewels of the UM Library four centuries later. Ren, Yi... this follows the 'Five Constants'! Following the hint on the Yi card — 'first learn their Li (ritual)' — you head to G028, home to the most fundamental tools of knowledge: textbooks.`,
       completionStory: `Checking each etiquette rule one by one, you discover the "Li" (禮) card hidden on the textbook shelf. The card's reverse bears Ruggieri's annotation: "Li 禮: humanitas. This is the cornerstone of communal coexistence." You suddenly understand this 400-year-old missionary — he ingeniously linked the Confucian "Li" with the Western "humanitas," seeing it as the foundation for civilizational dialogue.`,
       items: [{
         id: "item-10",
         name: "Card of 'Li' (禮 — Ritual/Propriety)",
         imageUrl: "/assets/card-li.png",
-        description: "Li 禮 — humanitas (humanity). Ruggieri annotated: 'This is the cornerstone of communal coexistence.' Four centuries ago, this missionary linked the Confucian 'Li' with Western 'humanitas' as the foundation for civilizational dialogue.",
+        description: "Li 禮 — humanitas (humaneness). Ruggieri annotated: 'This is the cornerstone of communal coexistence.' Four centuries ago, this missionary linked the Confucian 'Li' with Western 'humanitas' as the foundation for civilizational dialogue.",
       }],
       question:
         "To uphold library order and fairness to all readers, according to the spirit of 'Li' (propriety), select ALL correct behaviors that comply with library etiquette:",
@@ -575,7 +575,7 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
     },
     {
       level: 11,
-      title: "Level 11: The Mirror of Knowledge — Insight Through Smart Tools",
+      title: "Level 11: The Mirror of Knowledge — Insight Through Smart Devices",
       story: `You arrive at the New Books Area, where knowledge flows and renews. Ruggieri once wrote in his manuscript: 'The Chinese concept of Zhi (知) lies in keen observation of the new and in reflective self-examination.' Today, that power has transformed into the library's mobile services in the palm of your hand.`,
       completionStory: `After a successful scan, a line of Ruggieri's Latin transcription appears on your phone screen: "ci 智: Prudentia. Those who master their tools can perceive the unknown. Those who master library resources and services achieve twice the result with half the effort." The "Zhi" card in your hand begins to glow, and its edge reveals one final directive: "Xin (信) — trust — is the ultimate guarantee that all knowledge can stand."`,
       storyImageUrl: "/assets/card-zhi.png",
@@ -604,8 +604,8 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
     },
     {
       level: 12,
-      title: "Level 12: The Circle of Truth — Ultimate Integrity in an Age of Information Chaos",
-      story: `You enter the Information Literacy Classroom — a place for learning to distinguish truth from falsehood. In this age of rampant AI, what truly deserves our 'trust'? You arrange the five cards — Ren, Yi, Li, Zhi, Xin — in order. The text on the reverse sides connects under the light: "Fushong vanished, not for gold or silver; Nine Chapters reopened, beginning at UM. The foundation of our motto, five virtues shining as one." You finally understand: what Zheng Zhilong sent aboard the Fushong-maru was never gold and jewels, but keys that could change the course of dialogue between East and West. The sacred items that sank at Western Rock four centuries ago re-emerged with the building of the University of Macau, becoming the cornerstone of this institution — and 'Ren, Yi, Li, Zhi, Xin' transformed from an ancient manuscript into the motto passed down through generations of UM students. The true treasure lies not underground, but in every bookshelf, every book, and in your unyielding pursuit of truth.`,
+      title: "Level 12: The Circle of Truth — Ultimate Integrity in an Age of Ever-Changing Information",
+      story: `You enter the Information Literacy Classroom — a place for learning to distinguish truth from false evidence. In this age of rampant AI, what truly deserves our 'trust'? You arrange the five cards — Ren, Yi, Li, Zhi, Xin — in order. The text on the reverse sides connects under the light: "Fushong vanished, not for gold or silver; Nine Chapters reopened, beginning at UM. The foundation of our motto, five virtues shining as one." You finally understand: what Zheng Zhilong sent aboard the Fushong-maru was never gold and jewels, but keys that could change the course of civilizational dialogue between East and West. The sacred items that sank at Western Rock four centuries ago re-emerged with the building of the University of Macau, becoming the cornerstone of this institution — and 'Ren, Yi, Li, Zhi, Xin' transformed from an ancient manuscript into the motto passed down through generations of UM students. The true treasure lies not underground, but in every bookshelf, every book, and in your unyielding pursuit of truth.`,
       completionStory: `You arrange the five cards — Ren, Yi, Li, Zhi, Xin — in order, forming a complete pentagon. The text on their reverse sides connects under the light: "Fushong vanished, not for gold or silver; Nine Chapters reopened, beginning at UM. The foundation of our motto, five virtues shining as one." Congratulations, freshman! You now hold the keys to this temple of wisdom. The new semester begins — and your university legend has only just begun.`,
       items: [{
         id: "item-12",
