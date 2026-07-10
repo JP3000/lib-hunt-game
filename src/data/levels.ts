@@ -152,7 +152,7 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
         description: "考證出「西石」的大致地點——要精確定位，還需要親眼看到明代古地圖《全海圖註》。",
       }],
       question:
-        "在 CNKI 中以主題「十字門」檢索、學科「中國古代史」篩選，以下哪一篇文章提到了「西石」？",
+        "在 CNKI 中以主題「十字門」檢索、學科「中國古代史」篩選，以下哪一篇文章提到了「西石」？（提示：請在四篇文章的全文中，搜尋關鍵詞「西石」，並確認其是否為考證對象。）",
       options: [
         { id: "a", label: "明清廣州對外交通的主要航道" },
         { id: "b", label: "明宋應昌《全海圖註·廣東沿海圖》研究" },
@@ -461,7 +461,7 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
         description: "Identifies the approximate location of 'Western Rock' — but pinpointing it precisely requires seeing the Ming-era map 'Quan Hai Tu Zhu' in person.",
       }],
       question:
-        "Searching CNKI with subject 'Cross Gate' (十字門) and filtering by 'Ancient Chinese History,' which article mentions 'Western Rock' (西石)?",
+        "Searching CNKI with subject 'Cross Gate' (十字門) and filtering by 'Ancient Chinese History,' which article mentions 'Western Rock' (西石)? (Hint: search the full text of all four articles for the keyword '西石' and verify whether it is the subject of textual research.)",
       options: [
         { id: "a", label: "Ming-Qing Guangzhou's Major External Transport Routes" },
         { id: "b", label: "A Study of Song Yingchang's Quan Hai Tu Zhu: Guangdong Coastal Map" },
