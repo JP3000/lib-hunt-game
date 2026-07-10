@@ -72,7 +72,7 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
         description: "索書號構成及其排序方法——圖書館的「定位密碼」，每一本書都有它獨一無二的坐標。",
       },
       question:
-        "根據學科主題，這本《War, trade and piracy in the China seas》應該存放在哪個區域？（提示：查看博尋上的 Location Items / Available at）",
+        "根據學科主題，這本《War, trade and piracy in the China seas》應該存放在哪個區域？（提示：該書記錄了古代中國海域的故事）",
       options: [
         { id: "a", label: "2/F A 區：哲學、宗教、心理、教育及藝術區 (B, L-N)" },
         { id: "b", label: "2/F C 區：語言文學區 (P-PZ)" },
@@ -156,7 +156,7 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
       ],
       correctOptionIds: ["c"],
       qrAnswer: "PEDRAMEIO",
-      qrLocation: "1/F A 區·閱覽座位附近",
+      qrLocation: "1/F A 區·澳大人·文庫",
       qrLocationNote: "學習使用 CNKI 等中文學術資料庫，掌握學科篩選與文獻檢索技巧",
     },
     {
@@ -180,7 +180,7 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
       ],
       correctOptionIds: ["a"],
       qrAnswer: "SILVER1643",
-      qrLocation: "1/F 澳大人·文庫",
+      qrLocation: "1/F 澳門坊",
       qrLocationNote: "認識澳門坊及特藏資源，學會使用 Locate 功能在樓層平面圖上定位",
       videoUrl: LEVEL7_VIDEO_URL,
     },
