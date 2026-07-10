@@ -3,7 +3,7 @@
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { FAST_PASS_STUDENT_ID, STUDENT_ID_REGEX, isValidStaffUsername } from "@/lib/constants";
+import { CACHE_BUSTER, FAST_PASS_STUDENT_ID, STUDENT_ID_REGEX, isValidStaffUsername } from "@/lib/constants";
 import { useLocale } from "@/hooks/use-locale";
 import { LOCALES, replaceLocaleInPathname, withLocalePrefix } from "@/lib/i18n";
 import { getTranslations } from "@/lib/translations";
@@ -96,7 +96,7 @@ export function LoginScreen() {
         preload="metadata"
         aria-hidden="true"
       >
-        <source src="/assets/intro.mp4" type="video/mp4" />
+        <source src={`/assets/intro.mp4?v=${CACHE_BUSTER}`} type="video/mp4" />
       </video>
       <div className="intro-video-overlay" aria-hidden="true" />
       <div className="intro-glow" aria-hidden="true" />

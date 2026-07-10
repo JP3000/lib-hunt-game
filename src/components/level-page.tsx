@@ -134,9 +134,6 @@ export function LevelPage({ levelNumber }: LevelPageProps) {
             imageAlt={storyImageAlt}
             imageCaption={storyImageCaption}
           />
-          <p className="mt-2 text-xs" style={{ color: "var(--ink-muted)" }}>
-            {t.level.promptHint}
-          </p>
         </section>
 
         <section className="treasure-panel p-4 md:col-span-2">

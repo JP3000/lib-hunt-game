@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { CACHE_BUSTER } from "@/lib/constants";
 import { useLocale } from "@/hooks/use-locale";
 import { getTranslations } from "@/lib/translations";
 import { withLocalePrefix } from "@/lib/i18n";
@@ -20,7 +21,7 @@ export function IntroScreen() {
         preload="metadata"
         aria-hidden="true"
       >
-        <source src="/assets/intro.mp4" type="video/mp4" />
+        <source src={`/assets/intro.mp4?v=${CACHE_BUSTER}`} type="video/mp4" />
       </video>
       <div className="intro-video-overlay" aria-hidden="true" />
       <div className="intro-glow" aria-hidden="true" />

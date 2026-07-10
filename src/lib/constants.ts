@@ -1,3 +1,6 @@
+/** 更新後手動遞增，強制瀏覽器重新載入靜態資源 */
+export const CACHE_BUSTER = "20250710";
+
 export const TOTAL_LEVELS = 12;
 /** 12 關全部正確選項的總分 */
 export const TOTAL_MAX_SCORE = 220;
@@ -19,19 +22,19 @@ export const isValidStaffUsername = (value: string) => {
 // ============================================================
 
 /** 序幕：字條的降臨 — APP 開場動畫 / Level 1 前置劇情 */
-export const PROLOGUE_VIDEO_URL = "/video/prologue-note.mp4";
+export const PROLOGUE_VIDEO_URL = `/video/prologue-note.mp4?v=${CACHE_BUSTER}`;
 
 /** Level 1：初臨密境 */
-export const LEVEL1_VIDEO_URL = "/video/level1.mp4";
+export const LEVEL1_VIDEO_URL = `/video/level1.mp4?v=${CACHE_BUSTER}`;
 
 /** Level 4：福松丸的真相 — 核心劇情轉折 */
-export const LEVEL4_VIDEO_URL = "/video/level4-fushong.mp4";
+export const LEVEL4_VIDEO_URL = `/video/level4-fushong.mp4?v=${CACHE_BUSTER}`;
 
 /** Level 7：銀幣的墜落 — 從地圖畫框後掉出 */
-export const LEVEL7_VIDEO_URL = "/video/level7-coin.mp4";
+export const LEVEL7_VIDEO_URL = `/video/level7-coin.mp4?v=${CACHE_BUSTER}`;
 
 /** Level 9：鎮館之寶 — 古籍展櫃 + 利瑪竇徐光啟閃回 */
-export const LEVEL9_VIDEO_URL = "/video/level9-treasure.mp4";
+export const LEVEL9_VIDEO_URL = `/video/level9-treasure.mp4?v=${CACHE_BUSTER}`;
 
 /** 終章：五德歸一 — 五角形拼合 + 圖書館全景 */
-export const FINALE_VIDEO_URL = "/video/finale-pentagon.mp4";
+export const FINALE_VIDEO_URL = `/video/finale-pentagon.mp4?v=${CACHE_BUSTER}`;
