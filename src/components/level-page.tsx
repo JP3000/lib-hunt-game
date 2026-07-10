@@ -41,7 +41,7 @@ export function LevelPage({ levelNumber }: LevelPageProps) {
   const [questionPassedLocal, setQuestionPassedLocal] = useState(false);
   const [qrPassedLocal, setQrPassedLocal] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const [isItemPreviewOpen, setIsItemPreviewOpen] = useState(false);
+  const [previewItem, setPreviewItem] = useState<typeof items[0] | null>(null);
 
   const isCompleted = Boolean(existingResult);
   const questionPassed = isCompleted || questionPassedLocal;
@@ -243,7 +243,7 @@ export function LevelPage({ levelNumber }: LevelPageProps) {
               <div className="flex items-center gap-3">
                 <button
                   type="button"
-                  onClick={() => setIsItemPreviewOpen(true)}
+                  onClick={() => setPreviewItem(it)}
                   className="h-14 w-20 shrink-0 overflow-hidden rounded-lg border bg-black/30 transition hover:opacity-80"
                   style={{ borderColor: "var(--border)" }}
                   aria-label={`查看道具大图：${it.name}`}
@@ -291,22 +291,22 @@ export function LevelPage({ levelNumber }: LevelPageProps) {
         </section>
       </main>
 
-      {isItemPreviewOpen ? (
+      {previewItem ? (
         <button
           type="button"
-          onClick={() => setIsItemPreviewOpen(false)}
+          onClick={() => setPreviewItem(null)}
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
           aria-label="关闭道具大图预览"
         >
           <div className="max-h-[90vh] w-full max-w-5xl overflow-hidden rounded-2xl bg-black/90 shadow-2xl">
             <img
-              src={items[0].imageUrl}
-              alt={items[0].name}
+              src={previewItem.imageUrl}
+              alt={previewItem.name}
               className="max-h-[90vh] w-full object-contain"
             />
             <div className="border-t border-white/10 px-4 py-3">
-              <p className="text-base font-semibold text-white">{items[0].name}</p>
-              <p className="mt-1 text-sm text-white/70">{items[0].description}</p>
+              <p className="text-base font-semibold text-white">{previewItem.name}</p>
+              <p className="mt-1 text-sm text-white/70">{previewItem.description}</p>
             </div>
           </div>
         </button>
