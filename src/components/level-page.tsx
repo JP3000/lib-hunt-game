@@ -49,6 +49,7 @@ export function LevelPage({ levelNumber }: LevelPageProps) {
   const [questionPassedLocal, setQuestionPassedLocal] = useState(false);
   const [qrPassedLocal, setQrPassedLocal] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [showCompletionStory, setShowCompletionStory] = useState(false);
   const [previewItem, setPreviewItem] = useState<typeof items[0] | null>(null);
 
   const isCompleted = Boolean(existingResult);
@@ -67,7 +68,7 @@ export function LevelPage({ levelNumber }: LevelPageProps) {
 
   const goNext = () => {
     if (levelNumber >= TOTAL_LEVELS) {
-      router.push(withLocalePrefix("/leaderboard", locale));
+      router.push(withLocalePrefix("/result", locale));
       return;
     }
     router.push(withLocalePrefix(`/levels/${formatLevel(levelNumber + 1)}`, locale));
@@ -83,6 +84,7 @@ export function LevelPage({ levelNumber }: LevelPageProps) {
 
     setQuestionPassedLocal(true);
     setAnswerMessage(t.level.answerCorrect);
+    setActiveTab("story");
   };
 
   const finishLevel = () => {
@@ -141,7 +143,15 @@ export function LevelPage({ levelNumber }: LevelPageProps) {
                 }`}
               >
                 <span className="mr-1.5">{TAB_ICONS[tab]}</span>
-                {tab === "story" ? t.level.storyHeading : t.level.questionHeading}
+                <span className="relative">
+                  {tab === "story" ? t.level.storyHeading : t.level.questionHeading}
+                  {tab === "question" && qrPassed && !questionPassed && (
+                    <span className="absolute -right-2.5 -top-0.5 flex h-2 w-2">
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-amber-400 opacity-75" />
+                      <span className="relative inline-flex h-2 w-2 rounded-full bg-amber-400" />
+                    </span>
+                  )}
+                </span>
               </button>
             ))}
           </div>
@@ -160,6 +170,7 @@ export function LevelPage({ levelNumber }: LevelPageProps) {
                   imageAlt={storyImageAlt}
                   imageCaption={storyImageCaption}
                 />
+
               </>
             ) : (
               <>
@@ -208,7 +219,7 @@ export function LevelPage({ levelNumber }: LevelPageProps) {
                 <button
                   type="button"
                   onClick={checkAnswer}
-                  className="mt-4 w-full rounded-xl border border-amber-500/50 bg-amber-500/20 py-2.5 text-sm font-medium text-amber-100 transition hover:bg-amber-500/30 active:scale-[0.98]"
+                  className="mt-4 w-full rounded-xl bg-amber-400 py-2.5 text-sm font-semibold text-amber-950 shadow-sm shadow-amber-400/20 transition hover:bg-amber-300 active:scale-[0.98]"
                 >
                   {t.level.submitAnswer}
                 </button>
@@ -222,76 +233,95 @@ export function LevelPage({ levelNumber }: LevelPageProps) {
         {/* 側邊欄：結算 */}
         <section className="treasure-panel flex flex-col gap-3 p-4 md:col-span-2">
           <h3 className="treasure-title text-lg">{t.level.settlementHeading}</h3>
-          <div className="flex items-center gap-2.5 text-base">
-            <span className="text-[var(--ink-muted)]">{t.level.qrStatus}</span>
-            {qrPassed ? (
-              <span className="flex items-center gap-1.5 font-semibold text-green-400">
-                <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" /></svg>
-                {t.level.passed}
-              </span>
-            ) : (
-              <span className="flex items-center gap-1.5 font-semibold text-amber-400">
-                <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" /></svg>
-                {t.level.pending}
-              </span>
-            )}
-          </div>
-          <div className="flex items-center gap-2.5 text-base">
-            <span className="text-[var(--ink-muted)]">{t.level.questionStatus}</span>
-            {questionPassed ? (
-              <span className="flex items-center gap-1.5 font-semibold text-green-400">
-                <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" /></svg>
-                {t.level.passed}
-              </span>
-            ) : (
-              <span className="flex items-center gap-1.5 font-semibold text-amber-400">
-                <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" /></svg>
-                {t.level.pending}
-              </span>
-            )}
+
+          {/* 步驟進度 */}
+          <div className="flex items-center gap-1.5">
+            {[
+              { label: t.level.qrStatus, done: qrPassed, active: !qrPassed },
+              { label: t.level.questionStatus, done: questionPassed, active: qrPassed && !questionPassed },
+              { label: t.level.completeAndNext, done: false, active: questionPassed && qrPassed },
+            ].map((step, i) => (
+              <div key={i} className="flex flex-1 items-center gap-1.5">
+                <div className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-bold transition-all duration-500 ${
+                  step.done
+                    ? "scale-100 bg-green-500/20 text-green-400"
+                    : step.active
+                    ? "scale-110 bg-amber-400 text-amber-950 shadow-sm shadow-amber-400/30"
+                    : "scale-100 bg-white/5 text-[var(--ink-muted)]"
+                }`}>
+                  {step.done ? (
+                    <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+                  ) : (
+                    i + 1
+                  )}
+                </div>
+                <span className={`text-[11px] font-medium leading-tight ${
+                  step.active ? "text-amber-300" : step.done ? "text-green-400" : "text-[var(--ink-muted)]"
+                }`}>
+                  {step.label}
+                </span>
+                {i < 2 && <div className={`h-px flex-1 ${qrPassed && i === 0 ? "bg-green-500/30" : "bg-white/10"}`} />}
+              </div>
+            ))}
           </div>
 
           {questionPassed && level.completionStory ? (
-            <div
-              className="rounded-xl border border-amber-500/30 bg-amber-500/10 p-4"
-              style={{ animation: "fadeIn 0.5s ease-out" }}
+            <button
+              type="button"
+              onClick={() => setShowCompletionStory(!showCompletionStory)}
+              className="w-full rounded-xl border border-amber-500/30 bg-amber-500/10 p-4 text-left transition hover:bg-amber-500/15"
             >
-              <p className="text-xs uppercase tracking-[0.2em] text-amber-300">
-                {t.level.completionStoryHeading}
-              </p>
-              <p className="mt-2 text-base leading-7" style={{ color: "var(--ink-main)", opacity: 0.95 }}>
+              <div className="flex items-center justify-between">
+                <span className="text-xs uppercase tracking-[0.2em] text-amber-300">
+                  {t.level.completionStoryHeading}
+                </span>
+                <svg
+                  className={`h-4 w-4 shrink-0 text-amber-400 transition-transform ${showCompletionStory ? "rotate-180" : ""}`}
+                  fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+              <p
+                className={`mt-2 text-base leading-7 ${showCompletionStory ? "" : "line-clamp-2"}`}
+                style={{ color: "var(--ink-main)", opacity: 0.95 }}
+              >
                 {level.completionStory}
               </p>
-            </div>
-          ) : null}
 
-          {items.map((it) => (
-            <div key={it.id} className="rounded-xl border bg-black/20 p-3" style={{ borderColor: "var(--border)" }}>
-              <div className="flex items-center gap-3">
-                <button
-                  type="button"
-                  onClick={() => setPreviewItem(it)}
-                  className="h-14 w-20 shrink-0 overflow-hidden rounded-lg border bg-black/30 transition hover:opacity-80"
-                  style={{ borderColor: "var(--border)" }}
-                  aria-label={`查看道具大图：${it.name}`}
-                >
-                  <img src={it.imageUrl} alt={it.name} className="h-full w-full object-cover" />
-                </button>
-                <div>
-                  <p className="treasure-title text-base">{it.name}</p>
-                  <p className="text-xs" style={{ color: "var(--ink-muted)" }}>
-                    {t.level.itemUnlockHint}
-                  </p>
+              {showCompletionStory && items.length > 0 && (
+                <div className="mt-3 flex flex-wrap gap-2" onClick={(e) => e.stopPropagation()}>
+                  {items.map((it) => (
+                    <div
+                      key={it.id}
+                      className="flex items-center gap-2 rounded-lg border bg-black/25 px-2.5 py-2 transition hover:bg-black/35"
+                      style={{ borderColor: "var(--border)" }}
+                    >
+                      <button
+                        type="button"
+                        onClick={() => setPreviewItem(it)}
+                        className="h-10 w-10 shrink-0 overflow-hidden rounded-md border bg-black/30 transition hover:opacity-80"
+                        style={{ borderColor: "var(--border)" }}
+                        aria-label={`查看道具大图：${it.name}`}
+                      >
+                        <img src={it.imageUrl} alt={it.name} className="h-full w-full object-cover" />
+                      </button>
+                      <div>
+                        <p className="text-xs font-medium text-[var(--ink-main)]">{it.name}</p>
+                        <p className="text-[11px] text-[var(--ink-muted)]">{t.level.itemUnlockHint}</p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              </div>
-            </div>
-          ))}
+              )}
+            </button>
+          ) : null}
 
           <button
             type="button"
             onClick={finishLevel}
             disabled={!questionPassed || !qrPassed || submitting}
-            className="rounded-xl border border-amber-500/45 bg-amber-500/20 px-4 py-2 text-sm text-amber-100 transition hover:bg-amber-500/30 disabled:cursor-not-allowed disabled:opacity-50"
+            className="rounded-xl bg-amber-400 px-4 py-3 text-base font-semibold text-amber-950 shadow-md shadow-amber-400/25 transition hover:bg-amber-300 hover:shadow-lg hover:shadow-amber-400/35 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40 disabled:shadow-none"
           >
             {t.level.completeAndNext}
           </button>
@@ -304,16 +334,6 @@ export function LevelPage({ levelNumber }: LevelPageProps) {
             >
               {t.level.backToMap}
             </Link>
-            {existingResult ? (
-              <button
-                type="button"
-                onClick={goNext}
-                className="rounded-xl border bg-black/25 px-3 py-2 text-sm transition hover:bg-black/35"
-                style={{ borderColor: "var(--border)" }}
-              >
-                {t.level.nextLevel}
-              </button>
-            ) : null}
           </div>
         </section>
       </main>

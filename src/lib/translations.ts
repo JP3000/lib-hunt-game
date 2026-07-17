@@ -58,6 +58,8 @@ type Translations = {
     questionHeading: string;
     multiSelectHint: string;
     submitAnswer: string;
+    continueReading: string;
+    skipToQuestion: string;
     answerRequired: string;
     answerCorrect: string;
     answerWrong: string;
@@ -111,6 +113,17 @@ type Translations = {
   };
   authGate: {
     loading: string;
+  };
+  result: {
+    title: string;
+    headline: string;
+    subtitle: string;
+    score: string;
+    duration: string;
+    items: string;
+    itemWall: string;
+    viewLeaderboard: string;
+    backToMap: string;
   };
 };
 
@@ -174,6 +187,8 @@ const translations: Record<Locale, Translations> = {
       questionHeading: "問題挑戰",
       multiSelectHint: "本題可多選",
       submitAnswer: "提交答案",
+      continueReading: "繼續閱讀",
+      skipToQuestion: "直接答題",
       answerRequired: "請先選擇一個答案。",
       answerCorrect: "提交成功",
       answerWrong: "提交不成功，再試一次。",
@@ -192,7 +207,7 @@ const translations: Record<Locale, Translations> = {
       itemUnlockHint: "通關後自動收錄到道具欄",
     },
     qr: {
-      heading: "掃碼驗證",
+      heading: "前往指定地點掃碼驗證",
       locationLabel: "位置",
       description: "可選擇呼叫攝影鏡頭掃碼，也可手動輸入二維碼內容進行驗證。",
       scanArea: "掃碼區域",
@@ -227,6 +242,17 @@ const translations: Record<Locale, Translations> = {
     },
     authGate: {
       loading: "正在載入探險檔案...",
+    },
+    result: {
+      title: "尋寶結果",
+      headline: "恭喜完成全部關卡！",
+      subtitle: "你已成功破解鄭芝龍的寶藏之謎",
+      score: "總分",
+      duration: "耗時",
+      items: "道具",
+      itemWall: "道具收藏",
+      viewLeaderboard: "查看積分板",
+      backToMap: "返回地圖",
     },
   },
   "zh-Hans": {
@@ -288,6 +314,8 @@ const translations: Record<Locale, Translations> = {
       questionHeading: "问题挑战",
       multiSelectHint: "本题可多选",
       submitAnswer: "提交答案",
+      continueReading: "继续阅读",
+      skipToQuestion: "直接答题",
       answerRequired: "请先选择一个答案。",
       answerCorrect: "提交成功",
       answerWrong: "提交不成功，再试一次。",
@@ -306,7 +334,7 @@ const translations: Record<Locale, Translations> = {
       itemUnlockHint: "通关后自动收录到道具栏",
     },
     qr: {
-      heading: "扫码验证",
+      heading: "前往指定地点扫码验证",
       locationLabel: "位置",
       description: "可选择呼叫摄影镜头扫码，也可手动输入二维码内容进行验证。",
       scanArea: "扫码区域",
@@ -341,6 +369,17 @@ const translations: Record<Locale, Translations> = {
     },
     authGate: {
       loading: "正在载入探险档案...",
+    },
+    result: {
+      title: "寻宝结果",
+      headline: "恭喜完成全部关卡！",
+      subtitle: "你已成功破解郑芝龙的宝藏之谜",
+      score: "总分",
+      duration: "耗时",
+      items: "道具",
+      itemWall: "道具收藏",
+      viewLeaderboard: "查看积分板",
+      backToMap: "返回地图",
     },
   },
   en: {
@@ -401,6 +440,8 @@ const translations: Record<Locale, Translations> = {
       questionHeading: "Challenge Question",
       multiSelectHint: "Multiple answers allowed",
       submitAnswer: "Submit Answer",
+      continueReading: "Continue Reading",
+      skipToQuestion: "Skip to Question",
       answerRequired: "Choose an answer first.",
       answerCorrect: "Submitted successfully",
       answerWrong: "Submission failed. Try again.",
@@ -419,7 +460,7 @@ const translations: Record<Locale, Translations> = {
       itemUnlockHint: "Unlocks after completion",
     },
     qr: {
-      heading: "QR Verification",
+      heading: "Go to Location & Scan QR Code",
       locationLabel: "Location",
       description: "Use the camera to scan, or enter the QR code manually.",
       scanArea: "Scan area",
@@ -454,6 +495,17 @@ const translations: Record<Locale, Translations> = {
     },
     authGate: {
       loading: "Loading exploration data...",
+    },
+    result: {
+      title: "Treasure Hunt Results",
+      headline: "Congratulations on Completing All Levels!",
+      subtitle: "You have successfully unraveled the mystery of Zheng Zhilong's treasure",
+      score: "Score",
+      duration: "Duration",
+      items: "Items",
+      itemWall: "Item Collection",
+      viewLeaderboard: "View Leaderboard",
+      backToMap: "Back to Map",
     },
   },
 };

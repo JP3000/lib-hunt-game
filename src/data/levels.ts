@@ -302,7 +302,7 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
         description: "Sin 信 — Veritas（真理）。象徵學術誠信、正確使用 AI、規範引用——所有知識能否成立的最終保證。",
       }],
       question:
-        "AI 時代，圖書館發揮的作用愈加重要。以下關於 AI 和圖書館的表述，哪些是錯誤的？",
+        "AI 時代，圖書館發揮的作用愈加重要。以下關於 AI 和圖書館的表述，哪些是【錯誤】的？",
       options: [
         { id: "a", label: "AI 使知識隨手可得，提供的答案條理清晰，不存在虛構或偏見" },
         { id: "b", label: "AI 的大語言模型都是用可靠語料訓練的，本身就是權威來源" },
@@ -608,7 +608,7 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
         description: "Sin 信 — Veritas（真理）。象征学术诚信、正确使用 AI、规范引用——所有知识能否成立的最终保证。",
       }],
       question:
-        "AI 时代，图书馆发挥的作用愈加重要。以下关于 AI 和图书馆的表述，哪些是错误的？",
+        "AI 时代，图书馆发挥的作用愈加重要。以下关于 AI 和图书馆的表述，哪些是【错误】的？",
       options: [
         { id: "a", label: "AI 使知识随手可得，提供的答案条理清晰，不存在虚构或偏见" },
         { id: "b", label: "AI 的大语言模型都是用可靠语料训练的，本身就是权威来源" },
@@ -920,7 +920,7 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
         description: "Sin 信 — Veritas (truth). Symbolizes academic integrity, proper use of AI, and correct citation — the ultimate guarantor of whether knowledge can truly stand.",
       }],
       question:
-        "In the AI era, libraries play an increasingly vital role. Which of the following statements about AI and libraries are FALSE?",
+        "In the AI era, libraries play an increasingly vital role. Which of the following statements about AI and libraries are [FALSE]?",
       options: [
         { id: "a", label: "AI makes knowledge accessible and provides well-structured answers free from fabrication or bias" },
         { id: "b", label: "AI large language models are trained on reliable corpora and are themselves authoritative sources" },

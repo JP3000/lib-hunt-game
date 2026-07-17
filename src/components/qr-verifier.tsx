@@ -113,11 +113,18 @@ export function QrVerifier({ expectedValue, onVerified, levelNumber, location, l
       <button
         type="button"
         onClick={() => setExpanded(!expanded)}
-        className="flex w-full items-center gap-3 border-b border-[var(--border)] px-5 py-3.5 text-left transition hover:bg-white/5"
+        className={`group flex w-full items-center gap-3 px-5 py-4 text-left transition ${
+          verified
+            ? ""
+            : "bg-amber-500/10 hover:bg-amber-500/15"
+        }`}
       >
-        <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full ${
-          verified ? "bg-green-500/20" : "bg-amber-500/15"
+        <span className={`relative flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition ${
+          verified ? "bg-green-500/15" : "bg-amber-500/20 group-hover:bg-amber-500/25"
         }`}>
+          {!verified && !expanded && (
+            <span className="absolute -right-1 -top-1 h-3 w-3 animate-pulse rounded-full bg-amber-400" />
+          )}
           {verified ? (
             <svg className="h-5 w-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
@@ -130,16 +137,22 @@ export function QrVerifier({ expectedValue, onVerified, levelNumber, location, l
           )}
         </span>
         <div className="min-w-0 flex-1">
-          <p className={`text-sm font-medium ${verified ? "text-green-400" : "text-amber-300"}`}>
+          <p className={`text-sm font-semibold ${verified ? "text-green-400" : "text-amber-300"}`}>
             {verified ? t.qr.success : t.qr.heading}
           </p>
           <p className="mt-0.5 truncate text-sm font-medium text-[var(--ink-main)]">
             {location ?? `${t.qr.locationLabel} ${levelNumber}`}
           </p>
         </div>
-        <svg className={`h-4 w-4 shrink-0 text-[var(--ink-muted)] transition-transform ${expanded ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-        </svg>
+        {verified ? (
+          <svg className="h-5 w-5 shrink-0 text-[var(--ink-muted)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        ) : (
+          <span className="shrink-0 rounded-lg bg-amber-500/15 px-3 py-1.5 text-xs font-semibold text-amber-300 transition group-hover:bg-amber-500/25">
+            {t.qr.startScan}
+          </span>
+        )}
       </button>
 
       {/* 展開內容 */}
@@ -158,24 +171,24 @@ export function QrVerifier({ expectedValue, onVerified, levelNumber, location, l
 
           {/* 掃碼區域 */}
           <div className="relative mx-5 mt-4 overflow-hidden rounded-2xl bg-black/40">
-            <div className={`absolute inset-3 z-10 rounded-2xl border-2 transition-all duration-300 pointer-events-none ${
-              cameraActive ? "border-amber-400/50 shadow-[0_0_30px_rgba(251,191,36,0.15)]" : "border-white/10"
-            }`}>
-              <span className="absolute -left-[2px] -top-[2px] h-5 w-5 rounded-br-lg border-l-2 border-t-2 border-amber-400/70" />
-              <span className="absolute -right-[2px] -top-[2px] h-5 w-5 rounded-bl-lg border-r-2 border-t-2 border-amber-400/70" />
-              <span className="absolute -bottom-[2px] -left-[2px] h-5 w-5 rounded-tr-lg border-b-2 border-l-2 border-amber-400/70" />
-              <span className="absolute -bottom-[2px] -right-[2px] h-5 w-5 rounded-tl-lg border-b-2 border-r-2 border-amber-400/70" />
-            </div>
+            <div id={containerId} className="w-full [&_video]:!w-full [&_video]:!h-auto [&_video]:block" />
 
-            <div id={containerId} className="aspect-square w-full" />
+            {cameraActive && (
+              <div className="pointer-events-none absolute inset-3 z-10 rounded-2xl border-2 border-amber-400/50 shadow-[0_0_30px_rgba(251,191,36,0.15)]">
+                <span className="absolute -left-[2px] -top-[2px] h-5 w-5 rounded-br-lg border-l-2 border-t-2 border-amber-400/70" />
+                <span className="absolute -right-[2px] -top-[2px] h-5 w-5 rounded-bl-lg border-r-2 border-t-2 border-amber-400/70" />
+                <span className="absolute -bottom-[2px] -left-[2px] h-5 w-5 rounded-tr-lg border-b-2 border-l-2 border-amber-400/70" />
+                <span className="absolute -bottom-[2px] -right-[2px] h-5 w-5 rounded-tl-lg border-b-2 border-r-2 border-amber-400/70" />
+              </div>
+            )}
 
             {!cameraActive && (
-              <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
-                <svg className="h-10 w-10 text-white/20" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+              <div className="flex h-[280px] flex-col items-center justify-center gap-3 rounded-2xl border-2 border-dashed border-white/15">
+                <svg className="h-10 w-10 text-white/25" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
                   <path strokeLinecap="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
                   <circle cx="12" cy="13" r="3" strokeLinecap="round" />
                 </svg>
-                <p className="text-xs text-white/30">{t.qr.scanArea}</p>
+                <p className="text-xs text-white/35">{t.qr.scanArea}</p>
               </div>
             )}
           </div>

@@ -43,6 +43,19 @@ export default function MapPage() {
             </Link>
           </div>
 
+          <div className="mb-4">
+            <div className="flex items-center justify-between text-xs text-[var(--ink-muted)]">
+              <span>{t.map.subtitle({ completed: completedCount, total: TOTAL_LEVELS, score: totalScore })}</span>
+              <span>{Math.round((completedCount / TOTAL_LEVELS) * 100)}%</span>
+            </div>
+            <div className="mt-1.5 h-1.5 w-full overflow-hidden rounded-full bg-white/10">
+              <div
+                className="h-full rounded-full bg-amber-400 transition-all duration-700"
+                style={{ width: `${(completedCount / TOTAL_LEVELS) * 100}%` }}
+              />
+            </div>
+          </div>
+
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
             {levels.map((level, index) => {
               const path = withLocalePrefix(`/levels/${formatLevel(level.level)}`, locale);
