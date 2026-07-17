@@ -1,19 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  --bg-0: #1a1c16;
-  --bg-1: #262a21;
-  --bg-2: #33382c;
-  --ink-main: #f5ecd4;
-  --ink-muted: #b8a882;
+  --bg-0: #151a15;
+  --bg-1: #212b22;
+  --bg-2: #30382d;
+  --ink-main: #f5ead0;
+  --ink-muted: #cebc98;
   --accent: #d4b474;
   --accent-deep: #8b5e3c;
-  --card: rgba(40, 34, 26, 0.82);
-  --border: rgba(160, 145, 110, 0.32);
-  --paper-0: #4a3d30;
-  --paper-1: #3a2e22;
-  --chart-0: rgba(180, 160, 120, 0.1);
-  --chart-1: rgba(180, 160, 120, 0.05);
+  --card: rgba(35, 28, 20, 0.85);
+  --border: rgba(140, 180, 160, 0.32);
+  --paper-0: #423528;
+  --paper-1: #32281e;
+  --chart-0: rgba(210, 188, 140, 0.1);
+  --chart-1: rgba(210, 188, 140, 0.05);
 }
 
 @theme inline {
@@ -33,9 +33,10 @@ body {
   font-family: var(--font-body), sans-serif;
   background-color: var(--bg-0);
   background-image:
-    radial-gradient(circle at 12% 20%, rgba(160, 145, 110, 0.15), transparent 26%),
-    radial-gradient(circle at 82% 16%, rgba(212, 180, 116, 0.1), transparent 28%),
-    radial-gradient(circle at 48% 76%, rgba(139, 94, 60, 0.12), transparent 30%),
+    radial-gradient(circle at 12% 20%, rgba(120, 168, 150, 0.22), transparent 26%),
+    radial-gradient(circle at 82% 16%, rgba(201, 169, 106, 0.16), transparent 28%),
+    radial-gradient(circle at 48% 76%, rgba(122, 79, 45, 0.18), transparent 30%),
+    repeating-linear-gradient(120deg, rgba(20, 32, 28, 0.25) 0, rgba(20, 32, 28, 0.25) 2px, transparent 2px, transparent 8px),
     linear-gradient(160deg, var(--bg-0), var(--bg-1) 45%, var(--bg-2));
 }
 
@@ -50,14 +51,14 @@ a {
 
 .treasure-panel {
   background:
-    linear-gradient(135deg, rgba(68, 56, 42, 0.85), rgba(52, 42, 30, 0.85)),
-    radial-gradient(circle at 12% 18%, rgba(212, 180, 116, 0.06), transparent 42%);
+    linear-gradient(135deg, rgba(60, 50, 38, 0.88), rgba(45, 36, 26, 0.88)),
+    radial-gradient(circle at 12% 18%, rgba(212, 180, 116, 0.07), transparent 42%);
   border: 1px solid var(--border);
   border-radius: 18px;
   box-shadow:
-    inset 0 1px 0 rgba(250, 240, 215, 0.12),
-    inset 0 0 0 1px rgba(26, 28, 22, 0.25),
-    0 10px 28px rgba(0, 0, 0, 0.25);
+    inset 0 1px 0 rgba(248, 236, 205, 0.14),
+    inset 0 0 0 1px rgba(21, 26, 21, 0.3),
+    0 10px 28px rgba(0, 0, 0, 0.28);
 }
 
 .treasure-title {
@@ -66,14 +67,14 @@ a {
 }
 
 .dossier-strip {
-  background: linear-gradient(135deg, rgba(50, 42, 32, 0.85), rgba(68, 56, 42, 0.88));
+  background: linear-gradient(135deg, rgba(48, 40, 28, 0.85), rgba(62, 50, 35, 0.88));
   border: 1px solid rgba(212, 180, 116, 0.4);
   border-radius: 16px;
   box-shadow: inset 0 1px 0 rgba(255, 240, 210, 0.12);
 }
 
 .dossier-seal {
-  background: radial-gradient(circle at 30% 30%, rgba(220, 166, 92, 0.85), rgba(122, 79, 45, 0.95));
+  background: radial-gradient(circle at 30% 30%, rgba(212, 180, 116, 0.85), rgba(122, 79, 45, 0.95));
   border: 1px solid rgba(245, 214, 160, 0.55);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.35);
 }
@@ -89,7 +90,7 @@ a {
   right: -18px;
   bottom: -6px;
   height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(120, 168, 150, 0.5), transparent);
+  background: linear-gradient(90deg, transparent, rgba(140, 180, 160, 0.45), transparent);
 }
 
 .map-pin {
@@ -100,8 +101,8 @@ a {
   width: 18px;
   border-radius: 999px 999px 999px 0;
   transform: rotate(-45deg);
-  background: radial-gradient(circle at 30% 30%, rgba(255, 231, 186, 0.9), rgba(122, 79, 45, 0.95));
-  border: 1px solid rgba(255, 231, 186, 0.6);
+  background: radial-gradient(circle at 30% 30%, rgba(255, 238, 200, 0.88), rgba(122, 79, 45, 0.95));
+  border: 1px solid rgba(255, 238, 200, 0.55);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
 }
 
@@ -109,8 +110,8 @@ a {
   position: absolute;
   bottom: 10px;
   right: 10px;
-  border: 1px solid rgba(120, 168, 150, 0.6);
-  color: rgba(176, 220, 200, 0.8);
+  border: 1px solid rgba(140, 180, 160, 0.55);
+  color: rgba(186, 225, 210, 0.78);
   text-transform: uppercase;
   font-size: 10px;
   letter-spacing: 0.2em;
@@ -120,12 +121,12 @@ a {
 }
 
 .map-grid {
-  background-color: rgba(52, 44, 34, 0.85);
+  background-color: rgba(48, 38, 28, 0.88);
   background-image:
     linear-gradient(var(--chart-0) 1px, transparent 1px),
     linear-gradient(90deg, var(--chart-0) 1px, transparent 1px),
-    radial-gradient(circle at 68% 22%, rgba(160, 145, 110, 0.08), transparent 40%),
-    radial-gradient(circle at 22% 78%, rgba(212, 180, 116, 0.06), transparent 38%);
+    radial-gradient(circle at 68% 22%, rgba(140, 180, 160, 0.1), transparent 40%),
+    radial-gradient(circle at 22% 78%, rgba(212, 180, 116, 0.08), transparent 38%);
   background-size: 26px 26px, 26px 26px, 100% 100%, 100% 100%;
 }
 
@@ -153,8 +154,8 @@ a {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 20% 20%, rgba(201, 169, 106, 0.12), transparent 45%),
-    linear-gradient(160deg, rgba(12, 14, 12, 0.4), rgba(12, 14, 12, 0.5));
+    radial-gradient(circle at 20% 20%, rgba(212, 180, 116, 0.1), transparent 45%),
+    linear-gradient(160deg, rgba(16, 18, 16, 0.38), rgba(16, 18, 16, 0.48));
   z-index: 1;
 }
 
@@ -164,13 +165,13 @@ a {
   width: min(560px, 92vw);
   padding: 32px 28px 36px;
   border-radius: 22px;
-  border: 1px solid rgba(201, 169, 106, 0.32);
+  border: 1px solid rgba(212, 180, 116, 0.3);
   background:
     radial-gradient(circle at 20% 20%, rgba(212, 180, 116, 0.08), transparent 56%),
-    linear-gradient(140deg, rgba(68, 56, 42, 0.45), rgba(40, 32, 24, 0.42));
+    linear-gradient(140deg, rgba(58, 46, 34, 0.48), rgba(35, 28, 20, 0.45));
   backdrop-filter: blur(16px);
   box-shadow:
-    inset 0 1px 0 rgba(255, 234, 200, 0.12),
+    inset 0 1px 0 rgba(255, 240, 210, 0.1),
     0 18px 36px rgba(0, 0, 0, 0.45);
   animation: intro-reveal 1s ease-out both;
 }
@@ -208,8 +209,8 @@ a {
   justify-content: center;
   padding: 10px 26px;
   border-radius: 999px;
-  border: 1px solid rgba(201, 169, 106, 0.65);
-  background: linear-gradient(135deg, rgba(201, 169, 106, 0.35), rgba(122, 79, 45, 0.4));
+  border: 1px solid rgba(212, 180, 116, 0.6);
+  background: linear-gradient(135deg, rgba(212, 180, 116, 0.32), rgba(139, 94, 60, 0.38));
   color: #f9f1d8;
   font-size: 15px;
   letter-spacing: 0.08em;
@@ -220,7 +221,7 @@ a {
 
 .intro-cta:hover {
   transform: translateY(-2px) scale(1.01);
-  background: linear-gradient(135deg, rgba(224, 188, 125, 0.5), rgba(122, 79, 45, 0.5));
+  background: linear-gradient(135deg, rgba(228, 196, 130, 0.48), rgba(139, 94, 60, 0.48));
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.45);
 }
 
@@ -230,7 +231,7 @@ a {
   width: 520px;
   height: 520px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(201, 169, 106, 0.2), transparent 70%);
+  background: radial-gradient(circle, rgba(212, 180, 116, 0.18), transparent 70%);
   top: -120px;
   right: -160px;
   filter: blur(6px);
@@ -242,7 +243,7 @@ a {
   width: 360px;
   height: 360px;
   border-radius: 50%;
-  border: 1px dashed rgba(201, 169, 106, 0.25);
+  border: 1px dashed rgba(212, 180, 116, 0.22);
   bottom: -160px;
   left: -120px;
   animation: intro-spin 18s linear infinite;
@@ -253,8 +254,8 @@ a {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: rgba(248, 229, 185, 0.9);
-  box-shadow: 0 0 16px rgba(248, 229, 185, 0.7);
+  background: rgba(250, 235, 195, 0.88);
+  box-shadow: 0 0 16px rgba(250, 235, 195, 0.65);
   animation: intro-pulse 3.6s ease-in-out infinite;
 }
 
