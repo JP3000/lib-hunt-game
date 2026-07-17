@@ -19,6 +19,13 @@ type LevelPageProps = {
 
 const formatLevel = (level: number) => String(level).padStart(2, "0");
 
+type TabKey = "story" | "question";
+
+const TAB_ICONS: Record<TabKey, string> = {
+  story: "📖",
+  question: "❓",
+};
+
 export function LevelPage({ levelNumber }: LevelPageProps) {
   const router = useRouter();
   const locale = useLocale();
@@ -35,6 +42,7 @@ export function LevelPage({ levelNumber }: LevelPageProps) {
 
   const existingResult = levelResults[levelNumber];
 
+  const [activeTab, setActiveTab] = useState<TabKey>("story");
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
   const [attempts, setAttempts] = useState(0);
   const [answerMessage, setAnswerMessage] = useState("");
@@ -73,7 +81,6 @@ export function LevelPage({ levelNumber }: LevelPageProps) {
     const nextAttempts = attempts + 1;
     setAttempts(nextAttempts);
 
-    // 提交即通過，不判斷對錯；積分由 finishLevel 按正確選項個數計算
     setQuestionPassedLocal(true);
     setAnswerMessage(t.level.answerCorrect);
   };
@@ -85,7 +92,6 @@ export function LevelPage({ levelNumber }: LevelPageProps) {
 
     const usedAttempts = attempts === 0 ? 1 : attempts;
     const correctCount = getCorrectCount();
-    // 分數按正確選項個數計算（每個正確選項 10 分）
     const score = correctCount * 10;
 
     setSubmitting(true);
@@ -119,106 +125,127 @@ export function LevelPage({ levelNumber }: LevelPageProps) {
       </section>
 
       <main className="mx-auto mt-5 grid w-[min(980px,92vw)] gap-4 md:grid-cols-5">
-        <section className="treasure-panel p-4 md:col-span-3">
-          <p className="text-xs uppercase tracking-[0.2em]" style={{ color: "var(--ink-muted)" }}>
-            {t.level.storyHeading}
-          </p>
-          <h2 className="treasure-title mt-1 text-2xl">{level.title}</h2>
-          <p className="mt-3 leading-7" style={{ color: "var(--ink-main)", opacity: 0.95 }}>
-            {level.story}
-          </p>
-
-          <StoryClueBox
-            videoUrl={level.videoUrl}
-            imageUrl={storyImageUrl}
-            imageAlt={storyImageAlt}
-            imageCaption={storyImageCaption}
-          />
-        </section>
-
-        <section className="treasure-panel p-4 md:col-span-2">
-          <div className="flex items-center justify-between gap-2">
-            <h3 className="treasure-title text-lg">{t.level.questionHeading}</h3>
-            {level.correctOptionIds.length > 1 ? (
-              <span className="rounded-full border border-amber-500/40 bg-amber-500/20 px-2 py-0.5 text-sm text-amber-100">
-                {t.level.multiSelectHint}
-              </span>
-            ) : null}
-          </div>
-          <p className="mt-2 text-base leading-7" style={{ color: "var(--ink-main)" }}>
-            {level.question}
-          </p>
-
-          <div className="mt-3 space-y-2">
-            {level.options.map((option) => (
-              <label
-                key={option.id}
-                className="flex cursor-pointer items-center gap-2 rounded-lg border bg-black/15 px-3 py-2 text-sm"
-                style={{ borderColor: "var(--border)" }}
+        {/* 主內容區：標籤切換 */}
+        <section className="treasure-panel flex flex-col p-0 md:col-span-3">
+          {/* 標籤欄 */}
+          <div className="flex border-b border-[var(--border)]">
+            {(["story", "question"] as TabKey[]).map((tab) => (
+              <button
+                key={tab}
+                type="button"
+                onClick={() => setActiveTab(tab)}
+                className={`flex-1 px-4 py-3 text-sm font-medium transition ${
+                  activeTab === tab
+                    ? "border-b-2 border-amber-400 text-amber-100"
+                    : "text-[var(--ink-muted)] hover:text-[var(--ink-main)]"
+                }`}
               >
-                <input
-                  type={level.correctOptionIds.length > 1 ? "checkbox" : "radio"}
-                  name={`level-question-${level.level}`}
-                  value={option.id}
-                  checked={selectedOptions.includes(option.id)}
-                  onChange={(event) => {
-                    const { checked, value } = event.target;
-                    setSelectedOptions((prev) => {
-                      if (level.correctOptionIds.length <= 1) {
-                        return [value];
-                      }
-
-                      if (checked) {
-                        return Array.from(new Set([...prev, value]));
-                      }
-
-                      return prev.filter((item) => item !== value);
-                    });
-                  }}
-                />
-                {option.label}
-              </label>
+                <span className="mr-1.5">{TAB_ICONS[tab]}</span>
+                {tab === "story" ? t.level.storyHeading : t.level.questionHeading}
+              </button>
             ))}
           </div>
 
-          <button
-            type="button"
-            onClick={checkAnswer}
-            className="mt-3 rounded-xl border bg-black/25 px-4 py-2 text-sm transition hover:bg-black/35"
-            style={{ borderColor: "var(--border)" }}
-          >
-            {t.level.submitAnswer}
-          </button>
+          {/* 標籤內容 */}
+          <div className="p-4">
+            {activeTab === "story" ? (
+              <>
+                <h2 className="treasure-title text-xl">{level.title}</h2>
+                <p className="mt-3 leading-7" style={{ color: "var(--ink-main)", opacity: 0.95 }}>
+                  {level.story}
+                </p>
+                <StoryClueBox
+                  videoUrl={level.videoUrl}
+                  imageUrl={storyImageUrl}
+                  imageAlt={storyImageAlt}
+                  imageCaption={storyImageCaption}
+                />
+              </>
+            ) : (
+              <>
+                <div className="flex items-center justify-between gap-2">
+                  <h2 className="treasure-title text-lg">{t.level.questionHeading}</h2>
+                  {level.correctOptionIds.length > 1 ? (
+                    <span className="rounded-full border border-amber-500/40 bg-amber-500/20 px-2 py-0.5 text-xs text-amber-100">
+                      {t.level.multiSelectHint}
+                    </span>
+                  ) : null}
+                </div>
+                <p className="mt-2 text-base leading-7" style={{ color: "var(--ink-main)" }}>
+                  {level.question}
+                </p>
 
-          {shownMessage ? <p className="mt-3 text-sm text-amber-100">{shownMessage}</p> : null}
+                <div className="mt-4 space-y-2">
+                  {level.options.map((option) => (
+                    <label
+                      key={option.id}
+                      className="flex cursor-pointer items-center gap-2.5 rounded-lg border bg-black/15 px-3.5 py-2.5 text-sm transition hover:bg-black/25"
+                      style={{ borderColor: "var(--border)" }}
+                    >
+                      <input
+                        type={level.correctOptionIds.length > 1 ? "checkbox" : "radio"}
+                        name={`level-question-${level.level}`}
+                        value={option.id}
+                        checked={selectedOptions.includes(option.id)}
+                        onChange={(event) => {
+                          const { checked, value } = event.target;
+                          setSelectedOptions((prev) => {
+                            if (level.correctOptionIds.length <= 1) {
+                              return [value];
+                            }
+                            if (checked) {
+                              return Array.from(new Set([...prev, value]));
+                            }
+                            return prev.filter((item) => item !== value);
+                          });
+                        }}
+                      />
+                      {option.label}
+                    </label>
+                  ))}
+                </div>
+
+                <button
+                  type="button"
+                  onClick={checkAnswer}
+                  className="mt-4 w-full rounded-xl border border-amber-500/50 bg-amber-500/20 py-2.5 text-sm font-medium text-amber-100 transition hover:bg-amber-500/30 active:scale-[0.98]"
+                >
+                  {t.level.submitAnswer}
+                </button>
+
+                {shownMessage ? <p className="mt-3 text-sm text-amber-100">{shownMessage}</p> : null}
+              </>
+            )}
+          </div>
         </section>
 
+        {/* 側邊欄：結算 */}
         <section className="treasure-panel flex flex-col gap-3 p-4 md:col-span-2">
           <h3 className="treasure-title text-lg">{t.level.settlementHeading}</h3>
-          <div className="flex items-center gap-2 text-sm">
+          <div className="flex items-center gap-2.5 text-base">
             <span className="text-[var(--ink-muted)]">{t.level.qrStatus}</span>
             {qrPassed ? (
-              <span className="flex items-center gap-1 font-medium text-green-400">
-                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" /></svg>
+              <span className="flex items-center gap-1.5 font-semibold text-green-400">
+                <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" /></svg>
                 {t.level.passed}
               </span>
             ) : (
-              <span className="flex items-center gap-1 font-medium text-amber-400">
-                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" /></svg>
+              <span className="flex items-center gap-1.5 font-semibold text-amber-400">
+                <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" /></svg>
                 {t.level.pending}
               </span>
             )}
           </div>
-          <div className="flex items-center gap-2 text-sm">
+          <div className="flex items-center gap-2.5 text-base">
             <span className="text-[var(--ink-muted)]">{t.level.questionStatus}</span>
             {questionPassed ? (
-              <span className="flex items-center gap-1 font-medium text-green-400">
-                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" /></svg>
+              <span className="flex items-center gap-1.5 font-semibold text-green-400">
+                <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" /></svg>
                 {t.level.passed}
               </span>
             ) : (
-              <span className="flex items-center gap-1 font-medium text-amber-400">
-                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" /></svg>
+              <span className="flex items-center gap-1.5 font-semibold text-amber-400">
+                <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" /></svg>
                 {t.level.pending}
               </span>
             )}

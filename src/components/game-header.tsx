@@ -70,7 +70,7 @@ export function GameHeader({
                     : "text-[var(--ink-main)] hover:bg-black/20"
                 }`}
               >
-                {lang === "zh-Hant" ? "繁體" : "EN"}
+                {lang === "zh-Hant" ? "繁體" : lang === "zh-Hans" ? "简体" : "EN"}
               </Link>
             ))}
           </div>

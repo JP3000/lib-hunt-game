@@ -1,19 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  --bg-0: #0f1210;
-  --bg-1: #1b241d;
-  --bg-2: #2a3027;
-  --ink-main: #f2e6c8;
-  --ink-muted: #c8b58f;
-  --accent: #c9a96a;
-  --accent-deep: #7a4f2d;
-  --card: rgba(28, 22, 16, 0.88);
-  --border: rgba(120, 168, 150, 0.35);
-  --paper-0: #3a2f24;
-  --paper-1: #2a2118;
-  --chart-0: rgba(200, 178, 132, 0.12);
-  --chart-1: rgba(200, 178, 132, 0.06);
+  --bg-0: #1a1c16;
+  --bg-1: #262a21;
+  --bg-2: #33382c;
+  --ink-main: #f5ecd4;
+  --ink-muted: #b8a882;
+  --accent: #d4b474;
+  --accent-deep: #8b5e3c;
+  --card: rgba(40, 34, 26, 0.82);
+  --border: rgba(160, 145, 110, 0.32);
+  --paper-0: #4a3d30;
+  --paper-1: #3a2e22;
+  --chart-0: rgba(180, 160, 120, 0.1);
+  --chart-1: rgba(180, 160, 120, 0.05);
 }
 
 @theme inline {
@@ -33,10 +33,9 @@ body {
   font-family: var(--font-body), sans-serif;
   background-color: var(--bg-0);
   background-image:
-    radial-gradient(circle at 12% 20%, rgba(120, 168, 150, 0.22), transparent 26%),
-    radial-gradient(circle at 82% 16%, rgba(201, 169, 106, 0.16), transparent 28%),
-    radial-gradient(circle at 48% 76%, rgba(122, 79, 45, 0.18), transparent 30%),
-    repeating-linear-gradient(120deg, rgba(20, 32, 28, 0.25) 0, rgba(20, 32, 28, 0.25) 2px, transparent 2px, transparent 8px),
+    radial-gradient(circle at 12% 20%, rgba(160, 145, 110, 0.15), transparent 26%),
+    radial-gradient(circle at 82% 16%, rgba(212, 180, 116, 0.1), transparent 28%),
+    radial-gradient(circle at 48% 76%, rgba(139, 94, 60, 0.12), transparent 30%),
     linear-gradient(160deg, var(--bg-0), var(--bg-1) 45%, var(--bg-2));
 }
 
@@ -51,14 +50,14 @@ a {
 
 .treasure-panel {
   background:
-    linear-gradient(135deg, rgba(58, 47, 36, 0.94), rgba(42, 33, 24, 0.94)),
-    radial-gradient(circle at 12% 18%, rgba(201, 169, 106, 0.08), transparent 42%);
+    linear-gradient(135deg, rgba(68, 56, 42, 0.85), rgba(52, 42, 30, 0.85)),
+    radial-gradient(circle at 12% 18%, rgba(212, 180, 116, 0.06), transparent 42%);
   border: 1px solid var(--border);
   border-radius: 18px;
   box-shadow:
-    inset 0 1px 0 rgba(245, 231, 195, 0.16),
-    inset 0 0 0 1px rgba(15, 18, 16, 0.35),
-    0 14px 34px rgba(0, 0, 0, 0.35);
+    inset 0 1px 0 rgba(250, 240, 215, 0.12),
+    inset 0 0 0 1px rgba(26, 28, 22, 0.25),
+    0 10px 28px rgba(0, 0, 0, 0.25);
 }
 
 .treasure-title {
@@ -67,10 +66,10 @@ a {
 }
 
 .dossier-strip {
-  background: linear-gradient(135deg, rgba(35, 28, 20, 0.92), rgba(56, 44, 30, 0.95));
-  border: 1px solid rgba(201, 169, 106, 0.45);
+  background: linear-gradient(135deg, rgba(50, 42, 32, 0.85), rgba(68, 56, 42, 0.88));
+  border: 1px solid rgba(212, 180, 116, 0.4);
   border-radius: 16px;
-  box-shadow: inset 0 1px 0 rgba(255, 235, 200, 0.16);
+  box-shadow: inset 0 1px 0 rgba(255, 240, 210, 0.12);
 }
 
 .dossier-seal {
@@ -121,12 +120,12 @@ a {
 }
 
 .map-grid {
-  background-color: rgba(41, 33, 24, 0.92);
+  background-color: rgba(52, 44, 34, 0.85);
   background-image:
     linear-gradient(var(--chart-0) 1px, transparent 1px),
     linear-gradient(90deg, var(--chart-0) 1px, transparent 1px),
-    radial-gradient(circle at 68% 22%, rgba(120, 168, 150, 0.12), transparent 40%),
-    radial-gradient(circle at 22% 78%, rgba(201, 169, 106, 0.1), transparent 38%);
+    radial-gradient(circle at 68% 22%, rgba(160, 145, 110, 0.08), transparent 40%),
+    radial-gradient(circle at 22% 78%, rgba(212, 180, 116, 0.06), transparent 38%);
   background-size: 26px 26px, 26px 26px, 100% 100%, 100% 100%;
 }
 
@@ -167,8 +166,8 @@ a {
   border-radius: 22px;
   border: 1px solid rgba(201, 169, 106, 0.32);
   background:
-    radial-gradient(circle at 20% 20%, rgba(201, 169, 106, 0.1), transparent 56%),
-    linear-gradient(140deg, rgba(52, 42, 30, 0.5), rgba(28, 22, 16, 0.48));
+    radial-gradient(circle at 20% 20%, rgba(212, 180, 116, 0.08), transparent 56%),
+    linear-gradient(140deg, rgba(68, 56, 42, 0.45), rgba(40, 32, 24, 0.42));
   backdrop-filter: blur(16px);
   box-shadow:
     inset 0 1px 0 rgba(255, 234, 200, 0.12),

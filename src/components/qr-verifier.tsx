@@ -29,6 +29,8 @@ export function QrVerifier({ expectedValue, onVerified, levelNumber, location, l
   const containerId = useMemo(() => `qr-scanner-level-${levelNumber}`, [levelNumber]);
   const scannerRef = useRef<Html5QrcodeInstance | null>(null);
 
+  const [expanded, setExpanded] = useState(false);
+  const [verified, setVerified] = useState(false);
   const [cameraActive, setCameraActive] = useState(false);
   const [manualInput, setManualInput] = useState("");
   const [feedback, setFeedback] = useState("");
@@ -60,6 +62,8 @@ export function QrVerifier({ expectedValue, onVerified, levelNumber, location, l
 
       if (normalized === expectedValue) {
         setFeedback(t.qr.success);
+        setVerified(true);
+        setExpanded(false);
         onVerified(normalized);
         return;
       }
@@ -104,69 +108,141 @@ export function QrVerifier({ expectedValue, onVerified, levelNumber, location, l
   }, [stopCamera]);
 
   return (
-    <section className="treasure-panel p-4">
-      <div className="space-y-1">
-        <h3 className="treasure-title text-2xl text-[var(--ink-main)]">{t.qr.heading}</h3>
-        <p className="treasure-title text-2xl text-[var(--ink-main)]">
-          {location ?? `${t.qr.locationLabel} ${levelNumber}`}
-        </p>
-        {locationNote ? (
-          <p className="text-sm text-[var(--ink-muted)] mt-0.5">{locationNote}</p>
-        ) : null}
-      </div>
-
-      <div
-        className={`relative mt-3 min-h-[96px] overflow-hidden rounded-xl border ${
-          cameraActive ? "border-[var(--border)] bg-black/20" : "border-dashed border-white/35 bg-black/10"
-        }`}
+    <section className="treasure-panel overflow-hidden p-0">
+      {/* 摺疊狀態 */}
+      <button
+        type="button"
+        onClick={() => setExpanded(!expanded)}
+        className="flex w-full items-center gap-3 border-b border-[var(--border)] px-5 py-3.5 text-left transition hover:bg-white/5"
       >
-        {!cameraActive ? (
-          <div className="pointer-events-none absolute inset-0 flex items-center justify-center text-xs text-amber-100/80">
-            {t.qr.scanArea}
+        <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full ${
+          verified ? "bg-green-500/20" : "bg-amber-500/15"
+        }`}>
+          {verified ? (
+            <svg className="h-5 w-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+            </svg>
+          ) : (
+            <svg className="h-5 w-5 text-amber-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+              <path strokeLinecap="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+              <circle cx="12" cy="13" r="3" strokeLinecap="round" />
+            </svg>
+          )}
+        </span>
+        <div className="min-w-0 flex-1">
+          <p className={`text-sm font-medium ${verified ? "text-green-400" : "text-amber-300"}`}>
+            {verified ? t.qr.success : t.qr.heading}
+          </p>
+          <p className="mt-0.5 truncate text-sm font-medium text-[var(--ink-main)]">
+            {location ?? `${t.qr.locationLabel} ${levelNumber}`}
+          </p>
+        </div>
+        <svg className={`h-4 w-4 shrink-0 text-[var(--ink-muted)] transition-transform ${expanded ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+
+      {/* 展開內容 */}
+      {expanded && (
+        <>
+          {/* 標題區 */}
+          <div className="space-y-1 border-b border-[var(--border)] px-5 py-4">
+            <h3 className="text-sm font-medium tracking-wide text-amber-300">{t.qr.heading}</h3>
+            <p className="text-lg font-semibold text-[var(--ink-main)]">
+              {location ?? `${t.qr.locationLabel} ${levelNumber}`}
+            </p>
+            {locationNote ? (
+              <p className="text-xs text-[var(--ink-muted)]">{locationNote}</p>
+            ) : null}
           </div>
-        ) : null}
-        <div id={containerId} className="min-h-[96px]" />
-      </div>
 
-      <div className="mt-3 flex justify-center">
-        {!cameraActive ? (
-          <button
-            type="button"
-            onClick={startCamera}
-            className="w-48 rounded-full border border-amber-500/40 bg-amber-500/20 py-2 text-sm text-amber-100 transition hover:bg-amber-500/30"
-          >
-            {t.qr.startScan}
-          </button>
-        ) : (
-          <button
-            type="button"
-            onClick={() => void stopCamera()}
-            className="w-48 rounded-full border border-amber-500/40 bg-amber-500/20 py-2 text-sm text-amber-100 transition hover:bg-amber-500/30"
-          >
-            {t.qr.stopScan}
-          </button>
-        )}
-      </div>
+          {/* 掃碼區域 */}
+          <div className="relative mx-5 mt-4 overflow-hidden rounded-2xl bg-black/40">
+            <div className={`absolute inset-3 z-10 rounded-2xl border-2 transition-all duration-300 pointer-events-none ${
+              cameraActive ? "border-amber-400/50 shadow-[0_0_30px_rgba(251,191,36,0.15)]" : "border-white/10"
+            }`}>
+              <span className="absolute -left-[2px] -top-[2px] h-5 w-5 rounded-br-lg border-l-2 border-t-2 border-amber-400/70" />
+              <span className="absolute -right-[2px] -top-[2px] h-5 w-5 rounded-bl-lg border-r-2 border-t-2 border-amber-400/70" />
+              <span className="absolute -bottom-[2px] -left-[2px] h-5 w-5 rounded-tr-lg border-b-2 border-l-2 border-amber-400/70" />
+              <span className="absolute -bottom-[2px] -right-[2px] h-5 w-5 rounded-tl-lg border-b-2 border-r-2 border-amber-400/70" />
+            </div>
 
-      {/* TODO: 恢復手動驗證時取消註解
-      <div className="mt-3 flex flex-col gap-2 sm:flex-row">
-        <input
-          value={manualInput}
-          onChange={(event) => setManualInput(event.target.value)}
-          placeholder={t.qr.manualPlaceholder}
-          className="w-full rounded-xl border border-amber-500/50 bg-amber-500/10 px-3 py-2 text-sm text-[var(--ink-main)] outline-none ring-0 placeholder:text-amber-100/70 focus:border-amber-400/80"
-        />
-        <button
-          type="button"
-          onClick={() => verifyValue(manualInput)}
-          className="rounded-xl border border-amber-500/50 bg-amber-500/20 px-3 py-2 text-sm text-amber-100 transition hover:bg-amber-500/30"
-        >
-          {t.qr.manualVerify}
-        </button>
-      </div>
-      */}
+            <div id={containerId} className="aspect-square w-full" />
 
-      {feedback ? <p className="mt-2 text-sm text-amber-100">{feedback}</p> : null}
+            {!cameraActive && (
+              <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
+                <svg className="h-10 w-10 text-white/20" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+                  <path strokeLinecap="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                  <circle cx="12" cy="13" r="3" strokeLinecap="round" />
+                </svg>
+                <p className="text-xs text-white/30">{t.qr.scanArea}</p>
+              </div>
+            )}
+          </div>
+
+          {/* 掃碼按鈕 */}
+          <div className="mx-5 mt-3">
+            {!cameraActive ? (
+              <button
+                type="button"
+                onClick={startCamera}
+                className="flex w-full items-center justify-center gap-2 rounded-xl border border-amber-500/40 bg-amber-500/15 py-2.5 text-sm font-medium text-amber-100 transition hover:bg-amber-500/25 active:scale-[0.98]"
+              >
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                  <path strokeLinecap="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                  <circle cx="12" cy="13" r="3" strokeLinecap="round" />
+                </svg>
+                {t.qr.startScan}
+              </button>
+            ) : (
+              <button
+                type="button"
+                onClick={() => void stopCamera()}
+                className="flex w-full items-center justify-center gap-2 rounded-xl border border-red-500/40 bg-red-500/10 py-2.5 text-sm font-medium text-red-300 transition hover:bg-red-500/20 active:scale-[0.98]"
+              >
+                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8 7a1 1 0 00-1 1v4a1 1 0 001 1h4a1 1 0 001-1V8a1 1 0 00-1-1H8z" clipRule="evenodd" />
+                </svg>
+                {t.qr.stopScan}
+              </button>
+            )}
+          </div>
+
+          {/* 手動輸入區 */}
+          <div className="mx-5 mb-4 mt-4 border-t border-[var(--border)] pt-3">
+            <p className="mb-2 text-xs text-[var(--ink-muted)]">{t.qr.manualPlaceholder}</p>
+            <div className="flex gap-2">
+              <input
+                value={manualInput}
+                onChange={(event) => setManualInput(event.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && verifyValue(manualInput)}
+                placeholder={t.qr.manualPlaceholder}
+                className="flex-1 rounded-xl border border-[var(--border)] bg-black/20 px-3.5 py-2.5 text-sm text-[var(--ink-main)] outline-none ring-0 placeholder:text-[var(--ink-muted)] focus:border-amber-400/60"
+              />
+              <button
+                type="button"
+                onClick={() => verifyValue(manualInput)}
+                className="shrink-0 rounded-xl bg-amber-500/20 px-5 py-2.5 text-sm font-medium text-amber-100 transition hover:bg-amber-500/30 active:scale-[0.98]"
+              >
+                {t.qr.manualVerify}
+              </button>
+            </div>
+          </div>
+
+          {/* 反饋訊息 */}
+          {feedback ? (
+            <div className={`mx-5 mb-4 rounded-lg border px-3.5 py-2.5 text-sm font-medium ${
+              feedback === t.qr.success
+                ? "border-green-500/30 bg-green-500/10 text-green-400"
+                : feedback === t.qr.mismatch
+                ? "border-red-500/30 bg-red-500/10 text-red-400"
+                : "border-amber-500/30 bg-amber-500/10 text-amber-100"
+            }`}>
+              {feedback}
+            </div>
+          ) : null}
+        </>
+      )}
     </section>
   );
 }
