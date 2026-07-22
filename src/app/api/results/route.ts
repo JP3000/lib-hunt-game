@@ -20,8 +20,9 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ ok: true });
   } catch (err: any) {
-    console.error("POST /api/results error:", err);
-    return NextResponse.json({ error: "伺服器錯誤" }, { status: 500 });
+    const msg = err instanceof Error ? err.message : String(err);
+    console.error("POST /api/results error:", msg);
+    return NextResponse.json({ error: msg }, { status: 500 });
   }
 }
 
@@ -39,7 +40,8 @@ export async function GET(request: NextRequest) {
     const stats = await getStats();
     return NextResponse.json({ stats });
   } catch (err: any) {
-    console.error("GET /api/results error:", err);
-    return NextResponse.json({ error: "伺服器錯誤" }, { status: 500 });
+    const msg = err instanceof Error ? err.message : String(err);
+    console.error("GET /api/results error:", msg);
+    return NextResponse.json({ error: msg }, { status: 500 });
   }
 }
