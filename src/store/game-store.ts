@@ -48,7 +48,7 @@ const hasAllLevelsCompleted = (levelResults: Partial<Record<number, LevelResult>
   return Object.keys(levelResults).length >= TOTAL_LEVELS;
 };
 
-/** 非阻塞上报通关记录 */
+/** 非阻塞上报通关记录，失败时重置 reported 以便重试 */
 function reportToServer(studentId: string, totalScore: number, startedAt: string, role: string | null) {
   const durationSeconds = Math.round(
     (Date.now() - new Date(startedAt).getTime()) / 1000
@@ -58,9 +58,15 @@ function reportToServer(studentId: string, totalScore: number, startedAt: string
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ studentId, totalScore, durationSeconds, role }),
-  }).catch(() => {
-    // 上报失败不影响游戏流程
-  });
+  })
+    .then((res) => {
+      if (!res.ok) throw new Error(`上报失败: HTTP ${res.status}`);
+    })
+    .catch((err) => {
+      console.error("通关记录上报失败，将在下次通关时重试:", err);
+      // 重置 reported 标志，允许重试
+      useGameStore.setState({ reported: false });
+    });
 }
 
 export const useGameStore = create<GameState>()(
