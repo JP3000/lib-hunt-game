@@ -1,24 +1,6 @@
-import mysql from "mysql2/promise";
+import { put, list, del } from "@vercel/blob";
 
-let pool: mysql.Pool | null = null;
-
-function getPool(): mysql.Pool {
-  if (!pool) {
-    pool = mysql.createPool({
-      host: process.env.DB_HOST || "mysql7.sqlpub.com",
-      port: Number(process.env.DB_PORT) || 3312,
-      database: process.env.DB_NAME || "lib_hunt_game",
-      user: process.env.DB_USER || "game_admin",
-      password: process.env.DB_PASSWORD || "",
-      charset: "utf8mb4",
-      waitForConnections: true,
-      connectionLimit: 5,
-      connectTimeout: 10000,
-      timezone: "+08:00",
-    });
-  }
-  return pool;
-}
+const DATA_FILE = "game-results.json";
 
 export interface GameResultRow {
   id: number;
@@ -36,45 +18,89 @@ export interface StatsResult {
   avgDuration: number;
 }
 
-/** 儲存一筆通關記錄 */
+interface GameData {
+  results: GameResultRow[];
+  nextId: number;
+}
+
+/** Read game data blob, returns default if not found */
+async function readData(): Promise<GameData> {
+  try {
+    const { blobs } = await list();
+    const blob = blobs.find((b) => b.pathname === DATA_FILE);
+    if (!blob) return { results: [], nextId: 1 };
+    const res = await fetch(blob.url);
+    return res.json();
+  } catch {
+    return { results: [], nextId: 1 };
+  }
+}
+
+/** Replace old blob with new data */
+async function writeData(data: GameData): Promise<void> {
+  try {
+    const { blobs } = await list();
+    const old = blobs.find((b) => b.pathname === DATA_FILE);
+    if (old) await del(old.url);
+  } catch {
+    // If delete fails (e.g. blob doesn't exist), proceed
+  }
+  await put(DATA_FILE, JSON.stringify(data), { access: "public" });
+}
+
+/** Save a game completion record */
 export async function insertResult(
   studentId: string,
   totalScore: number,
   durationSeconds: number,
   role?: string | null
 ): Promise<void> {
-  const p = getPool();
-  await p.execute(
-    `INSERT INTO game_results (student_id, total_score, duration_seconds, role) VALUES (?, ?, ?, ?)`,
-    [studentId, totalScore, durationSeconds, role ?? null]
-  );
+  const data = await readData();
+
+  const record: GameResultRow = {
+    id: data.nextId++,
+    student_id: studentId,
+    total_score: totalScore,
+    duration_seconds: durationSeconds,
+    completed_at: new Date().toISOString(),
+    role: role ?? null,
+  };
+
+  data.results.push(record);
+  await writeData(data);
 }
 
-/** 統計維度 */
+/** Compute aggregate statistics */
 export async function getStats(): Promise<StatsResult> {
-  const p = getPool();
-  const [rows] = await p.query(
-    `SELECT
-       COUNT(DISTINCT student_id) AS playerCount,
-       COUNT(*)                   AS totalCompletions,
-       COALESCE(AVG(total_score), 0)       AS avgScore,
-       COALESCE(AVG(duration_seconds), 0)  AS avgDuration
-     FROM game_results`
-  );
-  const r = (rows as any[])[0];
+  const data = await readData();
+  const { results } = data;
+
+  if (results.length === 0) {
+    return { playerCount: 0, totalCompletions: 0, avgScore: 0, avgDuration: 0 };
+  }
+
+  const playerIds = new Set(results.map((r) => r.student_id));
+  const totalScore = results.reduce((sum, r) => sum + r.total_score, 0);
+  const totalDuration = results.reduce((sum, r) => sum + r.duration_seconds, 0);
+
   return {
-    playerCount: Number(r.playerCount),
-    totalCompletions: Number(r.totalCompletions),
-    avgScore: Math.round(Number(r.avgScore)),
-    avgDuration: Math.round(Number(r.avgDuration)),
+    playerCount: playerIds.size,
+    totalCompletions: results.length,
+    avgScore: Math.round(totalScore / results.length),
+    avgDuration: Math.round(totalDuration / results.length),
   };
 }
 
-/** 排行榜：按分數降序、用時升序 */
+/** Leaderboard: top 100, sorted by score desc then duration asc */
 export async function getLeaderboard(): Promise<GameResultRow[]> {
-  const p = getPool();
-  const [rows] = await p.query(
-    `SELECT * FROM game_results ORDER BY total_score DESC, duration_seconds ASC LIMIT 100`
-  );
-  return rows as GameResultRow[];
+  const data = await readData();
+
+  return data.results
+    .slice()
+    .sort((a, b) =>
+      b.total_score !== a.total_score
+        ? b.total_score - a.total_score
+        : a.duration_seconds - b.duration_seconds
+    )
+    .slice(0, 100);
 }

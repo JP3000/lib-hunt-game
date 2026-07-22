@@ -33,38 +33,9 @@ function formatTime(iso: string): string {
 }
 
 export default function AdminPage() {
-  const [authed, setAuthed] = useState(false);
-  const [pwdInput, setPwdInput] = useState("");
-  const [pwdError, setPwdError] = useState(false);
   const [loading, setLoading] = useState(false);
-
   const [stats, setStats] = useState<StatsData | null>(null);
   const [leaderboard, setLeaderboard] = useState<LeaderboardRow[]>([]);
-
-  const [checking, setChecking] = useState(false);
-
-  const handleLogin = async () => {
-    if (!pwdInput.trim()) return;
-    setChecking(true);
-    setPwdError(false);
-    try {
-      const res = await fetch("/api/auth", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ password: pwdInput }),
-      });
-      const data = await res.json();
-      if (data.ok) {
-        setAuthed(true);
-      } else {
-        setPwdError(true);
-      }
-    } catch {
-      setPwdError(true);
-    } finally {
-      setChecking(false);
-    }
-  };
 
   const fetchData = useCallback(async () => {
     setLoading(true);
@@ -85,40 +56,8 @@ export default function AdminPage() {
   }, []);
 
   useEffect(() => {
-    if (authed) {
-      fetchData();
-    }
-  }, [authed, fetchData]);
-
-  if (!authed) {
-    return (
-      <div className="flex min-h-screen items-center justify-center bg-[#0d0d0c] px-4">
-        <div className="treasure-panel w-full max-w-sm p-6">
-          <h1 className="treasure-title text-center text-2xl">🔐 管理端登录</h1>
-          <input
-            type="password"
-            value={pwdInput}
-            onChange={(e) => { setPwdInput(e.target.value); setPwdError(false); }}
-            onKeyDown={(e) => e.key === "Enter" && handleLogin()}
-            placeholder="请输入管理密码"
-            className="mt-5 w-full rounded-xl border border-[var(--border)] bg-black/30 px-4 py-2.5 text-sm text-amber-100 placeholder:text-[var(--ink-muted)] focus:border-amber-500/50 focus:outline-none"
-            autoFocus
-          />
-          {pwdError && (
-            <p className="mt-2 text-center text-xs text-red-400">密码错误</p>
-          )}
-          <button
-            type="button"
-            onClick={handleLogin}
-            disabled={checking}
-            className="mt-3 w-full rounded-xl border border-amber-500/50 bg-amber-500/20 px-4 py-2.5 text-sm text-amber-100 transition hover:bg-amber-500/30 disabled:opacity-50"
-          >
-            {checking ? "验证中…" : "进入"}
-          </button>
-        </div>
-      </div>
-    );
-  }
+    fetchData();
+  }, [fetchData]);
 
   return (
     <div className="min-h-screen bg-[#0d0d0c] px-4 py-8">
