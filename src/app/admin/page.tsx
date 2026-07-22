@@ -24,7 +24,7 @@ interface LeaderboardRow {
 function formatDuration(seconds: number): string {
   const m = Math.floor(seconds / 60);
   const s = seconds % 60;
-  return m > 0 ? `${m}分${s}秒` : `${s}秒`;
+  return m > 0 ? `${m}m ${s}s` : `${s}s`;
 }
 
 function formatTime(iso: string): string {
@@ -78,7 +78,7 @@ export default function AdminPage() {
       if (statsJson.stats) setStats(statsJson.stats);
       if (lbJson.leaderboard) setLeaderboard(lbJson.leaderboard);
     } catch (err) {
-      console.error("取得資料失敗", err);
+      console.error("获取数据失败", err);
     } finally {
       setLoading(false);
     }
@@ -94,18 +94,18 @@ export default function AdminPage() {
     return (
       <div className="flex min-h-screen items-center justify-center bg-[#0d0d0c] px-4">
         <div className="treasure-panel w-full max-w-sm p-6">
-          <h1 className="treasure-title text-center text-2xl">🔐 管理端登入</h1>
+          <h1 className="treasure-title text-center text-2xl">🔐 管理端登录</h1>
           <input
             type="password"
             value={pwdInput}
             onChange={(e) => { setPwdInput(e.target.value); setPwdError(false); }}
             onKeyDown={(e) => e.key === "Enter" && handleLogin()}
-            placeholder="請輸入管理密碼"
+            placeholder="请输入管理密码"
             className="mt-5 w-full rounded-xl border border-[var(--border)] bg-black/30 px-4 py-2.5 text-sm text-amber-100 placeholder:text-[var(--ink-muted)] focus:border-amber-500/50 focus:outline-none"
             autoFocus
           />
           {pwdError && (
-            <p className="mt-2 text-center text-xs text-red-400">密碼錯誤</p>
+            <p className="mt-2 text-center text-xs text-red-400">密码错误</p>
           )}
           <button
             type="button"
@@ -113,7 +113,7 @@ export default function AdminPage() {
             disabled={checking}
             className="mt-3 w-full rounded-xl border border-amber-500/50 bg-amber-500/20 px-4 py-2.5 text-sm text-amber-100 transition hover:bg-amber-500/30 disabled:opacity-50"
           >
-            {checking ? "驗證中…" : "進入"}
+            {checking ? "验证中…" : "进入"}
           </button>
         </div>
       </div>
@@ -126,8 +126,8 @@ export default function AdminPage() {
         {/* 頁頭 */}
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="treasure-title text-2xl text-amber-100">📊 遊戲數據看板</h1>
-            <p className="mt-1 text-xs text-[var(--ink-muted)]">圖書館尋寶遊戲 · 通關記錄</p>
+            <h1 className="treasure-title text-2xl text-amber-100">📊 游戏数据看板</h1>
+            <p className="mt-1 text-xs text-[var(--ink-muted)]">图书馆寻宝游戏 · 通关记录</p>
           </div>
           <button
             type="button"
@@ -135,7 +135,7 @@ export default function AdminPage() {
             disabled={loading}
             className="rounded-xl border border-amber-500/50 bg-amber-500/20 px-4 py-2 text-sm text-amber-100 transition hover:bg-amber-500/30 disabled:opacity-50"
           >
-            {loading ? "載入中…" : "重新整理"}
+            {loading ? "加载中…" : "刷新"}
           </button>
         </div>
 
@@ -143,11 +143,11 @@ export default function AdminPage() {
         {stats && (
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-5">
             <div className="treasure-panel p-4 text-center">
-              <p className="text-[10px] uppercase tracking-[0.2em] text-[var(--ink-muted)]">參與人數</p>
+              <p className="text-[10px] uppercase tracking-[0.2em] text-[var(--ink-muted)]">参与人数</p>
               <p className="treasure-title mt-1 text-3xl text-amber-100">{stats.playerCount}</p>
             </div>
             <div className="treasure-panel p-4 text-center">
-              <p className="text-[10px] uppercase tracking-[0.2em] text-[var(--ink-muted)]">通關次數</p>
+              <p className="text-[10px] uppercase tracking-[0.2em] text-[var(--ink-muted)]">通关次数</p>
               <p className="treasure-title mt-1 text-3xl text-amber-100">{stats.totalCompletions}</p>
             </div>
             <div className="treasure-panel p-4 text-center">
@@ -155,13 +155,13 @@ export default function AdminPage() {
               <p className="treasure-title mt-1 text-3xl text-amber-100">{stats.avgScore}</p>
             </div>
             <div className="treasure-panel p-4 text-center">
-              <p className="text-[10px] uppercase tracking-[0.2em] text-[var(--ink-muted)]">平均正確率</p>
+              <p className="text-[10px] uppercase tracking-[0.2em] text-[var(--ink-muted)]">平均正确率</p>
               <p className="treasure-title mt-1 text-3xl text-amber-100">
                 {stats.avgScore > 0 ? `${calcAccuracy(stats.avgScore)}%` : "-"}
               </p>
             </div>
             <div className="treasure-panel p-4 text-center">
-              <p className="text-[10px] uppercase tracking-[0.2em] text-[var(--ink-muted)]">平均耗時</p>
+              <p className="text-[10px] uppercase tracking-[0.2em] text-[var(--ink-muted)]">平均耗时</p>
               <p className="treasure-title mt-1 text-3xl text-amber-100">
                 {stats.avgDuration > 0 ? formatDuration(stats.avgDuration) : "-"}
               </p>
@@ -174,7 +174,7 @@ export default function AdminPage() {
           <h2 className="treasure-title text-xl text-amber-100">🏆 排行榜</h2>
           {leaderboard.length === 0 ? (
             <p className="mt-4 text-sm text-[var(--ink-muted)]">
-              {loading ? "載入中…" : "暫無數據"}
+              {loading ? "加载中…" : "暂无数据"}
             </p>
           ) : (
             <div className="mt-3 overflow-x-auto">
@@ -182,12 +182,12 @@ export default function AdminPage() {
                 <thead>
                   <tr className="border-b border-[var(--border)] text-[10px] uppercase tracking-[0.15em] text-[var(--ink-muted)]">
                     <th className="pb-2 pr-3 font-medium">排名</th>
-                    <th className="pb-2 pr-3 font-medium">答題人 ID</th>
-                    <th className="pb-2 pr-3 font-medium">身分</th>
-                    <th className="pb-2 pr-3 font-medium">分數</th>
-                    <th className="pb-2 pr-3 font-medium">正確率</th>
-                    <th className="pb-2 pr-3 font-medium">耗時</th>
-                    <th className="pb-2 font-medium">完成時間</th>
+                    <th className="pb-2 pr-3 font-medium">玩家 ID</th>
+                    <th className="pb-2 pr-3 font-medium">身份</th>
+                    <th className="pb-2 pr-3 font-medium">分数</th>
+                    <th className="pb-2 pr-3 font-medium">正确率</th>
+                    <th className="pb-2 pr-3 font-medium">耗时</th>
+                    <th className="pb-2 font-medium">完成时间</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -195,7 +195,7 @@ export default function AdminPage() {
                     <tr key={row.id} className="border-b border-[var(--border)]/50 text-amber-100">
                       <td className="py-2.5 pr-3 text-[var(--ink-muted)]">{i + 1}</td>
                       <td className="py-2.5 pr-3 font-mono text-xs">{row.student_id}</td>
-                      <td className="py-2.5 pr-3 text-xs">{row.role === "staff" ? "職員" : row.role === "student" ? "學生" : "-"}</td>
+                      <td className="py-2.5 pr-3 text-xs">{row.role === "staff" ? "职员" : row.role === "student" ? "学生" : "-"}</td>
                       <td className="py-2.5 pr-3">{row.total_score}</td>
                       <td className="py-2.5 pr-3">{calcAccuracy(row.total_score)}%</td>
                       <td className="py-2.5 pr-3 text-[var(--ink-muted)]">{formatDuration(row.duration_seconds)}</td>
