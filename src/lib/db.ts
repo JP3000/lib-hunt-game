@@ -45,7 +45,7 @@ async function writeData(data: GameData): Promise<void> {
   } catch {
     // If delete fails (e.g. blob doesn't exist), proceed
   }
-  await put(DATA_FILE, JSON.stringify(data));
+  await put(DATA_FILE, JSON.stringify(data), { access: "public" });
 }
 
 /** Save a game completion record */

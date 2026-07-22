@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
       role ? String(role) : null
     );
 
-    return NextResponse.json({ ok: true, v: "2" });
+    return NextResponse.json({ ok: true });
   } catch (err: any) {
     const msg = err instanceof Error ? err.message : String(err);
     console.error("POST /api/results error:", msg);
