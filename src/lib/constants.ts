@@ -3,7 +3,7 @@ export const CACHE_BUSTER = "20250710";
 
 export const TOTAL_LEVELS = 12;
 /** 12 關全部正確選項的總分 */
-export const TOTAL_MAX_SCORE = 220;
+export const TOTAL_MAX_SCORE = 260;
 
 export const STUDENT_ID_REGEX = /^[A-Za-z]{2}\d{6}$/;
 export const FAST_PASS_STUDENT_ID = "ab999999";
