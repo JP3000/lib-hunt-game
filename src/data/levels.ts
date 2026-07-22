@@ -44,7 +44,7 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
     {
       level: 2,
       title: "第二關：神龍現身——知識深海的博尋",
-      story: `想破解這位Iquan的身分，先學會用『博尋』吧。你來到資訊共享空間，打開一台電腦，向那個神祕簽名發起第一次檢索。`,
+      story: `想破解這位iquan的身分，先學會用『博尋』吧。你來到資訊共享空間，打開一台電腦，向那個神祕簽名發起第一次檢索。`,
       completionStory: `檢索結果出來了——N. Iquan 就是 Nicolas Iquan，明末海上霸主鄭芝龍在澳門受洗時的教名，而「Iquan」正是他的小名「一官」。一個受洗的天主教徒、一個縱橫東亞的海上梟雄，他與這批寶藏究竟有何關係？你迫切想讀到這本書的細節。可它在哪一層書架上？`,
       items: [{
         id: "item-02",
@@ -350,7 +350,7 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
     {
       level: 2,
       title: "第二关：神龙现身——知识深海的博寻",
-      story: `想破解这位Iquan的身份，先学会用『博寻』吧。你来到资讯共享空间，打开一台电脑，向那个神秘签名发起第一次检索。`,
+      story: `想破解这位iquan的身份，先学会用『博寻』吧。你来到资讯共享空间，打开一台电脑，向那个神秘签名发起第一次检索。`,
       completionStory: `检索结果出来了——N. Iquan 就是 Nicolas Iquan，明末海上霸主郑芝龙在澳门受洗时的教名，而「Iquan」正是他的小名「一官」。一个受洗的天主教徒、一个纵横东亚的海上枭雄，他与这批宝藏究竟有何关系？你迫切想读到这本书的细节。可它在哪一层书架上？`,
       items: [{
         id: "item-02",
@@ -656,7 +656,7 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
     {
       level: 2,
       title: "Level 2: The Dragon Emerges — BoQuest into the Deep Sea of Knowledge",
-      story: `"If you want to uncover who Iquan is, first learn to use BoQuest." You head to the Information Commons, open a computer, and launch your first search against that enigmatic signature.`,
+      story: `"If you want to uncover who iquan is, first learn to use BoQuest." You head to the Information Commons, open a computer, and launch your first search against that enigmatic signature.`,
       completionStory: `The search results are in — N. Iquan is Nicolas Iquan, the baptized name Zheng Zhilong received in Macau. "Iquan" was his childhood nickname, "Yiguan" (First Official). A baptized Catholic, a maritime warlord who dominated East Asian waters — what does he have to do with this treasure? You're desperate to read the book. But which floor is it on?`,
       storyImageUrl: "/assets/Secret_Folder_Copy.jpg",
       storyImageAlt: "Cipher ledger detail",
