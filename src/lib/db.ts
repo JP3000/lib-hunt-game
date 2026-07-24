@@ -36,7 +36,7 @@ async function cfGetKV(): Promise<GameData> {
   const { getRequestContext } = await import("@cloudflare/next-on-pages");
   const ctx = getRequestContext();
   try {
-    const raw = await ctx.env.GAME_RESULTS.get(DATA_FILE);
+    const raw = await (ctx.env as Record<string, any>).GAME_RESULTS.get(DATA_FILE);
     return raw ? (JSON.parse(raw) as GameData) : { results: [], nextId: 1 };
   } catch {
     return { results: [], nextId: 1 };
@@ -46,7 +46,7 @@ async function cfGetKV(): Promise<GameData> {
 async function cfPutKV(data: GameData): Promise<void> {
   const { getRequestContext } = await import("@cloudflare/next-on-pages");
   const ctx = getRequestContext();
-  await ctx.env.GAME_RESULTS.put(DATA_FILE, JSON.stringify(data));
+  await (ctx.env as Record<string, any>).GAME_RESULTS.put(DATA_FILE, JSON.stringify(data));
 }
 
 /* ================================================================
