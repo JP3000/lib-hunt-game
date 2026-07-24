@@ -658,9 +658,6 @@ const LEVELS_BY_LOCALE: Record<Locale, LevelConfig[]> = {
       title: "Level 2: The Dragon Emerges — BoQuest into the Deep Sea of Knowledge",
       story: `"If you want to uncover who iquan is, first learn to use BoQuest." You head to the Information Commons, open a computer, and launch your first search against that enigmatic signature.`,
       completionStory: `The search results are in — N. Iquan is Nicolas Iquan, the baptized name Zheng Zhilong received in Macau. "Iquan" was his childhood nickname, "Yiguan" (First Official). A baptized Catholic, a maritime warlord who dominated East Asian waters — what does he have to do with this treasure? You're desperate to read the book. But which floor is it on?`,
-      storyImageUrl: "/assets/Secret_Folder_Copy.jpg",
-      storyImageAlt: "Cipher ledger detail",
-      storyImageCaption: "The ledger's cipher reads: 'The Sea Eye swallows silver yet drowns none — chests drawn by unseen currents vanish beneath the silt, fleeing down the Silver Waterway.' The answer lies within these words.",
       items: [{
         id: "item-02",
         name: "Nicolas Iquan Dossier",
