@@ -23,8 +23,37 @@ interface GameData {
   nextId: number;
 }
 
-/** Read game data blob, returns default if not found */
-async function readData(): Promise<GameData> {
+/* ---- platform detection ---- */
+const isCloudflare = !!process.env.CF_PAGES;
+const isVercel = !!process.env.VERCEL;
+
+/* ================================================================
+   Cloudflare KV  backend
+   ================================================================ */
+
+async function cfGetKV(): Promise<GameData> {
+  // dynamic import – only loaded on Cloudflare Workers runtime
+  const { getRequestContext } = await import("@cloudflare/next-on-pages");
+  const ctx = getRequestContext();
+  try {
+    const raw = await ctx.env.GAME_RESULTS.get(DATA_FILE);
+    return raw ? (JSON.parse(raw) as GameData) : { results: [], nextId: 1 };
+  } catch {
+    return { results: [], nextId: 1 };
+  }
+}
+
+async function cfPutKV(data: GameData): Promise<void> {
+  const { getRequestContext } = await import("@cloudflare/next-on-pages");
+  const ctx = getRequestContext();
+  await ctx.env.GAME_RESULTS.put(DATA_FILE, JSON.stringify(data));
+}
+
+/* ================================================================
+   Vercel Blob  backend (unchanged)
+   ================================================================ */
+
+async function vcReadData(): Promise<GameData> {
   try {
     const { blobs } = await list();
     const blob = blobs.find((b) => b.pathname === DATA_FILE);
@@ -36,26 +65,28 @@ async function readData(): Promise<GameData> {
   }
 }
 
-/** Replace old blob with new data */
-async function writeData(data: GameData): Promise<void> {
+async function vcWriteData(data: GameData): Promise<void> {
   try {
     const { blobs } = await list();
     const old = blobs.find((b) => b.pathname === DATA_FILE);
     if (old) await del(old.url);
   } catch {
-    // If delete fails (e.g. blob doesn't exist), proceed
+    // proceed
   }
   await put(DATA_FILE, JSON.stringify(data), { access: "public" });
 }
 
-/** Save a game completion record */
+/* ================================================================
+   Public API (same signature for both platforms)
+   ================================================================ */
+
 export async function insertResult(
   studentId: string,
   totalScore: number,
   durationSeconds: number,
   role?: string | null
 ): Promise<void> {
-  const data = await readData();
+  const data = isCloudflare ? await cfGetKV() : await vcReadData();
 
   const record: GameResultRow = {
     id: data.nextId++,
@@ -67,12 +98,13 @@ export async function insertResult(
   };
 
   data.results.push(record);
-  await writeData(data);
+
+  if (isCloudflare) await cfPutKV(data);
+  else await vcWriteData(data);
 }
 
-/** Compute aggregate statistics */
 export async function getStats(): Promise<StatsResult> {
-  const data = await readData();
+  const data = isCloudflare ? await cfGetKV() : await vcReadData();
   const { results } = data;
 
   if (results.length === 0) {
@@ -91,9 +123,8 @@ export async function getStats(): Promise<StatsResult> {
   };
 }
 
-/** Leaderboard: top 100, sorted by score desc then duration asc */
 export async function getLeaderboard(): Promise<GameResultRow[]> {
-  const data = await readData();
+  const data = isCloudflare ? await cfGetKV() : await vcReadData();
 
   return data.results
     .slice()
