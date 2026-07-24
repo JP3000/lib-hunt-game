@@ -1,0 +1,29 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"main": ".open-next/worker.js",
+	"name": "lib-hunt-game",
+	"compatibility_date": "2026-07-24",
+	"compatibility_flags": [
+		"nodejs_compat",
+		"global_fetch_strictly_public"
+	],
+	"assets": {
+		"directory": ".open-next/assets",
+		"binding": "ASSETS"
+	},
+	"services": [
+		{
+			"binding": "WORKER_SELF_REFERENCE",
+			"service": "lib-hunt-game"
+		}
+	],
+	"images": {
+		"binding": "IMAGES"
+	},
+	"kv_namespaces": [
+		{
+			"binding": "GAME_RESULTS",
+			"id": "62535bfc04ae49019305ebabb3e05038"
+		}
+	]
+}
